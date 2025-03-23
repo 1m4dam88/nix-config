@@ -1,0 +1,22 @@
+{
+  inputs,
+  nixpkgs,
+  self,
+  username,
+  host,
+  ...
+}:
+{
+  imports = [
+	./bootloader.nix
+	./hardware.nix
+	./media.nix
+	./networking.nix
+	./program.nix
+	./services.nix
+	./system.nix
+	./virtualization.nix
+	./wayland.nix
+	./user.nix
+   ];
+}
