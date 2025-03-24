@@ -32,25 +32,46 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
    };
+
+    nvchad4nix = {
+      url = "github:nix-community/nix4nvchad";
+      inputs.nixpkgs.follows = "nixpkgs";
+   };
   };
 
   outputs = 
-    { nixpkgs, self, ... }@inputs:
+    { nixpkgs, catppuccin, home-manager, self, ... }@inputs:
     let
+      lib = nixpkgs.lib;
       username = "ye";
       system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+      extraSpecialArgs = { inherit system; inherit inputs; };  # <- passing inputs to the attribute set for home-manager
+      specialArgs = { inherit system; inherit inputs; };       # <- passing inputs to the attribute set for NixOS (optional)
     in
     {
       nixosConfigurations = {
         w520 = nixpkgs.lib.nixosSystem {
          inherit system;
-         modules = [ ./hosts/w520 ];
+         modules = [ 
+	  {
+	   nixpkgs = {
+	    overlays = [
+	     (final: prev: {
+	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+	     })
+	     inputs.hyprpanel.overlay
+	   ];
+	  };
+	}
+	  ./hosts/w520 
+	  home-manager.nixosModules.home-manager
+	 ];
          specialArgs = {
            host = "w520";
       	   inherit self inputs username;
          };
         };
        };
-
       };
 }

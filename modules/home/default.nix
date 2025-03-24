@@ -4,6 +4,7 @@
     ./hyprland
     ./hyprpanel.nix
     ./fuzzel.nix
+    ./catppuccin.nix
     ./discord
     ./browser.nix
     ./git.nix

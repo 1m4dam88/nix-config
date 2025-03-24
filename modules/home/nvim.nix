@@ -1,7 +1,6 @@
-{ pkgs, inputs, ... }:
-{ 
-  programs.neovim = {
-     enable = true;
-     vimAlias = true;
-  };
+{ inputs, config, pkgs, ... }: {
+  imports = [
+    inputs.nvchad4nix.homeManagerModule
+  ];
+  programs.nvchad.enable = true;
 }

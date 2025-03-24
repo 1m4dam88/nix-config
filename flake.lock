@@ -753,6 +753,44 @@
         "type": "github"
       }
     },
+    "nvchad-starter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736643544,
+        "narHash": "sha256-PoThdeLgPIFrqVMgwOyWsPDD01K4qEFT6Q5LHz6n5DM=",
+        "owner": "NvChad",
+        "repo": "starter",
+        "rev": "c3d1fb646a04aaa97b2929b90269f8a7bf8e8dc4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NvChad",
+        "ref": "main",
+        "repo": "starter",
+        "type": "github"
+      }
+    },
+    "nvchad4nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nvchad-starter": "nvchad-starter"
+      },
+      "locked": {
+        "lastModified": 1742705132,
+        "narHash": "sha256-B5KYJFI0N6jS8S1Qmw4VWZ5Etev2++nSYLvLgWu8Apw=",
+        "owner": "nix-community",
+        "repo": "nix4nvchad",
+        "rev": "0e5c2835ff6c17417d8ed9bfc77e6b3504c7474e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix4nvchad",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -787,6 +825,7 @@
         "nix-gaming": "nix-gaming",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_8",
+        "nvchad4nix": "nvchad4nix",
         "spicetify-nix": "spicetify-nix",
         "zen-browser": "zen-browser"
       }

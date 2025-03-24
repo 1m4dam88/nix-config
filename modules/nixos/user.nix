@@ -9,6 +9,7 @@
 {
   imports = [ 
     inputs.home-manager.nixosModules.home-manager 
+    inputs.catppuccin.nixosModules.catppuccin
   ];
   home-manager = {
     useUserPackages = true;
@@ -17,6 +18,7 @@
     users.${username} = {
       imports = [ 
         ./../home 
+	inputs.catppuccin.homeManagerModules.catppuccin
       ];
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
