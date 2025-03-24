@@ -1,7 +1,6 @@
 { inputs, ... }:
 {
   imports = [
-    ./source
-    ./hyprland.nix
+      ./binds.nix
   ];
 }
