@@ -4,6 +4,13 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     hyprpicker.url = "github:hyprwm/hyprpicker";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -19,6 +26,11 @@
     catppuccin.url = "github:catppuccin/nix";
 
     stylix.url = "github:danth/stylix";
+
+    yazi-plugins = {
+      url = "github:yazi-rs/plugins";
+      flake = false;
+    };
 
     spicetify-nix = {
       url = "github:gerg-l/spicetify-nix";
@@ -60,25 +72,49 @@
       nixosConfigurations = {
         w520 = nixpkgs.lib.nixosSystem {
          inherit system;
-         modules = [ 
-	        {
-      	   nixpkgs = {
-      	    overlays = [
-      	     (final: prev: {
-      	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-      	     })
-      	     inputs.hyprpanel.overlay
-      	   ];
-      	  };
-      	}
-	  ./hosts/w520 
-	  home-manager.nixosModules.home-manager
-	 ];
+               modules = [ 
+      	        {
+            	   nixpkgs = {
+            	    overlays = [
+            	     (final: prev: {
+            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+            	     })
+            	     inputs.hyprpanel.overlay
+            	   ];
+            	  };
+            	}
+	            ./hosts/w520 
+	            home-manager.nixosModules.home-manager
+              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-w520
+	          ];
          specialArgs = {
            host = "w520";
       	   inherit self inputs username;
          };
         };
-       };
+        t480 = nixpkgs.lib.nixosSystem {
+         inherit system;
+               modules = [ 
+      	        {
+            	   nixpkgs = {
+            	    overlays = [
+            	     (final: prev: {
+            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+            	     })
+            	     inputs.hyprpanel.overlay
+            	   ];
+            	  };
+            	}
+	            ./hosts/t480
+	            home-manager.nixosModules.home-manager
+              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+	          ];
+         specialArgs = {
+           host = "t480";
+      	   inherit self inputs username;
+         };
+        };
       };
+    };
 }
+

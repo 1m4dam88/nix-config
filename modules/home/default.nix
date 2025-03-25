@@ -1,15 +1,21 @@
 { inputs, username, host, ...}: {
   imports = [
+    ./bat.nix
+    ./btop.nix
+    ./browser.nix
+    ./catppuccin.nix
+    ./cava.nix
+    ./discord
     ./fastfetch.nix
+    ./fish.nix
+    ./fuzzel.nix
+    ./foot.nix
+    ./fzf.nix
+    ./git.nix
     ./hyprland
     ./hyprpanel.nix
-    ./fuzzel.nix
-    ./catppuccin.nix
-    ./discord
-    ./browser.nix
-    ./git.nix
-    ./fish.nix
-    ./foot.nix
     ./nvim.nix
+    ./ripgrep.nix
+    ./yazi.nix
   ];
 }

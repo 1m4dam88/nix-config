@@ -27,7 +27,7 @@
         matugen = true;
         font = {
           name = "Caskaydia Cove Nerd Font";
-          size = "12px";
+          size = "16px";
         };
         bar = {
           location = "bottom";
