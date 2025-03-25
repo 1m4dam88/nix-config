@@ -18,6 +18,8 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
+    stylix.url = "github:danth/stylix";
+
     spicetify-nix = {
       url = "github:gerg-l/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,16 +33,21 @@
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
-   };
+    };
+  
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     nvchad4nix = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
-   };
+    };
   };
 
   outputs = 
-    { nixpkgs, catppuccin, home-manager, self, ... }@inputs:
+    { nixpkgs, catppuccin, home-manager, self, split-monitor-workspaces, stylix, ... }@inputs:
     let
       lib = nixpkgs.lib;
       username = "ye";
@@ -54,16 +61,16 @@
         w520 = nixpkgs.lib.nixosSystem {
          inherit system;
          modules = [ 
-	  {
-	   nixpkgs = {
-	    overlays = [
-	     (final: prev: {
-	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-	     })
-	     inputs.hyprpanel.overlay
-	   ];
-	  };
-	}
+	        {
+      	   nixpkgs = {
+      	    overlays = [
+      	     (final: prev: {
+      	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+      	     })
+      	     inputs.hyprpanel.overlay
+      	   ];
+      	  };
+      	}
 	  ./hosts/w520 
 	  home-manager.nixosModules.home-manager
 	 ];

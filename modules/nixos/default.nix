@@ -18,5 +18,7 @@
 	./virtualization.nix
 	./wayland.nix
 	./user.nix
+  ./stylix.nix
+  ./fonts.nix
    ];
 }

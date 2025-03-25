@@ -10,6 +10,8 @@
     slurp
     cliphist
     wf-recorder
+    wl-clipboard
+    playerctl
     glib
     wayland
     direnv
@@ -21,6 +23,10 @@
     enable = true;
     package = null;
     portalPackage = null;
+
+    plugins = [
+      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+    ];
 
     xwayland = {
       enable = true;
