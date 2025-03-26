@@ -25,4 +25,5 @@
   stylix.opacity.terminal= 0.9;
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Classic";
+  stylix.cursor.size = 24;
 }
