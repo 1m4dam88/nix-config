@@ -2,6 +2,7 @@
 {
   imports = [
     ./hyprlock.nix
+    ./hypridle.nix
     ./source
   ];
   home.packages = with pkgs; [
