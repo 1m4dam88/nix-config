@@ -3,7 +3,7 @@
   wayland.windowManager.hyprland = {
      settings = {
        env = [
-          "HYPRCURSOR_THEME = catppuccin-mocha-light-cursors"
+          "HYPRCURSOR_THEME = Bibata Modern Classic"
           "HYPRCUROR_SIZE = 24"
           "XDG_CURRENT_DESKTOP = Hyprland"
           "XDG_SESSION_TYPE = wayland"
