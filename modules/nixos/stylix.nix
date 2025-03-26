@@ -22,4 +22,7 @@
   stylix.enable = true;
   stylix.image = ./../../wallpapers/blue.png;
   stylix.polarity = "dark";
+  stylix.opacity.terminal= 0.9;
+  stylix.cursor.package = pkgs.bibata-cursors;
+  stylix.cursor.name = "Bibata-Modern-Classic";
 }
