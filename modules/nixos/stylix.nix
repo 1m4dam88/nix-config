@@ -20,6 +20,6 @@
   };
 
   stylix.enable = true;
-  stylix.image = ./../../wallpapers/jellyfish.jpg;
+  stylix.image = ./../../wallpapers/blue.png;
   stylix.polarity = "dark";
 }

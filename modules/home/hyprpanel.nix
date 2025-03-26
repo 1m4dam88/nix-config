@@ -16,7 +16,7 @@
       };
       wallpaper = {
         enable = true;
-        image = "./../../wallpapers/jellyfish.jpg";
+        image = "~/nix-config/wallpapers/blue.png";
         pywal = true;
       };
       bar = {

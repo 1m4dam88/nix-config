@@ -6,7 +6,7 @@
       monitor=DP-2,1920x1080@144,0x580,1
       monitor=DP-2,1920x1200@60,5360x160,1
       monitor=DP-2,transform,1
-      monitor=eDP-1,3840x2160@60,auto,1,bitdepth,10
+      monitor=eDP-1,3840x2160@60,auto,1.5,bitdepth,10
       monitor=LVDS-1,1920x1080@60,auto,1
     ";
  };
