@@ -4,8 +4,8 @@
     serif = config.stylix.fonts.sansSerif;
     
     sansSerif = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Sans";
+      package = pkgs.inter;
+      name = "Inter Display";
     };
 
     monospace = {
