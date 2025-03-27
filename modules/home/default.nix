@@ -6,6 +6,7 @@
     ./catppuccin.nix
     ./cava.nix
     ./discord
+    ./eza.nix
     ./fastfetch.nix
     ./fish.nix
     ./fuzzel.nix
@@ -18,5 +19,8 @@
     ./prism.nix
     ./ripgrep.nix
     ./yazi.nix
+    ./yt.nix
+    ./zathura.nix
+    ./zoxide.nix
   ];
 }

@@ -2,6 +2,9 @@
 {
   wayland.windowManager.hyprland = {
      settings = {
+       animations = {
+         enabled = false;
+       };
        decoration = {
          rounding = 15;
          active_opacity = 1;
@@ -17,13 +20,10 @@
            noise = 0;
          };
          shadow = {
-           enabled = true ;
+           enabled = true;
            range = 30;
            render_power = 3;
            offset = "12 12";
-         };
-         animations = {
-          enabled = false;
          };
        };
      };
