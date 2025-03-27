@@ -1,4 +1,4 @@
-{ inputs, pkgs, self, ... }:
+{ inputs, pkgs, self, config, ... }:
 {
   imports = [
     ./hyprlock.nix
@@ -40,6 +40,5 @@
     xwayland = {
       enable = true;
     };
-    systemd.enable = true;
   };
 }

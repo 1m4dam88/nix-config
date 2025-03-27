@@ -16,6 +16,7 @@
     ./hyprland
     ./hyprpanel.nix
     ./nvim.nix
+    ./obs.nix
     ./prism.nix
     ./ripgrep.nix
     ./yazi.nix
