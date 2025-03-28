@@ -1,8 +1,5 @@
 { inputs, pkgs, outputs, ... }:
 {
-  programs.hyprland = {
-    withUWSM = true;
-  };
   programs.uwsm = {
     enable = true;
     export = {

@@ -1,7 +1,11 @@
 
 { inputs, pkgs, ... }:
 {
+  programs.uwsm = {
+    enable = true;
+  };
   programs.hyprland = {
+    withUWSM = true;
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.default;
     portalPackage = 
