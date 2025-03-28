@@ -114,6 +114,54 @@
       	   inherit self inputs username;
          };
         };
+        desktop = nixpkgs.lib.nixosSystem {
+         inherit system;
+               modules = [ 
+      	        {
+            	   nixpkgs = {
+            	    overlays = [
+            	     (final: prev: {
+            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+            	     })
+            	     inputs.hyprpanel.overlay
+            	   ];
+            	  };
+            	}
+	            ./hosts/desktop
+	            home-manager.nixosModules.home-manager
+              inputs.nixos-hardware.nixosModules.cpu-amd-pstate
+              inputs.nixos-hardware.nixosModules.cpu-amd-zenpower
+              inputs.nixos-hardware.nixosModules.gpu-amd-default.nix
+	          ];
+         specialArgs = {
+           host = "desktop";
+      	   inherit self inputs username;
+         };
+        };
+        m93p = nixpkgs.lib.nixosSystem {
+         inherit system;
+               modules = [ 
+      	        {
+            	   nixpkgs = {
+            	    overlays = [
+            	     (final: prev: {
+            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+            	     })
+            	     inputs.hyprpanel.overlay
+            	   ];
+            	  };
+            	}
+	            ./hosts/m93p
+	            home-manager.nixosModules.home-manager
+              inputs.nixos-hardware.nixosModules.cpu-amd-pstate
+              inputs.nixos-hardware.nixosModules.cpu-amd-zenpower
+              inputs.nixos-hardware.nixosModules.gpu-amd-default.nix
+	          ];
+         specialArgs = {
+           host = "m93p";
+      	   inherit self inputs username;
+         };
+        };
       };
     };
 }
