@@ -15,6 +15,7 @@
     ./git.nix
     ./hyprland
     ./hyprpanel.nix
+    ./kdeconnect.nix
     ./nvim.nix
     ./obs.nix
     ./prism.nix
