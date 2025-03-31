@@ -12,10 +12,13 @@
     ./fuzzel.nix
     ./foot.nix
     ./fzf.nix
+    ./gaming.nix
     ./git.nix
     ./hyprland
     ./hyprpanel.nix
     ./kdeconnect.nix
+    ./kicad.nix
+    ./mpv.nix
     ./nvim.nix
     ./obs.nix
     ./prism.nix

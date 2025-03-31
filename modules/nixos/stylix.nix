@@ -24,6 +24,6 @@
   stylix.polarity = "dark";
   stylix.opacity.terminal= 0.9;
   stylix.cursor.package = pkgs.bibata-cursors;
-  stylix.cursor.name = "Bibata-Modern-Classic";
+  stylix.cursor.name = "Bibata-Modern-Ice";
   stylix.cursor.size = 24;
 }

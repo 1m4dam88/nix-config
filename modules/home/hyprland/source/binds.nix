@@ -50,11 +50,11 @@
                 "$mainMod, M, exec, uwsm-app -- foot -e ncmpcpp"
                 "$mainMod, Return, exec, uwsm-app -- foot"
                 "$mainMod shift, Return, exec, foot"
-                ", Print, exec, uwsm-app -- grimblast --freeze copysave area $shot"
+                ", Print, exec, uwsm-app -- grimblast --freeze copysave area ~/Pictures/Screenshots"
                 "Ctrl, Print, exec, uwsm-app -- grimblast --freeze save area - | uwsm app -- swappy -f -"
-                "SHIFT, Print, exec, uwsm-app -- grimblast copysave output $shot"
+                "SHIFT, Print, exec, uwsm-app -- grimblast copysave output ~/Pictures/Screenshots"
                 "Ctrl SHIFT, Print, exec, uwsm-app -- grimblast --freeze save output - | uwsm app -- swappy -f -"
-                "$mainMod, Print, exec, uwsm-app -- grimblast --freeze copysave active $shot"
+                "$mainMod, Print, exec, uwsm-app -- grimblast --freeze copysave active ~/Pictures/Screenshots"
                 "$mainMod Ctrl, Print, exec, uwsm-app -- grimblast --freeze save active - | uwsm app -- swappy -f -"
                 
                 

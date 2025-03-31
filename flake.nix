@@ -129,9 +129,10 @@
             	}
 	            ./hosts/desktop
 	            home-manager.nixosModules.home-manager
-              inputs.nixos-hardware.nixosModules.cpu-amd-pstate
-              inputs.nixos-hardware.nixosModules.cpu-amd-zenpower
-              inputs.nixos-hardware.nixosModules.gpu-amd-default.nix
+              inputs.nixos-hardware.nixosModules.common-cpu-amd
+              inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
+              inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+ 	      inputs.nixos-hardware.nixosModules.common-gpu-amd
 	          ];
          specialArgs = {
            host = "desktop";

@@ -12,6 +12,7 @@
 	./hardware.nix
 	./media.nix
 	./networking.nix
+  ./lact
 	./program.nix
 	./services.nix
 	./system.nix
