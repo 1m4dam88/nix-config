@@ -13,7 +13,9 @@
 	./media.nix
 	./networking.nix
   ./lact
+  ./rgb.nix
 	./program.nix
+  ./gaming.nix
 	./services.nix
 	./system.nix
 	./virtualization.nix
