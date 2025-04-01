@@ -20,6 +20,7 @@
 	./system.nix
 	./virtualization.nix
 	./wayland.nix
+  ./thunar.nix
 	./user.nix
   ./stylix.nix
   ./fonts.nix
