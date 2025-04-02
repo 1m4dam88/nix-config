@@ -14,6 +14,7 @@
 	./networking.nix
   ./lact
   ./rgb.nix
+  ./nh.nix
 	./program.nix
   ./gaming.nix
 	./services.nix
