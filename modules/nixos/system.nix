@@ -1,4 +1,20 @@
 {
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 25;
+    priority = 5;
+  };
+  nix = {
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+  };
  console.keyMap = "uk";
  time.timeZone = "Europe/London";
  i18n.defaultLocale = "en_GB.UTF-8";

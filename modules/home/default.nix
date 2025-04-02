@@ -1,31 +1,6 @@
 { inputs, username, host, ...}: {
   imports = [
-    ./bat.nix
-    ./btop.nix
-    ./browser.nix
-    ./catppuccin.nix
-    ./cava.nix
-    ./discord
-    ./eza.nix
-    ./fastfetch.nix
-    ./fish.nix
-    ./fuzzel.nix
-    ./foot.nix
-    ./fzf.nix
-    ./gaming.nix
-    ./git.nix
-    ./hyprland
-    ./hyprpanel.nix
-    ./kdeconnect.nix
-    ./kicad.nix
-    ./mpv.nix
-    ./nvim.nix
-    ./obs.nix
-    ./prism.nix
-    ./ripgrep.nix
-    ./yazi.nix
-    ./yt.nix
-    ./zathura.nix
-    ./zoxide.nix
+    ./cli
+    ./gui
   ];
 }

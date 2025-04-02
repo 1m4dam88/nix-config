@@ -9,7 +9,6 @@
 {
   imports = [ 
     inputs.home-manager.nixosModules.home-manager 
-    inputs.catppuccin.nixosModules.catppuccin
     inputs.stylix.nixosModules.stylix
   ];
   home-manager = {
@@ -19,7 +18,7 @@
     users.${username} = {
       imports = [ 
         ./../home 
-	      inputs.catppuccin.homeManagerModules.catppuccin
+        inputs.self.outputs.homeManagerModules.default
       ];
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";

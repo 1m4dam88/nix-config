@@ -16,6 +16,7 @@
     '';
 
     shellAliases = {
+      "rn" = "nh os switch ~/nix-config";
       "cp" = "cp -iv";
       "mv" = "mv -iv";
       "rm" = "rm -vI";

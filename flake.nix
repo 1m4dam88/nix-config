@@ -164,6 +164,7 @@
          };
         };
       };
+      homeManagerModules.default = ./modules/home;
     };
 }
 
