@@ -1,12 +1,13 @@
 { inputs, username, host, ...}: {
   imports = [
-    ./discord
-    ./hyprland
+    ./blender.nix
     ./browser.nix
     ./cura.nix
+    ./discord
     ./foot.nix
     ./fuzzel.nix
     ./gaming.nix
+    ./hyprland
     ./hyprpanel.nix
     ./kdeconnect.nix
     ./kicad.nix
