@@ -154,12 +154,32 @@
             	}
 	            ./hosts/m93p
 	            home-manager.nixosModules.home-manager
-              inputs.nixos-hardware.nixosModules.cpu-amd-pstate
-              inputs.nixos-hardware.nixosModules.cpu-amd-zenpower
-              inputs.nixos-hardware.nixosModules.gpu-amd-default.nix
+              inputs.nixos-hardware.nixosModules.cpu-intel-haswell
+              inputs.nixos-hardware.nixosModules.gpu-intel-haswell
 	          ];
          specialArgs = {
            host = "m93p";
+      	   inherit self inputs username;
+         };
+        };
+        x61 = nixpkgs.lib.nixosSystem {
+         inherit system;
+               modules = [ 
+      	        {
+            	   nixpkgs = {
+            	    overlays = [
+            	     (final: prev: {
+            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+            	     })
+            	     inputs.hyprpanel.overlay
+            	   ];
+            	  };
+            	}
+	            ./hosts/x61
+	            home-manager.nixosModules.home-manager
+	          ];
+         specialArgs = {
+           host = "x61";
       	   inherit self inputs username;
          };
         };

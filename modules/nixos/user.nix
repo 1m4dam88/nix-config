@@ -17,7 +17,7 @@
     extraSpecialArgs = { inherit inputs username host; };
     users.${username} = {
       imports = [ 
-        ./../home 
+        ./../home
         inputs.self.outputs.homeManagerModules.default
       ];
       home.username = "${username}";
