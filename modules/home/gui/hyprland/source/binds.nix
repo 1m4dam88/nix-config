@@ -35,6 +35,7 @@
                 "$mainMod, s, pin"
                 "$mainMod, a, exec, killall -SIGUSR1 waybar"
                 
+<<<<<<< HEAD
                 "$mainMod, W, exec, zen"
                 "$mainMod, E, exec, bemoji -t"
                 "$mainMod, R, exec, foot -e yazi"
@@ -47,6 +48,20 @@
                 "$mainMod, V, exec, cliphist list |  fuzzel --match-mode fzf --dmenu | cliphist decode | wl-copy"
                 "$mainMod shift, V, exec, foot -e cava"
                 "$mainMod, N, exec, steam"
+=======
+                "$mainMod, W, exec, zen.desktop"
+                "$mainMod, E, exec, bemoji -t"
+                "$mainMod, R, exec, foot -e yazi"
+                "$mainMod, Y, exec, discord.desktop"
+                "$mainMod, U, exec, obs-studio.desktop"
+                "$mainMod, O, exec, org.prismlauncher.PrismLauncher.desktop"
+                "$mainMod, D, exec, fuzzel --launch-prefix=' '"
+                "$mainMod, backspace, exec, hyprlock"
+                "$mainMod shift, C, exec, hyprpicker -a"
+                "$mainMod, V, exec, cliphist list |  fuzzel --match-mode fzf --dmenu |  cliphist decode | wl-copy"
+                "$mainMod shift, V, exec, foot -e cava"
+                "$mainMod, N, exec, flatpak run com.valvesoftware.Steam"
+>>>>>>> 31b0593375fc9504e09b3c0094e8e9e2980cf619
                 "$mainMod, M, exec, foot -e ncmpcpp"
                 "$mainMod, Return, exec, foot"
                 "$mainMod shift, Return, exec, foot"
