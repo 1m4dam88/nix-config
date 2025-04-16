@@ -59,7 +59,7 @@
   };
 
   outputs = 
-    { nixpkgs, catppuccin, home-manager, self, split-monitor-workspaces, stylix, ... }@inputs:
+    { nur, nixpkgs, catppuccin, home-manager, self, split-monitor-workspaces, stylix, ... }@inputs:
     let
       lib = nixpkgs.lib;
       username = "ye";
@@ -132,7 +132,8 @@
               inputs.nixos-hardware.nixosModules.common-cpu-amd
               inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
               inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
- 	      inputs.nixos-hardware.nixosModules.common-gpu-amd
+ 	            inputs.nixos-hardware.nixosModules.common-gpu-amd
+              nur.modules.nixos.default
 	          ];
          specialArgs = {
            host = "desktop";

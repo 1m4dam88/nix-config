@@ -1,4 +1,4 @@
-{
+{ config, pkgs, ... }: {
  programs.fish = {
     enable = true;
 
@@ -15,7 +15,14 @@
       end
     '';
 
-    shellAliases = {
+    plugins = [
+      {
+        name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src;
+      }
+    ];
+
+    shellAbbrs = {
+      "vim" = "nvim";
       "rn" = "nh os switch ~/nix-config";
       "cp" = "cp -iv";
       "mv" = "mv -iv";

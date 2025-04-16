@@ -9,8 +9,10 @@
     ./gaming.nix
     ./hyprland
     ./hyprpanel.nix
+    ./jellyfin.nix
     ./kdeconnect.nix
     ./kicad.nix
+    ./krita.nix
     ./mpv.nix
     ./obs.nix
     ./prism.nix

@@ -13,6 +13,7 @@
 	./media.nix
 	./networking.nix
   ./lact
+  ./mount.nix
   ./rgb.nix
   ./nh.nix
 	./program.nix

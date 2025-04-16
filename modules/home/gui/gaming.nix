@@ -8,5 +8,6 @@
     heroic
     protontricks
     winetricks
+ 	  nur.repos.iuricarras.truckersmp-cli
   ];
 }

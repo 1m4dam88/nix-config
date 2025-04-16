@@ -1,5 +1,12 @@
 { inputs, config, pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    winetricks
+    wineWowPackages.staging
+    nur.repos.iuricarras.truckersmp-cli
+    gamemode
+  ];
+
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
