@@ -86,6 +86,7 @@
 	            ./hosts/w520 
 	            home-manager.nixosModules.home-manager
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-w520
+              nur.modules.nixos.default
 	          ];
          specialArgs = {
            host = "w520";
@@ -108,6 +109,7 @@
 	            ./hosts/t480
 	            home-manager.nixosModules.home-manager
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+              nur.modules.nixos.default
 	          ];
          specialArgs = {
            host = "t480";
@@ -157,6 +159,7 @@
 	            home-manager.nixosModules.home-manager
               inputs.nixos-hardware.nixosModules.cpu-intel-haswell
               inputs.nixos-hardware.nixosModules.gpu-intel-haswell
+              nur.modules.nixos.default
 	          ];
          specialArgs = {
            host = "m93p";
