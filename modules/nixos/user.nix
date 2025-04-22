@@ -16,7 +16,7 @@
     useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs username host; };
     users.${username} = {
-      imports = if builtins.getEnv "HOSTNAME" == "x61" then [
+      imports = if host == "x61" then [
           ./../home/light-gui
           ./../home/cli
         ] else [
