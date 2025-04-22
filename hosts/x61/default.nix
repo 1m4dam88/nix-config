@@ -10,6 +10,12 @@
       ./hardware-configuration.nix
       ./../../modules/nixos
     ];
+
+  boot.loader = {
+    grub = {
+      device = "/dev/sda";
+    };
+  };
    
    environment.systemPackages = with pkgs; [
      acpi

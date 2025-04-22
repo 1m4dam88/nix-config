@@ -1,48 +1,48 @@
 {
   disko.devices = {
     disk = {
-      main = {
+      sda = {
         type = "disk";
         device = "/dev/sda";
         content = {
-          type = "mbr";
-          partitions = {
-            ESP = {
-              priority = 1;
-              name = "ESP";
-              start = "1M";
-              end = "128M";
-              type = "EF00";
+          type = "table";
+          format = "msdos"; # MBR partition table
+          partitions = [
+            {
+              name = "boot";
+              start = "1MiB";
+              end = "2GiB"; # 2GB for boot
+              bootable = true; # Mark bootable for MBR
               content = {
                 type = "filesystem";
-                format = "vfat";
+                format = "ext4";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
               };
-            };
-            root = {
-              size = "100%";
+            }
+            {
+              name = "root";
+              start = "2GiB";
+              end = "100%"; # Use remaining space
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ]; # Override existing partition
-                # Subvolumes must set a mountpoint in order to be mounted,
-                # unless their parent is mounted
+                extraArgs = [ "-f" ]; # Force format
                 subvolumes = {
-                  # Subvolume name is different from mountpoint
-                  "@" = {
+                  "root" = {
                     mountpoint = "/";
+                    mountOptions = [ "compress=zstd" "noatime" ];
                   };
-                  # Subvolume name is the same as the mountpoint
-                  "@home" = {
+                  "home" = {
                     mountpoint = "/home";
+                    mountOptions = [ "compress=zstd" "noatime" ];
                   };
-                  # Subvolume for the swapfile
+                  "snapshots" = {
+                    mountpoint = "/.snapshots";
+                    mountOptions = [ "compress=zstd" "noatime" ];
+                  };
                 };
-
-                mountpoint = "/partition-root";
               };
-            };
-          };
+            }
+          ];
         };
       };
     };
