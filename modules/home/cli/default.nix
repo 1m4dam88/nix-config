@@ -8,6 +8,7 @@
     ./fish.nix
     ./fzf.nix
     ./git.nix
+    ./hugo.nix
     ./nvim.nix
     ./ripgrep.nix
     ./yazi.nix

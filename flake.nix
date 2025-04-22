@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     hyprpicker.url = "github:hyprwm/hyprpicker";
@@ -59,7 +64,7 @@
   };
 
   outputs = 
-    { nur, nixpkgs, catppuccin, home-manager, self, split-monitor-workspaces, stylix, ... }@inputs:
+    { disko, nur, nixpkgs, catppuccin, home-manager, self, split-monitor-workspaces, stylix, ... }@inputs:
     let
       lib = nixpkgs.lib;
       username = "ye";
@@ -180,10 +185,37 @@
             	  };
             	}
 	            ./hosts/x61
+              ./hosts/x61/disko-config.nix
 	            home-manager.nixosModules.home-manager
+              disko.nixosModules.disko
+              nur.modules.nixos.default
 	          ];
          specialArgs = {
            host = "x61";
+      	   inherit self inputs username;
+         };
+        };
+        z270 = nixpkgs.lib.nixosSystem {
+         inherit system;
+               modules = [ 
+      	        {
+            	   nixpkgs = {
+            	    overlays = [
+            	     (final: prev: {
+            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+            	     })
+            	     inputs.hyprpanel.overlay
+            	   ];
+            	  };
+            	}
+	            ./hosts/z270
+	            home-manager.nixosModules.home-manager
+              inputs.nixos-hardware.nixosModules.cpu-intel-kabylake
+              inputs.nixos-hardware.nixosModules.gpu-intel-kabylake
+              nur.modules.nixos.default
+	          ];
+         specialArgs = {
+           host = "z270";
       	   inherit self inputs username;
          };
         };

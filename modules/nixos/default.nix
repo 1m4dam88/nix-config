@@ -8,6 +8,7 @@
 }:
 {
   imports = [
+  ./doas.nix
 	./bootloader.nix
 	./hardware.nix
 	./media.nix

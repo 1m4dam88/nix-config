@@ -16,16 +16,20 @@
     useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs username host; };
     users.${username} = {
-      imports = [ 
+      imports = if builtins.getEnv "HOSTNAME" == "x61" then [
+          ./../home/light-gui
+          ./../home/cli
+        ] else [
         ./../home
         inputs.self.outputs.homeManagerModules.default
-      ];
+        ];
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
       home.stateVersion = "24.11";
       programs.home-manager.enable = true;
+      
     };
-   };
+  };
 
    users.users.${username} = {
      isNormalUser = true;

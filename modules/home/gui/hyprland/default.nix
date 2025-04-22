@@ -14,6 +14,7 @@
     swww
     hyprpicker
     bemoji
+    wtype
     grim
     slurp
     cliphist
