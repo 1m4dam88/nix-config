@@ -9,5 +9,6 @@
     p7zip
     unzip
     unrar
+    unetbootin
   ];
 }

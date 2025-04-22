@@ -10,6 +10,7 @@
     ./hyprland
     ./hyprpanel.nix
     ./jellyfin.nix
+    ./imv.nix
     ./kdeconnect.nix
     ./kicad.nix
     ./krita.nix
