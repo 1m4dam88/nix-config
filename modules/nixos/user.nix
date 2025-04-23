@@ -10,6 +10,10 @@
   imports = [ 
     inputs.home-manager.nixosModules.home-manager 
     inputs.stylix.nixosModules.stylix
+    inputs.sops-nix.nixosModules.sops
+        {
+          home-manager.sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
+        }
   ];
   home-manager = {
     useUserPackages = true;
@@ -19,6 +23,10 @@
       imports = if host == "x61" then [
           ./../home/light-gui
           ./../home/cli
+          inputs.self.outputs.homeManagerModules.default
+        ] else if host == "z270" then [
+          ./../home/cli
+          inputs.self.outputs.homeManagerModules.default
         ] else [
         ./../home
         inputs.self.outputs.homeManagerModules.default

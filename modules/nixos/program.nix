@@ -10,5 +10,6 @@
     unzip
     unrar
     unetbootin
+    sops
   ];
 }

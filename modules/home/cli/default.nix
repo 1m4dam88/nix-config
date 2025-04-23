@@ -12,6 +12,7 @@
     ./nvim.nix
     ./profanity.nix
     ./ripgrep.nix
+    ./sops.nix
     ./yazi.nix
     ./yt.nix
     ./zoxide.nix

@@ -8,6 +8,7 @@
 }:
 {
   imports = [
+  ./sops.nix
   ./doas.nix
 	./bootloader.nix
 	./hardware.nix

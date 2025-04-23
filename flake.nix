@@ -14,6 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix.url = "github:Mic92/sops-nix";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     hyprpicker.url = "github:hyprwm/hyprpicker";
@@ -64,7 +66,7 @@
   };
 
   outputs = 
-    { disko, nur, nixpkgs, catppuccin, home-manager, self, split-monitor-workspaces, stylix, ... }@inputs:
+    { sops-nix, disko, nur, nixpkgs, catppuccin, home-manager, self, split-monitor-workspaces, stylix, ... }@inputs:
     let
       lib = nixpkgs.lib;
       username = "ye";
@@ -115,6 +117,7 @@
 	            home-manager.nixosModules.home-manager
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
               nur.modules.nixos.default
+              sops-nix.nixosModules.sops
 	          ];
          specialArgs = {
            host = "wheatley";
@@ -138,6 +141,7 @@
 	            home-manager.nixosModules.home-manager
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
               nur.modules.nixos.default
+              sops-nix.nixosModules.sops
 	          ];
          specialArgs = {
            host = "mesa";
@@ -164,6 +168,7 @@
               inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
  	            inputs.nixos-hardware.nixosModules.common-gpu-amd
               nur.modules.nixos.default
+              sops-nix.nixosModules.sops
 	          ];
          specialArgs = {
            host = "atlas";
@@ -190,6 +195,7 @@
               inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
  	            inputs.nixos-hardware.nixosModules.common-gpu-amd
               nur.modules.nixos.default
+              sops-nix.nixosModules.sops
 	          ];
          specialArgs = {
            host = "glados";
@@ -214,6 +220,7 @@
               inputs.nixos-hardware.nixosModules.cpu-intel-haswell
               inputs.nixos-hardware.nixosModules.gpu-intel-haswell
               nur.modules.nixos.default
+              sops-nix.nixosModules.sops
 	          ];
          specialArgs = {
            host = "chell";
@@ -238,6 +245,7 @@
 	            home-manager.nixosModules.home-manager
               disko.nixosModules.disko
               nur.modules.nixos.default
+              sops-nix.nixosModules.sops
 	          ];
          specialArgs = {
            host = "alyx";
@@ -262,6 +270,7 @@
               inputs.nixos-hardware.nixosModules.cpu-intel-kabylake
               inputs.nixos-hardware.nixosModules.gpu-intel-kabylake
               nur.modules.nixos.default
+              sops-nix.nixosModules.sops
 	          ];
          specialArgs = {
            host = "aperture";
