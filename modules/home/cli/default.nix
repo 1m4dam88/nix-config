@@ -10,6 +10,7 @@
     ./git.nix
     ./hugo.nix
     ./nvim.nix
+    ./profanity.nix
     ./ripgrep.nix
     ./yazi.nix
     ./yt.nix

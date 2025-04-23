@@ -117,7 +117,30 @@
               nur.modules.nixos.default
 	          ];
          specialArgs = {
-           host = "t480";
+           host = "wheatley";
+      	   inherit self inputs username;
+         };
+        };
+        x230 = nixpkgs.lib.nixosSystem {
+         inherit system;
+               modules = [ 
+      	        {
+            	   nixpkgs = {
+            	    overlays = [
+            	     (final: prev: {
+            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+            	     })
+            	     inputs.hyprpanel.overlay
+            	   ];
+            	  };
+            	}
+	            ./hosts/x230
+	            home-manager.nixosModules.home-manager
+              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
+              nur.modules.nixos.default
+	          ];
+         specialArgs = {
+           host = "mesa";
       	   inherit self inputs username;
          };
         };
@@ -143,7 +166,33 @@
               nur.modules.nixos.default
 	          ];
          specialArgs = {
-           host = "desktop";
+           host = "atlas";
+      	   inherit self inputs username;
+         };
+        };
+        server = nixpkgs.lib.nixosSystem {
+         inherit system;
+               modules = [ 
+      	        {
+            	   nixpkgs = {
+            	    overlays = [
+            	     (final: prev: {
+            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+            	     })
+            	     inputs.hyprpanel.overlay
+            	   ];
+            	  };
+            	}
+	            ./hosts/server
+	            home-manager.nixosModules.home-manager
+              inputs.nixos-hardware.nixosModules.common-cpu-amd
+              inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
+              inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+ 	            inputs.nixos-hardware.nixosModules.common-gpu-amd
+              nur.modules.nixos.default
+	          ];
+         specialArgs = {
+           host = "glados";
       	   inherit self inputs username;
          };
         };
@@ -167,7 +216,7 @@
               nur.modules.nixos.default
 	          ];
          specialArgs = {
-           host = "m93p";
+           host = "chell";
       	   inherit self inputs username;
          };
         };
@@ -191,7 +240,7 @@
               nur.modules.nixos.default
 	          ];
          specialArgs = {
-           host = "x61";
+           host = "alyx";
       	   inherit self inputs username;
          };
         };
@@ -215,7 +264,7 @@
               nur.modules.nixos.default
 	          ];
          specialArgs = {
-           host = "z270";
+           host = "aperture";
       	   inherit self inputs username;
          };
         };
