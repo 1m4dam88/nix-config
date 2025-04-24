@@ -65,9 +65,10 @@
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
+
     # Theming
     stylix.url = "github:danth/stylix";
+  };
 
   outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, hyprpanel, nvchad4nix, ... }@inputs:
     let

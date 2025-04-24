@@ -4,15 +4,12 @@
   # Kernel-level NFS support with modern protocol versions
   boot.supportedFilesystems = [ "nfs" "nfs4" ];
   boot.kernelModules = [ "nfs" "nfsd" ];
+  environment.systemPackages = with pkgs; [ nfs-utils ];
 
   # Essential NFS services
   services = {
     rpcbind.enable = true;
     nfs.server.enable = false;  # Disable if not acting as NFS server
-    nfs.client = {
-      enable = true;
-      package = pkgs.nfs-utils;
-    };
   };
 
   # Optimized NFS mount with performance tuning

@@ -29,19 +29,10 @@
     cpu.amd.updateMicrocode = true;
     opengl = {
       enable = true;
-      driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        rocm-opencl-icd
-        rocm-opencl-runtime
-      ];
     };
 
     # Enable AMD GPU monitoring and control
-    radeon.settings = {
-      "ppfeaturemask" = "0xffffffff";
-      "power_dpm_force_performance_level" = "high";
-    };
   };
 
   # Performance tuning
