@@ -1,21 +1,53 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./../../modules/nixos
-    ];
-   
-   environment.systemPackages = with pkgs; [
-   ];
+  imports = [
+    ./hardware-configuration.nix
+    ./../../modules/nixos
+  ];
 
-   services = {
+  # Boot Configuration
+  boot = {
+    kernelParams = [
+      "intel_iommu=on"       # Enable IOMMU for virtualization
+      "iommu=pt"             # Pass-through for devices
+      "mitigations=off"      # Disable for bare-metal performance
+      "nowatchdog"           # Disable hardware watchdog
+      "quiet"                # Clean boot output
+    ];
+
+    # Server-grade kernel
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
+
+  # Hardware Configuration
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    enableAllFirmware = true;
+    
+    # Kaby Lake specific
+    opengl.extraPackages = with pkgs; [ intel-media-driver vaapiIntel ];
   };
 
+  # Performance Tuning
   powerManagement.cpuFreqGovernor = "performance";
-} 
+  services.thermald.enable = true;
+
+  # Essential Services
+  services = {
+    # Hardware monitoring
+    lm_sensors.enable = true;
+    smartd.enable = true;
+
+    # SSH access
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+      };
+    };
+  };
+
+  system.stateVersion = "24.11";
+}

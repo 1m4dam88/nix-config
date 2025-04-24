@@ -1,56 +1,91 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, username, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./../../modules/nixos
-    ];
-   
-   environment.systemPackages = with pkgs; [
-     acpi
-     brightnessctl
-     cpupower-gui
-     powertop
-   ];
+  imports = [
+    ./hardware-configuration.nix
+    ./../../modules/nixos
+  ];
 
-   services = {
-     power-profiles-daemon.enable = true;
-
-     upower = {
-       enable = true;
-       percentageLow = 20;
-       percentageCritical = 5;
-       percentageAction = 3;
-       criticalPowerAction = "PowerOff";
-    };
-
-    tlp.settings = {
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-
-      CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 1;
-
-      PLATFORM_PROFILE_ON_BAT = "performance";
-      PLATFORM_PROFILE_ON_AC = "performance";
-    };
-  };
-
-  powerManagement.cpuFreqGovernor = "performance";
-
+  # Boot Configuration
   boot = {
-    kernelModules = [ "acpi_call" ];
-    extraModulePackages =
-      with config.boot.kernelPackages;
-      [
-        acpi_call
-	cpupower
-      ]
-      ++ [  pkgs.cpupower-gui ];
+    kernelModules = [ "acpi_call" "tp_smapi" ];
+    extraModulePackages = with config.boot.kernelPackages; [ 
+      acpi_call 
+      tp_smapi 
+    ];
+    kernelParams = [
+      "pcie_aspm=off"       # Better performance for older PCIe
+      "i915.enable_rc6=1"   # Intel GPU power savings
+      "i915.enable_fbc=1"   # Frame buffer compression
+    ];
+
+  # Hardware Configuration
+  hardware = {
+    # Intel Sandy Bridge optimizations
+    opengl = {
+      enable = true;
+      extraPackages = with pkgs; [
+        vaapiIntel
+        libvdpau-va-gl
+      ];
+    };
+
+#    # For the Nvidia Quadro if present
+#    nvidia = {
+#      modesetting.enable = true;
+#      powerManagement.enable = true;
+#    };
+#  };
+
+  # Power Management
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "ondemand";
+    powertop.enable = true;
   };
-} 
+
+  services = {
+    # Thermal management
+    thermald.enable = true;
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        START_CHARGE_THRESH_BAT0 = 75;
+        STOP_CHARGE_THRESH_BAT0 = 85;
+      };
+    };
+
+    # For the fingerprint reader if present
+    fprintd.enable = true;
+
+#    # Enable Optimus manager if using Nvidia/Intel hybrid
+#    optimus-manager = {
+#      enable = config.hardware.nvidia.enable;
+#      intelBusId = "PCI:0:2:0";
+#      nvidiaBusId = "PCI:1:0:0";
+#    };
+#  };
+
+  # Hardware Video Acceleration
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+
+  # Essential Tools
+  environment.systemPackages = with pkgs; [
+    # ThinkPad utilities
+    thinkfan
+    acpi
+    tpacpi-bat
+
+  ];
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken.
+  system.stateVersion = "24.11";
+}
+
