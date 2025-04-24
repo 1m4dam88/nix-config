@@ -1,6 +1,5 @@
 { inputs, username, host, ...}: {
   imports = [
-    ./blender.nix
     ./browser.nix
     ./cura.nix
     ./discord

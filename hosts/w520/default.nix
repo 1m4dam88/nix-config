@@ -19,6 +19,7 @@
       "i915.enable_rc6=1"   # Intel GPU power savings
       "i915.enable_fbc=1"   # Frame buffer compression
     ];
+  };
 
   # Hardware Configuration
   hardware = {
@@ -30,6 +31,7 @@
         libvdpau-va-gl
       ];
     };
+  };
 
 #    # For the Nvidia Quadro if present
 #    nvidia = {
@@ -48,6 +50,7 @@
   services = {
     # Thermal management
     thermald.enable = true;
+    fprintd.enable = true;
     tlp = {
       enable = true;
       settings = {
@@ -57,9 +60,9 @@
         STOP_CHARGE_THRESH_BAT0 = 85;
       };
     };
+  };
 
     # For the fingerprint reader if present
-    fprintd.enable = true;
 
 #    # Enable Optimus manager if using Nvidia/Intel hybrid
 #    optimus-manager = {
@@ -88,4 +91,3 @@
   # on your system were taken.
   system.stateVersion = "24.11";
 }
-
