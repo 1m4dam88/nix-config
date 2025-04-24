@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
 
     # Shared common configuration
-    ./../../modules/t480
+    ./../../modules/nixos
   ];
 
   # Boot configuration
@@ -28,7 +28,6 @@
   # Hardware specific settings
   hardware = {
     # Enable T480-specific power management
-    tlp.enable = true;
     cpu.intel.updateMicrocode = true;
   };
 
