@@ -4,7 +4,6 @@
 
   programs.hyprpanel = {
     enable = true;
-    systemd.enable = true;
     hyprland.enable = true;
     overlay.enable = true;
     settings = {
