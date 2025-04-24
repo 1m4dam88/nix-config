@@ -19,10 +19,5 @@
       https://1m4dam88:${config.sops.secrets.git_token.path}@github.com
     ''; # Replace alice123 with your GitHub username
   };
-
-  home.activation.setGitCredentialsPermissions = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    ${pkgs.coreutils}/bin/chmod 0400 ~/.git-credentials || true
-  '';
-
   # Ensure the credential file is used
 }
