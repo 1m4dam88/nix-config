@@ -1,4 +1,4 @@
-{ config, pkgs, host, ... }:
+{ lib, config, pkgs, host, ... }:
 {
   boot.kernelParams = ["ipv6.disable=1"];
   networking = {
@@ -10,36 +10,35 @@
     networkmanager.enable = true;
   };
 
-{
-  sops.secrets.wifi_psk = lib.mkIf isLaptop {
+  sops.secrets.wifi_ssid = {
     sopsFile = ./../../secrets/secrets.yaml;
-    owner = "root";
-    group = "root";
+    mode = "0400";
+  };
+
+  sops.secrets.wifi_psk = {
+    sopsFile = ./../../secrets/secrets.yaml;
     mode = "0400";
   };
 
   # Create a NetworkManager connection file for WiFi
-  environment.etc."NetworkManager/system-connections/MyWiFi.nmconnection" = lib.mkIf isLaptop {
+  environment.etc."NetworkManager/system-connections/MyWiFi.nmconnection" = {
     text = ''
       [connection]
       id=MyWiFi
       uuid=${builtins.replaceStrings ["-"] [""] (builtins.hashString "sha256" "MyWiFi")}
       type=wifi
       [wifi]
-      ssid=${lib.fileContents config.sops.secrets.wifi_ssid.path}
+      ssid=${config.sops.secrets.wifi_ssid.path}
       mode=infrastructure
       [wifi-security]
       key-mgmt=wpa-psk
-      psk=${lib.fileContents config.sops.secrets.wifi_psk.path}
+      psk=${config.sops.secrets.wifi_psk.path}
       [ipv4]
       method=auto
       [ipv6]
       method=auto
     '';
     mode = "0600";
-    owner = "root";
-    group = "root";
   };
-};
 
 }

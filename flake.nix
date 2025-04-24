@@ -65,220 +65,116 @@
     };
   };
 
-  outputs = 
-    { sops-nix, disko, nur, nixpkgs, catppuccin, home-manager, self, split-monitor-workspaces, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, hyprpanel, nvchad4nix, ... }@inputs:
     let
-      lib = nixpkgs.lib;
       username = "ye";
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-      extraSpecialArgs = { inherit system; inherit inputs; };  # <- passing inputs to the attribute set for home-manager
-      specialArgs = { inherit system; inherit inputs; };       # <- passing inputs to the attribute set for NixOS (optional)
-    in
-    {
+      lib = nixpkgs.lib;
+
+      commonOverlays = [
+        (final: prev: {
+          nvchad = inputs.nvchad4nix.packages."${final.system}".nvchad;
+        })
+        inputs.hyprpanel.overlay
+      ];
+
+      mkSystem = { hostname, hostDir, hardwareModules ? [], extraModules ? [] }: 
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs username;
+            host = hostname;
+          };
+          modules = [
+            # Common configuration
+            {
+              nixpkgs = {
+                config.allowUnfree = true;
+                overlays = commonOverlays;
+              };
+            }
+            # Host-specific configuration
+            hostDir
+            # Home-Manager integration
+            home-manager.nixosModules.home-manager
+            # NUR
+            nur.modules.nixos.default
+            # Sops-nix (except for w520, as in original)
+            # Hardware-specific modules
+          ] ++ hardwareModules ++ extraModules;
+        };
+
+    in {
       nixosConfigurations = {
-        w520 = nixpkgs.lib.nixosSystem {
-         inherit system;
-               modules = [ 
-      	        {
-            	   nixpkgs = {
-            	    overlays = [
-            	     (final: prev: {
-            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-            	     })
-            	     inputs.hyprpanel.overlay
-            	   ];
-            	  };
-            	}
-	            ./hosts/w520 
-	            home-manager.nixosModules.home-manager
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-w520
-              nur.modules.nixos.default
-	          ];
-         specialArgs = {
-           host = "w520";
-      	   inherit self inputs username;
-         };
+        w520 = mkSystem {
+          hostname = "w520";
+          hostDir = ./hosts/w520;
+          hardwareModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-w520 ];
         };
-        t480 = nixpkgs.lib.nixosSystem {
-         inherit system;
-               modules = [ 
-      	        {
-            	   nixpkgs = {
-            	    overlays = [
-            	     (final: prev: {
-            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-            	     })
-            	     inputs.hyprpanel.overlay
-            	   ];
-            	  };
-            	}
-	            ./hosts/t480
-	            home-manager.nixosModules.home-manager
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
-              nur.modules.nixos.default
-              sops-nix.nixosModules.sops
-	          ];
-         specialArgs = {
-           host = "wheatley";
-      	   inherit self inputs username;
-         };
+
+        t480 = mkSystem {
+          hostname = "wheatley";
+          hostDir = ./hosts/t480;
+          hardwareModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-t480 ];
         };
-        x230 = nixpkgs.lib.nixosSystem {
-         inherit system;
-               modules = [ 
-      	        {
-            	   nixpkgs = {
-            	    overlays = [
-            	     (final: prev: {
-            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-            	     })
-            	     inputs.hyprpanel.overlay
-            	   ];
-            	  };
-            	}
-	            ./hosts/x230
-	            home-manager.nixosModules.home-manager
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
-              nur.modules.nixos.default
-              sops-nix.nixosModules.sops
-	          ];
-         specialArgs = {
-           host = "mesa";
-      	   inherit self inputs username;
-         };
+
+        x230 = mkSystem {
+          hostname = "mesa";
+          hostDir = ./hosts/x230;
+          hardwareModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-x230 ];
         };
-        desktop = nixpkgs.lib.nixosSystem {
-         inherit system;
-               modules = [ 
-      	        {
-            	   nixpkgs = {
-            	    overlays = [
-            	     (final: prev: {
-            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-            	     })
-            	     inputs.hyprpanel.overlay
-            	   ];
-            	  };
-            	}
-	            ./hosts/desktop
-	            home-manager.nixosModules.home-manager
-              inputs.nixos-hardware.nixosModules.common-cpu-amd
-              inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
-              inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
- 	            inputs.nixos-hardware.nixosModules.common-gpu-amd
-              nur.modules.nixos.default
-              sops-nix.nixosModules.sops
-	          ];
-         specialArgs = {
-           host = "atlas";
-      	   inherit self inputs username;
-         };
+
+        desktop = mkSystem {
+          hostname = "atlas";
+          hostDir = ./hosts/desktop;
+          hardwareModules = [
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-cpu-amd-zenpower
+            nixos-hardware.nixosModules.common-cpu-amd-pstate
+            nixos-hardware.nixosModules.common-gpu-amd
+          ];
         };
-        server = nixpkgs.lib.nixosSystem {
-         inherit system;
-               modules = [ 
-      	        {
-            	   nixpkgs = {
-            	    overlays = [
-            	     (final: prev: {
-            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-            	     })
-            	     inputs.hyprpanel.overlay
-            	   ];
-            	  };
-            	}
-	            ./hosts/server
-	            home-manager.nixosModules.home-manager
-              inputs.nixos-hardware.nixosModules.common-cpu-amd
-              inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
-              inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
- 	            inputs.nixos-hardware.nixosModules.common-gpu-amd
-              nur.modules.nixos.default
-              sops-nix.nixosModules.sops
-	          ];
-         specialArgs = {
-           host = "glados";
-      	   inherit self inputs username;
-         };
+
+        server = mkSystem {
+          hostname = "glados";
+          hostDir = ./hosts/server;
+          hardwareModules = [
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-cpu-amd-zenpower
+            nixos-hardware.nixosModules.common-cpu-amd-pstate
+            nixos-hardware.nixosModules.common-gpu-amd
+          ];
         };
-        m93p = nixpkgs.lib.nixosSystem {
-         inherit system;
-               modules = [ 
-      	        {
-            	   nixpkgs = {
-            	    overlays = [
-            	     (final: prev: {
-            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-            	     })
-            	     inputs.hyprpanel.overlay
-            	   ];
-            	  };
-            	}
-	            ./hosts/m93p
-	            home-manager.nixosModules.home-manager
-              inputs.nixos-hardware.nixosModules.cpu-intel-haswell
-              inputs.nixos-hardware.nixosModules.gpu-intel-haswell
-              nur.modules.nixos.default
-              sops-nix.nixosModules.sops
-	          ];
-         specialArgs = {
-           host = "chell";
-      	   inherit self inputs username;
-         };
+
+        m93p = mkSystem {
+          hostname = "chell";
+          hostDir = ./hosts/m93p;
+          hardwareModules = [
+            nixos-hardware.nixosModules.cpu-intel-haswell
+            nixos-hardware.nixosModules.gpu-intel-haswell
+          ];
         };
-        x61 = nixpkgs.lib.nixosSystem {
-         inherit system;
-               modules = [ 
-      	        {
-            	   nixpkgs = {
-            	    overlays = [
-            	     (final: prev: {
-            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-            	     })
-            	     inputs.hyprpanel.overlay
-            	   ];
-            	  };
-            	}
-	            ./hosts/x61
-              ./hosts/x61/disko-config.nix
-	            home-manager.nixosModules.home-manager
-              disko.nixosModules.disko
-              nur.modules.nixos.default
-              sops-nix.nixosModules.sops
-	          ];
-         specialArgs = {
-           host = "alyx";
-      	   inherit self inputs username;
-         };
+
+        x61 = mkSystem {
+          hostname = "alyx";
+          hostDir = ./hosts/x61;
+          hardwareModules = [];
+          extraModules = [
+            disko.nixosModules.disko
+            ./hosts/x61/disko-config.nix
+          ];
         };
-        z270 = nixpkgs.lib.nixosSystem {
-         inherit system;
-               modules = [ 
-      	        {
-            	   nixpkgs = {
-            	    overlays = [
-            	     (final: prev: {
-            	     nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
-            	     })
-            	     inputs.hyprpanel.overlay
-            	   ];
-            	  };
-            	}
-	            ./hosts/z270
-	            home-manager.nixosModules.home-manager
-              inputs.nixos-hardware.nixosModules.cpu-intel-kabylake
-              inputs.nixos-hardware.nixosModules.gpu-intel-kabylake
-              nur.modules.nixos.default
-              sops-nix.nixosModules.sops
-	          ];
-         specialArgs = {
-           host = "aperture";
-      	   inherit self inputs username;
-         };
+
+        z270 = mkSystem {
+          hostname = "aperture";
+          hostDir = ./hosts/z270;
+          hardwareModules = [
+            nixos-hardware.nixosModules.cpu-intel-kabylake
+            nixos-hardware.nixosModules.gpu-intel-kabylake
+          ];
         };
       };
-      homeManagerModules.default = ./modules/home;
+      homeModules.default = ./modules/home;
     };
 }
 
