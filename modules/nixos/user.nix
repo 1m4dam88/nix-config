@@ -8,10 +8,12 @@ let
       ./../home/cli
       inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
     ];
+
     "z270" = [
       ./../home/cli
       inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
     ];
+
     default = [
       ./../home
       inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
@@ -26,6 +28,7 @@ in {
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
     inputs.sops-nix.nixosModules.sops
+
     {
       # Share sops-nix with Home-Manager
       home-manager.sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
@@ -36,18 +39,24 @@ in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+
     extraSpecialArgs = { 
       inherit inputs username host;
-      self = inputs.self;  # Pass self (your flake) through
+      inherit (inputs) self;  # Pass self (your flake) through
     };
+
     users.${username} = {
       imports = selectedHomeImports;
+
       home = {
         username = username;
         homeDirectory = "/home/${username}";
         stateVersion = "24.11";
       };
-      programs.home-manager.enable = true;
+
+      programs.home-manager = {
+        enable = true;
+      };
     };
   };
 
@@ -55,7 +64,9 @@ in {
   users.users.${username} = {
     isNormalUser = true;
     description = username;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ 
+      "networkmanager" "wheel"
+    ];
     shell = pkgs.fish;
   };
 

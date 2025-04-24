@@ -8,6 +8,7 @@
     };  
     hostName = "${host}";
     networkmanager.enable = true;
+    networkmanager.wifiackend = "iwd";
   };
 
   sops.secrets.wifi_ssid = {

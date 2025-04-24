@@ -1,33 +1,39 @@
+{ pkgs, username, ... }:
+
 {
-  pkgs,
-  username,
-  ...
-}:
-{
-  users.users.${username}.extraGroups = [ "libvirtd" "kvm" ];
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [ pkgs.OVMFFull.fd ];
+        };
+      };
+    };
+    spiceUSBRedirection.enable = true;
+  };
+
+  services.spice-vdagentd.enable = true;
+
+  users.users.${username} = {
+    extraGroups = [ "libvirtd" "kvm" ];
+  };
 
   environment.systemPackages = with pkgs; [
-   	virt-manager
-  	virt-viewer
-  	spice
-  	spice-gtk
-  	spice-protocol
-  	win-virtio
-  	win-spice
-  	adwaita-icon-theme
+    # Virtualization tools
     qemu
-   ];
-
-   virtualisation = {
-     libvirtd = {
-       enable = true;
-       qemu = {
-         swtpm.enable = true;
-	       ovmf.enable = true;
-	       ovmf.packages = [ pkgs.OVMFFull.fd ];
-       };
-      };
-       spiceUSBRedirection.enable = true;
-    };
-    services.spice-vdagentd.enable = true;
+    virt-manager
+    virt-viewer
+    
+    # SPICE components
+    spice
+    spice-gtk
+    spice-protocol
+    
+    # Windows guest support
+    win-virtio
+    win-spice
+  ];
 }

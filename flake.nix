@@ -2,7 +2,17 @@
   description = "Nixos config flake";
 
   inputs = {
+
+    # Core system inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nur = {
       url = "github:nix-community/NUR";
@@ -16,38 +26,12 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # Hyprland stuff
+    hyprland.url = "github:hyprwm/Hyprland";
 
     hyprpicker.url = "github:hyprwm/hyprpicker";
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
-
-    hyprland.url = "github:hyprwm/Hyprland";
-
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
-
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
-    nixcord.url = "github:kaylorben/nixcord";
-
-    catppuccin.url = "github:catppuccin/nix";
-
-    stylix.url = "github:danth/stylix";
-
-    yazi-plugins = {
-      url = "github:yazi-rs/plugins";
-      flake = false;
-    };
-
-    spicetify-nix = {
-      url = "github:gerg-l/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     hypr-contrib = {
       url = "github:hyprwm/contrib";
@@ -59,11 +43,31 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    # Applications
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    nixcord.url = "github:kaylorben/nixcord";
+
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
+    yazi-plugins = {
+      url = "github:yazi-rs/plugins";
+      flake = false;
+    };
+
+    spicetify-nix = {
+      url = "github:gerg-l/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvchad4nix = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+    # Theming
+    stylix.url = "github:danth/stylix";
 
   outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, hyprpanel, nvchad4nix, ... }@inputs:
     let
@@ -104,63 +108,86 @@
           ] ++ hardwareModules ++ extraModules;
         };
 
+    hardwareProfiles = {
+        thinkpad = {
+          w520 = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-w520 ];
+          t480 = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480 ];
+          x230 = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230 ];
+          x61 = [];
+        };
+        amd = {
+          desktop = [
+            inputs.nixos-hardware.nixosModules.common-cpu-amd
+            inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
+            inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+            inputs.nixos-hardware.nixosModules.common-gpu-amd
+          ];
+          server = [
+            inputs.nixos-hardware.nixosModules.common-cpu-amd
+            inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
+            inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+            inputs.nixos-hardware.nixosModules.common-gpu-amd
+          ];
+        };
+        intel = {
+          m93p = [
+            inputs.nixos-hardware.nixosModules.cpu-intel-haswell
+            inputs.nixos-hardware.nixosModules.gpu-intel-haswell
+          ];
+          z270 = [
+            inputs.nixos-hardware.nixosModules.cpu-intel-kabylake
+            inputs.nixos-hardware.nixosModules.gpu-intel-kabylake
+          ];
+        };
+      };
+
     in {
       nixosConfigurations = {
+        # ThinkPads
         w520 = mkSystem {
           hostname = "w520";
           hostDir = ./hosts/w520;
-          hardwareModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-w520 ];
+          hardwareModules = hardwareProfiles.thinkpad.w520;
         };
 
         t480 = mkSystem {
           hostname = "wheatley";
           hostDir = ./hosts/t480;
-          hardwareModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-t480 ];
+          hardwareModules = hardwareProfiles.thinkpad.t480;
         };
 
         x230 = mkSystem {
           hostname = "mesa";
           hostDir = ./hosts/x230;
-          hardwareModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-x230 ];
+          hardwareModules = hardwareProfiles.thinkpad.x230;
         };
 
+        # Desktop systems
         desktop = mkSystem {
           hostname = "atlas";
           hostDir = ./hosts/desktop;
-          hardwareModules = [
-            nixos-hardware.nixosModules.common-cpu-amd
-            nixos-hardware.nixosModules.common-cpu-amd-zenpower
-            nixos-hardware.nixosModules.common-cpu-amd-pstate
-            nixos-hardware.nixosModules.common-gpu-amd
-          ];
+          hardwareModules = hardwareProfiles.amd.desktop;
         };
 
         server = mkSystem {
           hostname = "glados";
           hostDir = ./hosts/server;
-          hardwareModules = [
-            nixos-hardware.nixosModules.common-cpu-amd
-            nixos-hardware.nixosModules.common-cpu-amd-zenpower
-            nixos-hardware.nixosModules.common-cpu-amd-pstate
-            nixos-hardware.nixosModules.common-gpu-amd
-          ];
+          hardwareModules = hardwareProfiles.amd.server;
         };
 
+        # Intel systems
         m93p = mkSystem {
           hostname = "chell";
           hostDir = ./hosts/m93p;
-          hardwareModules = [
-            nixos-hardware.nixosModules.cpu-intel-haswell
-            nixos-hardware.nixosModules.gpu-intel-haswell
-          ];
+          hardwareModules = hardwareProfiles.intel.m93p;
         };
 
         x61 = mkSystem {
           hostname = "alyx";
           hostDir = ./hosts/x61;
-          hardwareModules = [];
+          hardwareModules = hardwareProfiles.thinkpad.x61;
           extraModules = [
-            disko.nixosModules.disko
+            inputs.disko.nixosModules.disko
             ./hosts/x61/disko-config.nix
           ];
         };
@@ -168,12 +195,10 @@
         z270 = mkSystem {
           hostname = "aperture";
           hostDir = ./hosts/z270;
-          hardwareModules = [
-            nixos-hardware.nixosModules.cpu-intel-kabylake
-            nixos-hardware.nixosModules.gpu-intel-kabylake
-          ];
+          hardwareModules = hardwareProfiles.intel.z270;
         };
       };
+
       homeModules.default = ./modules/home;
     };
 }

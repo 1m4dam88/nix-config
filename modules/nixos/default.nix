@@ -1,32 +1,27 @@
-{
-  inputs,
-  nixpkgs,
-  self,
-  username,
-  host,
-  ...
-}:
+{ inputs, nixpkgs, self, username, host, ... }:
+
 {
   imports = [
-  ./sops.nix
-  ./doas.nix
-	./bootloader.nix
-	./hardware.nix
-	./media.nix
-	./networking.nix
-  ./lact
-  ./mount.nix
-  ./rgb.nix
-  ./nh.nix
-	./program.nix
-  ./gaming.nix
-	./services.nix
-	./system.nix
-	./virtualization.nix
-	./wayland.nix
-  ./thunar.nix
-	./user.nix
-  ./stylix.nix
-  ./fonts.nix
-   ];
+    ./bootloader.nix
+    ./doas.nix
+    ./fonts.nix
+    ./gaming.nix
+    ./hardware.nix
+    ./lact
+    ./media.nix
+    ./mount.nix
+    ./networking.nix
+    ./nix.nix
+    ./program.nix
+    ./rgb.nix
+    ./services.nix
+    ./sops.nix
+    ./stylix.nix
+    ./system.nix
+    ./thunar.nix
+    ./user.nix
+    ./virtualization.nix
+    ./wayland.nix
+  ];
 }
+
