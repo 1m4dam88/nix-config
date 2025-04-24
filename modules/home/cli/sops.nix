@@ -2,7 +2,7 @@
 {
   sops = {
     defaultSopsFile = ./../../../secrets/secrets.yaml;
-    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+    age.keyFile = "/home/ye/sops/age/keys.txt";
     secrets = {
       "git_token" = {
         mode = "0400"; # Restrict permissions

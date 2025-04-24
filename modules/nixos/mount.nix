@@ -19,26 +19,10 @@
     options = [
       # Protocol options
       "nfsvers=4.2"       # Modern protocol version
-      "tcp"               # More reliable than UDP
       "noatime"           # Reduce disk writes
-      "nodiratime"        # Further reduce metadata writes
-      
       # Performance tuning
       "rsize=65536"       # Read size (bytes)
       "wsize=65536"       # Write size (bytes)
-      "hard"              # Robust error handling
-      "timeo=600"         # Timeout (deciseconds)
-      "retrans=5"         # Retry attempts
-      "bg"                # Background mounting
-      "intr"              # Allow interruptible operations
-      
-      # Security
-      "sec=krb5p"         # Highest security (adjust as needed)
-      "noacl"             # Disable ACLs unless needed
-      
-      # Caching
-      "lookupcache=all"   # Aggressive name caching
-      "actimeo=300"       # Attribute cache timeout (seconds)
     ];
   };
 
@@ -58,5 +42,4 @@
     "fs.nfs.nfs_congestion_kb" = 252144;    # 256MB congestion window
   };
 
-  # Optional: Client-side caching for better performance
 }
