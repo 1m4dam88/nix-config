@@ -4,18 +4,14 @@ let
   # Define Home-Manager imports based on host
   homeImports = {
     "x61" = [
-      ./../home/light-gui
-      ./../home/cli
-      inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
+      inputs.self.homeModules.minimal# Changed from outputs.homeManagerModules
     ];
 
     "z270" = [
-      ./../home/cli
-      inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
+      inputs.self.homeModules.server# Changed from outputs.homeManagerModules
     ];
 
     default = [
-      ./../home
       inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
     ];
   };

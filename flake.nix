@@ -196,6 +196,13 @@
       };
 
       homeModules.default = ./modules/home;
+      homeModules.server = [ 
+        ./modules/home/cli
+      ];
+      homeModules.minimal = [ 
+        ./modules/home/light-gui
+        ./modules/home/cli
+      ];
     };
 }
 
