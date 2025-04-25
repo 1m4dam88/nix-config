@@ -8,15 +8,11 @@
       generateKey = false; # Set to true to auto-generate a key (not recommended for production)
     };
     secrets = {
-      user_password = {
-        sopsFile = ./../../secrets/secrets.yaml;
-        neededForUsers = true;
-      };
-      root_password = {
-        sopsFile = ./../../secrets/secrets.yaml;
-        neededForUsers = true;
-      };
-      "wifi_psk" = {
+      "ye_password".neededForUsers = true;
+      "ye_password" = {};
+      "root_password".neededForUsers = true;
+      "root_password" = {};
+      wifi_psk = {
         sopsFile = ./../../secrets/secrets.yaml;
       };
     };

@@ -56,10 +56,11 @@ in {
     };
   };
 
+  users.mutableUsers = false;
   # User configuration
   users.users.${username} = {
     isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets.user_password.path;
+    hashedPasswordFile = config.sops.secrets.ye_password.path;
     description = username;
     shell = pkgs.fish;
     extraGroups = [ 
