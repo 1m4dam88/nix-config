@@ -19,6 +19,11 @@
   nix.settings = {
     auto-optimise-store = true;  # Deduplicate identical files
     experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [
+      "ye"
+      "root"
+      "@wheel"
+    ];
   };
 
   # Automatic garbage collection (complements nh clean)
