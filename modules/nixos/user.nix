@@ -3,8 +3,9 @@
 let
   # Define Home-Manager imports based on host
   homeImports = {
-    "x61" = [
-      inputs.self.homeModules.minimal# Changed from outputs.homeManagerModules
+    "alyx" = [
+      ./../home/cli
+      ./../home/light-gui
     ];
 
     "aperture" = [
