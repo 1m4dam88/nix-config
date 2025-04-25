@@ -13,11 +13,4 @@
   };
 
   home.packages = [ pkgs.gh ];
-
-  home.file.".git-credentials" = {
-    text = ''
-      https://1m4dam88:${config.sops.secrets.git_token.path}@github.com
-    ''; # Replace alice123 with your GitHub username
-  };
-  # Ensure the credential file is used
 }

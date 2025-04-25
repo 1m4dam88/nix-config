@@ -20,9 +20,10 @@
   };
 
   stylix.enable = true;
-  stylix.image = ./../../wallpapers/blue.png;
+  stylix.image = ./../../wallpapers/urban_architecture.jpg;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
   stylix.polarity = "dark";
-  stylix.opacity.terminal= 0.9;
+  stylix.opacity.terminal = 1.0;
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Ice";
   stylix.cursor.size = 24;

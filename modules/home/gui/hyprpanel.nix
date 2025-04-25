@@ -15,15 +15,16 @@
       };
       wallpaper = {
         enable = true;
-        image = "~/nix-config/wallpapers/blue.png";
-        pywal = true;
+        image = "~/nix-config/wallpapers/urban_architecture.jpg";
+        pywal = false;
       };
       bar = {
         launcher.autoDetectIcon = true;
         workspaces.show_icons = true;
       };
       theme = {
-        matugen = true;
+        matugen = false;
+        name = "gruvbox";
         font = {
           name = "Caskaydia Cove Nerd Font";
           size = "16px";
@@ -31,7 +32,7 @@
         bar = {
           location = "bottom";
           buttons.enableBorders = true;
-          transparent = true;
+          transparent = false;
         };
       };
     };

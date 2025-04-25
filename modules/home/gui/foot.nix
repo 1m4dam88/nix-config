@@ -5,7 +5,7 @@
    settings = {
      main = {
       font = "Caskaydia Cove Nerd Font:size=12";
-      pad = "10x10";
+      pad = "0x0";
      };
    };
  };

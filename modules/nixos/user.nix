@@ -55,26 +55,27 @@ in {
       };
     };
   };
-
+  sops.secrets.user_password.neededForUsers = true;
+  sops.secrets.root_password.neededForUsers = true;
   users.mutableUsers = false;
   # User configuration
   users.users.${username} = {
     isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets.ye_password.path;
     description = username;
     shell = pkgs.fish;
+    hashedPasswordFile = config.sops.secrets.user_password.path;
     extraGroups = [ 
       "networkmanager" "wheel"
     ];
     openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIbr6akxJHoy3PyglU5yj9ze2lHnj14aTWYvwO8EXMhE ye@TFD"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWKYIrwL21t4Q/hbGUmLuVFOb1b77OHjbL0vqSo13kc ye@atlas"
     ];
   };
 
   users.users.root = {
     hashedPasswordFile = config.sops.secrets.root_password.path;
     openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIbr6akxJHoy3PyglU5yj9ze2lHnj14aTWYvwO8EXMhE ye@TFD"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWKYIrwL21t4Q/hbGUmLuVFOb1b77OHjbL0vqSo13kc ye@atlas"
     ];
   };
   
