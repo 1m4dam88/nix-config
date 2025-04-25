@@ -8,6 +8,7 @@
 
   # Boot Configuration
   boot = {
+    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
     kernelParams = [
       "intel_iommu=on"       # Enable IOMMU for virtualization
       "iommu=pt"             # Pass-through for devices
@@ -15,10 +16,7 @@
       "nowatchdog"           # Disable hardware watchdog
       "quiet"                # Clean boot output
     ];
-
-    # Server-grade kernel
-    kernelPackages = pkgs.linuxPackages_latest;
-    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
+  };
 
   # Hardware Configuration
   hardware = {
@@ -35,8 +33,6 @@
 
   # Essential Services
   services = {
-    # Hardware monitoring
-    lm_sensors.enable = true;
     smartd.enable = true;
 
     # SSH access
