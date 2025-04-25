@@ -19,6 +19,9 @@
   nix.settings = {
     auto-optimise-store = true;  # Deduplicate identical files
     experimental-features = [ "nix-command" "flakes" ];
+    allowed-users = [ 
+      "ye"
+    ];
     trusted-users = [
       "ye"
       "root"

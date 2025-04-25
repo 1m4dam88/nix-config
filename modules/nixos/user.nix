@@ -1,4 +1,4 @@
-{ pkgs, inputs, username, host, ... }:
+{ config, pkgs, inputs, username, host, ... }:
 
 let
   # Define Home-Manager imports based on host
@@ -58,6 +58,7 @@ in {
 
   # User configuration
   users.users.${username} = {
+    passwordFile = config.sops.secrets.user_password.path;
     isNormalUser = true;
     description = username;
     extraGroups = [ 
@@ -66,6 +67,10 @@ in {
     shell = pkgs.fish;
   };
 
+  users.users.root = {
+    passwordFile = config.sops.secrets.root_password.path;
+  };
+  
+
   # Nix settings
-  nix.settings.allowed-users = [ username ];
 }
