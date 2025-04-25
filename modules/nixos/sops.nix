@@ -4,7 +4,7 @@
     defaultSopsFormat = "yaml";
     age = {
       keyFile = "/home/ye/.config/sops/age/keys.txt"; # Path to your private key
-      # Or use SSH key: sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sshKeyPaths = [ "/home/ye/.ssh/id_ed25519" ];
       generateKey = false; # Set to true to auto-generate a key (not recommended for production)
     };
     secrets = {

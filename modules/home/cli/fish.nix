@@ -2,12 +2,6 @@
  programs.fish = {
     enable = true;
 
-    shellInit = ''
-      if uwsm check may-start
-      exec uwsm start hyprland
-    end
-    '';
-
     interactiveShellInit = ''
       set fish_greeting
       function fish_user_key_bindings
