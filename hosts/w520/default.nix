@@ -21,18 +21,6 @@
     ];
   };
 
-  # Hardware Configuration
-  hardware = {
-    # Intel Sandy Bridge optimizations
-    opengl = {
-      enable = true;
-      extraPackages = with pkgs; [
-        vaapiIntel
-        libvdpau-va-gl
-      ];
-    };
-  };
-
 #    # For the Nvidia Quadro if present
 #    nvidia = {
 #      modesetting.enable = true;
