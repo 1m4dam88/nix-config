@@ -742,6 +742,26 @@
         "type": "github"
       }
     },
+    "hyprsplit": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1745608181,
+        "narHash": "sha256-2h0MM4dmk8FLZ0dLo25lW8oGQN+oBqFDcPNFcIAr4MQ=",
+        "owner": "shezdy",
+        "repo": "hyprsplit",
+        "rev": "cccd4af7edeebc9d24dfc5a61af617813119b42e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shezdy",
+        "repo": "hyprsplit",
+        "type": "github"
+      }
+    },
     "hyprutils": {
       "inputs": {
         "nixpkgs": [
@@ -839,21 +859,6 @@
       "original": {
         "owner": "hyprwm",
         "repo": "hyprwayland-scanner",
-        "type": "github"
-      }
-    },
-    "nix-filter": {
-      "locked": {
-        "lastModified": 1693833173,
-        "narHash": "sha256-hlMABKrGbEiJD5dwUSfnw1CQ3bG7KKwDV+Nx3bEZd7U=",
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "rev": "ac030bd9ba98e318e1f4c4328d60766ade8ebe8b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nix-filter",
         "type": "github"
       }
     },
@@ -1081,11 +1086,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1745599604,
-        "narHash": "sha256-eOU2eSemWE9SSreH1CHoUiOx4RIoVKFTC7xk6Tc6vzI=",
+        "lastModified": 1745607181,
+        "narHash": "sha256-vJIncPzHZ+QvJ79yALL+BZro+tEKqWHIV1X+IG4nRZ0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "4bb348180f15d417b22d8e8f56fd4b78880c8f0e",
+        "rev": "54ddc96f6dbfda2d1f290a8194a78bfc51dffdbd",
         "type": "github"
       },
       "original": {
@@ -1186,6 +1191,7 @@
         "hyprland": "hyprland",
         "hyprpanel": "hyprpanel",
         "hyprpicker": "hyprpicker",
+        "hyprsplit": "hyprsplit",
         "nix-gaming": "nix-gaming",
         "nixcord": "nixcord",
         "nixos-hardware": "nixos-hardware",
@@ -1193,7 +1199,6 @@
         "nur": "nur",
         "nvchad4nix": "nvchad4nix",
         "sops-nix": "sops-nix",
-        "split-monitor-workspaces": "split-monitor-workspaces",
         "stylix": "stylix",
         "yazi-plugins": "yazi-plugins",
         "zen-browser": "zen-browser"
@@ -1214,27 +1219,6 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
-        "type": "github"
-      }
-    },
-    "split-monitor-workspaces": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ],
-        "nix-filter": "nix-filter"
-      },
-      "locked": {
-        "lastModified": 1745393969,
-        "narHash": "sha256-hgWJ+rpWwfOtf93vMOrpungb9AoprCXouK82gPKeuPc=",
-        "owner": "Duckonaut",
-        "repo": "split-monitor-workspaces",
-        "rev": "53d220a0aa618a6e8f8ec42893107da95924eba5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Duckonaut",
-        "repo": "split-monitor-workspaces",
         "type": "github"
       }
     },
