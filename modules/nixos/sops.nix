@@ -17,7 +17,7 @@
         neededForUsers = true;
       };
       "wifi_psk" = {
-        sopsFile = ../../secrets/secrets.yaml;
+        sopsFile = ./../../secrets/secrets.yaml;
       };
     };
   };

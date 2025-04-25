@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./../../modules/nixos
+    ./disko-config.nix
   ];
 
   # Boot Configuration

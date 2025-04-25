@@ -99,7 +99,10 @@
             home-manager.nixosModules.home-manager
             # NUR
             nur.modules.nixos.default
-            # Sops-nix (except for w520, as in original)
+            # disko
+            disko.nixosModules.disko
+            # sops
+            sops-nix.nixosModules.sops
             # Hardware-specific modules
           ] ++ hardwareModules ++ extraModules;
         };
@@ -131,8 +134,8 @@
             inputs.nixos-hardware.nixosModules.gpu-intel-haswell
           ];
           z270 = [
-            inputs.nixos-hardware.nixosModules.cpu-intel-kabylake
-            inputs.nixos-hardware.nixosModules.gpu-intel-kabylake
+            inputs.nixos-hardware.nixosModules.common-cpu-intel
+            inputs.nixos-hardware.nixosModules.common-gpu-intel-kaby-lake
           ];
         };
       };
@@ -196,9 +199,6 @@
       };
 
       homeModules.default = ./modules/home;
-      homeModules.server = [ 
-        ./modules/home/cli
-      ];
       homeModules.minimal = [ 
         ./modules/home/light-gui
         ./modules/home/cli

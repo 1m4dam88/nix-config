@@ -7,8 +7,8 @@ let
       inputs.self.homeModules.minimal# Changed from outputs.homeManagerModules
     ];
 
-    "z270" = [
-      inputs.self.homeModules.server# Changed from outputs.homeManagerModules
+    "aperture" = [
+      ./../home/cli
     ];
 
     default = [
@@ -58,8 +58,8 @@ in {
 
   # User configuration
   users.users.${username} = {
-    passwordFile = config.sops.secrets.user_password.path;
     isNormalUser = true;
+    hashedPasswordFile = config.sops.secrets.user_password.path;
     description = username;
     extraGroups = [ 
       "networkmanager" "wheel"
@@ -68,7 +68,10 @@ in {
   };
 
   users.users.root = {
-    passwordFile = config.sops.secrets.root_password.path;
+    hashedPasswordFile = config.sops.secrets.root_password.path;
+    openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIbr6akxJHoy3PyglU5yj9ze2lHnj14aTWYvwO8EXMhE ye@TFD"
+    ];
   };
   
 
