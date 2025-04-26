@@ -7,6 +7,7 @@
 
     # Shared common configuration
     ./../../modules/nixos
+    ./disko-config.nix
   ];
 
   # Boot configuration

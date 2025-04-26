@@ -5,6 +5,9 @@
   ...
 };
 {
+  imports = [
+    ./jellyfin.nix
+  ];
   security.acme = {
     acceptTerms = true;
     defaults.email = "${config.sops.secrets.email}";

@@ -196,7 +196,11 @@
           hostDir = ./hosts/z270;
           hardwareModules = hardwareProfiles.intel.z270;
         };
-      };
+
+        testvm = mkSystem {
+          hostname = "testvm";
+          hostDir = ./hosts/testvm;
+        };
 
       homeModules.default = ./modules/home;
       homeModules.minimal = [ 
@@ -204,5 +208,6 @@
         ./modules/home/cli
       ];
     };
+};
 }
 
