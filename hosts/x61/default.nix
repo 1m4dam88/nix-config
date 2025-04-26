@@ -32,7 +32,6 @@
     # Intel GMA X3100 graphics
     opengl = {
       enable = true;
-      driSupport = true;
       extraPackages = with pkgs; [ vaapiIntel ];
     };
 
@@ -50,22 +49,12 @@
   services = {
     # Thermal management (critical for X61)
     thermald.enable = true;
-    tlp = {
-      enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        CPU_SCALING_GOVERNOR_ON_AC = "ondemand";
-        START_CHARGE_THRESH_BAT0 = 75;
-        STOP_CHARGE_THRESH_BAT0 = 85;
-      };
-    };
   };
 
   # Lightweight Environment
   environment.systemPackages = with pkgs; [
     # Hardware tools
     acpi
-    tp_smapi
     lm_sensors
     htop
   ];

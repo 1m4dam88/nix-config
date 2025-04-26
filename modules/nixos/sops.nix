@@ -3,7 +3,7 @@
     defaultSopsFile = ./../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     age = {
-      keyFile = "/home/ye/.config/sops/age/keys.txt";
+      keyFile = "/keys.txt";
     };
     secrets = {
       user_password = {};
