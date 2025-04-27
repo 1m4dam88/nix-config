@@ -201,13 +201,9 @@
           hostname = "testvm";
           hostDir = ./hosts/testvm;
         };
+      };
 
       homeModules.default = ./modules/home;
-      homeModules.minimal = [ 
-        ./modules/home/light-gui
-        ./modules/home/cli
-      ];
-    };
   };
 }
 
