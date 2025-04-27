@@ -13,8 +13,8 @@
       spawn = [
         "rivertile"
       ];
-      map = {
-        normal = {
+      map.normal = lib.attrsets.zipAttrs [
+        {
           "Super" = {
             Return = "spawn foot";
             Q = "close";
@@ -23,13 +23,11 @@
             F = "toggle-fullscreen";
             J = "focus next";
             K = "focus previous";
-         };
+          };
           "Super+Shift" = {
             Q = "exit";
             Space = "toggle-float";
           };
-        };
-      }
         (lib.attrsets.mapAttrs
           (_mod: value: lib.attrsets.genAttrs (lib.lists.forEach (lib.lists.range 1 9) (num: toString num))
             (tag: value + builtins.replaceStrings [ "TAG" ] [ tag ] " $((1 << (TAG - 1)))"))
@@ -39,6 +37,8 @@
             "Super+Control" = "toggle-focused-tags";
             "Super+Shift+Control" = "toggle-view-tags";
           })
+        ];
+      };
     };
   };
 }
