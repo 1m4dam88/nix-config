@@ -4,7 +4,8 @@
     pkgs.wbg
   ];
   imports = [
-    ./dwl
+#    ./dwl
+    ./river.nix
     ./browser.nix
     ./foot.nix
     ./dunst.nix
