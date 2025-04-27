@@ -12,7 +12,11 @@ let
       ./../home/cli
     ];
 
-    default = [
+    "testvm" = [
+      ./../home/cli
+    ];
+
+    "default" = [
       inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
     ];
   };

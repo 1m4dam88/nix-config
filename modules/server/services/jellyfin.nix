@@ -6,16 +6,15 @@
     extraPackages = with pkgs; [ nvidia-vaapi-driver ];
   };
   
+  environment.variables = {
+    # Enable NVENC/NVDEC
+    LIBVA_DRIVER_NAME = "nvidia";
+    NVIDIA_DRIVER_CAPABILITIES = "compute,video,utility";
+    JELLYFIN_PublishedServerUrl = "https://jellyfin.your-domain.com";
+  };
+
   services.jellyfin = {
     enable = true;
-    hardwareAcceleration = true;
-    httpsPort = null;
-    environmentVariables = {
-      # Enable NVENC/NVDEC
-      LIBVA_DRIVER_NAME = "nvidia";
-      NVIDIA_DRIVER_CAPABILITIES = "compute,video,utility";
-      JELLYFIN_PublishedServerUrl = "https://jellyfin.your-domain.com";
-    };
   };
 
   services.caddy = {

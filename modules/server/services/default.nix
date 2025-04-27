@@ -5,13 +5,16 @@
   ...
 };
 {
+  imports = [
+    ./jellyfin.nix
+  ];
   security.acme = {
     acceptTerms = true;
     defaults.email = "${config.sops.secrets.email}";
-    certs.${config.homelab.baseDomain} = {
+    certs.tjd.lol = {
       reloadServices = [ "caddy.service" ];
-      domain = "${config.homelab.baseDomain}";
-      extraDomainNames = [ "*.${config.homelab.baseDomain}" ];
+      domain = "tjd.lol";
+      extraDomainNames = [ "*.tjd.lol" ];
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
       dnsPropagationCheck = true;
@@ -25,12 +28,12 @@
         auto_https off
       '';
       virtualHosts = {
-        "http://${config.homelab.baseDomain}" = {
+        "http://tjd.lol" = {
           extraConfig = ''
             redir https://{host}{uri}
           '';
         };
-        "http://*.${config.homelab.baseDomain}" = {
+        "http://*.tjd.lol" = {
           extraConfig = ''
             redir https://{host}{uri}
           '';
@@ -40,7 +43,7 @@
 
   services.cloudflared = {
     enable = true;
-  }
+  };
 
   virtualisation.podman = {
     dockerCompat = true;

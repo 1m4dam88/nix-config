@@ -6,6 +6,7 @@
       keyFile = "/keys.txt";
     };
     secrets = {
+      email = {};
       user_password = {};
       root_password = {};
       github_token = {};
