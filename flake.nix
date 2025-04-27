@@ -208,6 +208,6 @@
         ./modules/home/cli
       ];
     };
-};
+  };
 }
 
