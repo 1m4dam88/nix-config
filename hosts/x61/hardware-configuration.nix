@@ -14,25 +14,25 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/sda2";
+    device = "/dev/sda3";
     fsType = "btrfs";
-    options = [ "subvol=root" "compress=zstd" "noatime" ];
+    options = [ "subvol=@" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/home" = {
-    device = "/dev/sda2";
+    device = "/dev/sda3";
     fsType = "btrfs";
-    options = [ "subvol=home" "compress=zstd" "noatime" ];
+    options = [ "subvol=@home" "compress=zstd" "noatime" ];
   };
 
-  fileSystems."/.snapshots" = {
-    device = "/dev/sda2";
+  fileSystems."/nix" = {
+    device = "/dev/sda3";
     fsType = "btrfs";
-    options = [ "subvol=snapshots" "compress=zstd" "noatime" ];
+    options = [ "subvol=@nix" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/sda1";
+    device = "/dev/sda2";
     fsType = "ext4";
   };
 

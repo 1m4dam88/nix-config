@@ -1,9 +1,9 @@
-{ config, pkgs, inputs, username, ... }:
+{ lib, config, pkgs, inputs, username, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ./../../modules/nixos/
+    ./../../modules/nixos
   ];
 
   # Boot Configuration (Legacy BIOS recommended for X61)

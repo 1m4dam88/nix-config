@@ -186,9 +186,7 @@
           hostDir = ./hosts/x61;
           hardwareModules = hardwareProfiles.thinkpad.x61;
           extraModules = [
-            inputs.disko.nixosModules.disko
-            ./hosts/x61/disko-config.nix
-          ];
+                  ];
         };
 
         z270 = mkSystem {

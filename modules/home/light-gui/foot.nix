@@ -1,11 +1,11 @@
-{ pkgs, host, ... }:
+{ lib, pkgs, host, ... }:
 {
   programs.foot = {
    enable = true;
    settings = {
      main = {
-      font = "Caskaydia Cove Nerd Font:size=12";
-      pad = "10x10";
+      font = lib.mkForce "Terminus (TTF):size=12";
+      pad = "0x0";
      };
    };
  };

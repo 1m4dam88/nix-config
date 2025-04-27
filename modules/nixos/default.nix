@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./bootloader.nix
+    #./bootloader.nix
     ./doas.nix
     ./fonts.nix
     ./gaming.nix

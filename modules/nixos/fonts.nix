@@ -8,6 +8,7 @@
       nerd-fonts.caskaydia-cove
       dejavu_fonts
       liberation_ttf
+      terminus_font_ttf
     ];
     fontconfig = {
       enable = true;
