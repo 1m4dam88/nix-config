@@ -28,6 +28,7 @@
             Q = "exit";
             Space = "toggle-float";
           };
+        }
         (lib.attrsets.mapAttrs
           (_mod: value: lib.attrsets.genAttrs (lib.lists.forEach (lib.lists.range 1 9) (num: toString num))
             (tag: value + builtins.replaceStrings [ "TAG" ] [ tag ] " $((1 << (TAG - 1)))"))
@@ -40,6 +41,5 @@
         ];
       };
     };
-  };
-}
+  }
 
