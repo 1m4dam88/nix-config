@@ -26,6 +26,8 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
+    proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
+
     # Hyprland stuff
     hyprland.url = "github:hyprwm/Hyprland";
 
@@ -65,7 +67,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, hyprpanel, nvchad4nix, ... }@inputs:
+  outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, hyprpanel, nvchad4nix, proxmox-nixos, ... }@inputs:
     let
       username = "ye";
       system = "x86_64-linux";
@@ -103,6 +105,8 @@
             disko.nixosModules.disko
             # sops
             sops-nix.nixosModules.sops
+            # proxmox-nixos
+            proxmox-nixos.nixosModules.proxmox-ve
             # Hardware-specific modules
           ] ++ hardwareModules ++ extraModules;
         };

@@ -1,6 +1,7 @@
 { inputs, config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    steamtinkerlaunch
     winetricks
     wineWowPackages.staging
     nur.repos.iuricarras.truckersmp-cli
