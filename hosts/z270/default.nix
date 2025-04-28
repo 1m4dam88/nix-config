@@ -7,15 +7,6 @@
     ./disko-config.nix
   ];
 
-  services.proxmox-ve = {
-    enable = true;
-    ipAddress = "10.1.10.8";
-  };
-
-  nixpkgs.overlays = [
-    proxmox-nixos.overlays.${system}
-  ];
-
   # Boot Configuration
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];

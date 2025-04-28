@@ -1,9 +1,9 @@
 { pkgs, lib, ... }:
 {
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.loader = lib.mkDefault {
-    systemd-boot.enable = lib.mkDefault true;
-    efi.canTouchEfiVariables = lib.mkDefault true;
-    systemd-boot.configurationLimit = lib.mkDefault 10;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    systemd-boot.configurationLimit = 10;
   };
 }
