@@ -16,7 +16,7 @@ let
       ./../home/cli
     ];
 
-    "default" = [
+    default = [
       inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
     ];
   };
