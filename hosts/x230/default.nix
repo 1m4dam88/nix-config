@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./../../modules/nixos
+    ./disko-config.nix
   ];
 
   # Boot Configuration
@@ -16,13 +17,13 @@
       "mem_sleep_default=deep"  # Better sleep states
       "pcie_aspm=off"           # Disable for stability
     ];
+  };
 
   # Hardware Configuration
   hardware = {
     # Intel HD 4000 graphics
     opengl = {
       enable = true;
-      driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
         vaapiIntel
