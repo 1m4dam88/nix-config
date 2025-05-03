@@ -28,11 +28,11 @@
         
         # Steam
         "float, class:^([Ss]team)$, title:^((?![Ss]team).*)$"
-        "workspace 2 silent, class:^([Ss]team)$, title:^([Ss]team)$"
+        "workspace 3 silent, class:^([Ss]team)$, title:^([Ss]team)$"
         "tile, class:^([Ss]team)$, title:^([Ss]team)$"
         "fullscreen,class:^steam_app\d+$"
         "monitor 1,class:^steam_app_\d+$"
-        "workspace 2,class:^steam_app_\d+$"
+        "workspace 3,class:^steam_app_\d+$"
         
         # MPV Floating
         "float, class:(mpv)"

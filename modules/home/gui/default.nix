@@ -2,7 +2,7 @@
   imports = [
     ./browser.nix
     ./cura.nix
-    ./discord
+    #./discord
     ./foot.nix
     ./fuzzel.nix
     ./gaming.nix
@@ -17,6 +17,7 @@
     ./obs.nix
     ./prism.nix
     ./qbittorrent.nix
+    ./waybar.nix
     ./zathura.nix
   ];
 }

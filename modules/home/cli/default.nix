@@ -9,6 +9,7 @@
     ./fzf.nix
     ./git.nix
     ./hugo.nix
+    ./ncmpcpp.nix
     ./nvim.nix
     ./profanity.nix
     ./ripgrep.nix

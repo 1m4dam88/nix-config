@@ -65,6 +65,9 @@
     auto-cpufreq.enable = true;
   };
 
+  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock.fprintAuth = true;
+
   # Essential Tools
   environment.systemPackages = with pkgs; [
     # Hardware monitoring

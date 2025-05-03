@@ -18,9 +18,11 @@
           "/usr/bin/kdeconnectd"
           "hyprpm-reload"
 
-          "[workspace 1 silent] zen-browser"
-          "[workspace 2 silent] steam"
-          "[workspace 3 silent] vesktop"
+          "[workspace 1 silent] foot"
+          "[workspace 2 silent] zen"
+          "[workspace 3 silent] steam"
+          "[workspace 4 silent] foot -e ncmpcpp"
+          "[workspace 5 silent] thunar"
        ];
      };
   };

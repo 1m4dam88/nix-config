@@ -7,5 +7,6 @@
       pad = "0x0";
      };
    };
- };
+  };
+  programs.kitty.enable = true;
 }

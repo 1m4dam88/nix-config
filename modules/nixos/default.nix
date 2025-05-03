@@ -21,7 +21,7 @@
     ./thunar.nix
     ./user.nix
     ./virtualization.nix
-    ./wayland.nix
+#    ./wayland.nix
   ];
 }
 

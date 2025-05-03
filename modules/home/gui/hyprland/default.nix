@@ -5,9 +5,10 @@
     ./hypridle.nix
     ./source
   ];
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+
+  gtk.iconTheme = {
+    name = "Gruvbox-Plus-Dark";
+    package = pkgs.gruvbox-plus-icons;
   };
   home.packages = with pkgs; [
     inputs.hypr-contrib.packages.${pkgs.system}.grimblast
@@ -25,17 +26,17 @@
     wayland
     direnv
     matugen
+    xdg-desktop-portal-gtk
   ];
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
   ];
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null;
-    portalPackage = null;
-
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     plugins = [
-      inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
+      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
     ];
 
     xwayland = {

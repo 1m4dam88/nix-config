@@ -8,7 +8,7 @@
       tumbler
     ];
   };
-  environment.systemPackages = with pkgs; [ 
+  home.Packages = with pkgs; [ 
     pkgs.ffmpegthumbnailer 
     xarchiver
   ];
