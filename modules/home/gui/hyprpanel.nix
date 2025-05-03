@@ -12,7 +12,7 @@
           "0" = {
             left = [ "dashboard" "media" "windowtitle" ];
             middle = [ "workspaces" ];
-            right = [ "volume" "network" "battery" "systray" "clock" ];
+            right = [  "volume" "battery" "systray" "network" "clock" ];
           };
         };
       };

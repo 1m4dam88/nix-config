@@ -145,27 +145,27 @@
       nixosConfigurations = {
         # ThinkPads
         w520 = mkSystem {
-          hostname = "w520";
-          hostDir = ./hosts/w520;
+          hostname = "heavy";
+          hostDir = ./hosts/heavy;
           hardwareModules = hardwareProfiles.thinkpad.w520;
         };
 
         t480 = mkSystem {
           hostname = "wheatley";
-          hostDir = ./hosts/t480;
+          hostDir = ./hosts/wheatley;
           hardwareModules = hardwareProfiles.thinkpad.t480;
         };
 
         x230 = mkSystem {
           hostname = "mesa";
-          hostDir = ./hosts/x230;
+          hostDir = ./hosts/mesa;
           hardwareModules = hardwareProfiles.thinkpad.x230;
         };
 
         # Desktop systems
         desktop = mkSystem {
           hostname = "atlas";
-          hostDir = ./hosts/desktop;
+          hostDir = ./hosts/atlas;
           hardwareModules = hardwareProfiles.amd.desktop;
         };
 
@@ -178,13 +178,13 @@
         # Intel systems
         m93p = mkSystem {
           hostname = "chell";
-          hostDir = ./hosts/m93p;
+          hostDir = ./hosts/chell;
           hardwareModules = hardwareProfiles.intel.m93p;
         };
 
         x61 = mkSystem {
           hostname = "alyx";
-          hostDir = ./hosts/x61;
+          hostDir = ./hosts/alyx;
           hardwareModules = hardwareProfiles.thinkpad.x61;
           extraModules = [
                   ];
@@ -192,7 +192,7 @@
 
         z270 = mkSystem {
           hostname = "aperture";
-          hostDir = ./hosts/z270;
+          hostDir = ./hosts/aperture;
           hardwareModules = hardwareProfiles.intel.z270;
         };
 
