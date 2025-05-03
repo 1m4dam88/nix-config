@@ -48,9 +48,12 @@
           size = "13px";
         };
         bar = {
+          outer_spacing = "0.5em";
           buttons = {
             enableBorders = false;
-            spacing = "0";
+            spacing = "0.2em";
+            y_margins = "0.1em";
+            padding_y = "0.1rem";
           };
           location = "bottom";
           transparent = false;
