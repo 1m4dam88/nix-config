@@ -9,6 +9,6 @@
     ./input.nix
     ./misc.conf
     ./monitors.nix
-#    ./windowrules.nix
+    ./windowrules.nix
   ];
 }

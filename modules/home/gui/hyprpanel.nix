@@ -14,6 +14,16 @@
             middle = [ "workspaces" ];
             right = [  "volume" "battery" "systray" "network" "clock" ];
           };
+          "1" = {
+            left = [ "media" ];
+            middle = [ "workspaces" ];
+            right = [  "volume" "clock" ];
+          };
+          "2" = {
+            left = [ "media" ];
+            middle = [ "workspaces" ];
+            right = [  "volume" "clock" ];
+          };
         };
       };
       menus.clock = {
@@ -37,6 +47,8 @@
                       "3" = "";
                       "4" = "";
                       "5" = "";
+                      "11" = "󰙯";
+                      "21" = "";
           };
         };
       };
@@ -56,7 +68,7 @@
             padding_y = "0.1rem";
           };
           location = "bottom";
-          transparent = false;
+          transparent = true;
         };
       };
     };
