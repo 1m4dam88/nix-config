@@ -17,7 +17,6 @@
     ./obs.nix
     ./prism.nix
     ./qbittorrent.nix
-    ./thunar.nix
     ./waybar.nix
     ./zathura.nix
   ];
