@@ -8,7 +8,7 @@
       tumbler
     ];
   };
-  home.Packages = with pkgs; [ 
+  home.packages = with pkgs; [ 
     pkgs.ffmpegthumbnailer 
     xarchiver
   ];

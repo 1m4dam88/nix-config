@@ -18,6 +18,7 @@
     ./sops.nix
     ./stylix.nix
     ./system.nix
+    ./thunar.nix
     ./user.nix
     ./virtualization.nix
 #    ./wayland.nix
