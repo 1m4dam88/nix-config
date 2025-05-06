@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ./../../modules/nixos
     ./disko-config.nix
+    ./../../modules/server/aperture
   ];
 
   # Boot Configuration
@@ -40,7 +41,6 @@
     openssh = {
       enable = true;
       settings = {
-        PasswordAuthentication = false;
         PermitRootLogin = "no";
       };
     };
