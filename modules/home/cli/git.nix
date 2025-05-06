@@ -2,13 +2,11 @@
 {
   programs.git = {
     enable = true;
-    userName = "1m4dam88";
-    userEmail = "171095855+1m4dam88@users.noreply.github.com";
+    userName = "imadam";
+    userEmail = "imadam1@proton.me";
 
     extraConfig = {
       init.defaultBranch = "master";
-      credential.helper = "store";
-      url."https://github.com/".insteadOf = "git@github.com:"; # Prefer HTTPS
     };
   };
 
