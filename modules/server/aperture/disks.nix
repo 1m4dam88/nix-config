@@ -38,13 +38,6 @@
   };
 
   # Systemd mount options for better SSD performance
-  systemd.mounts = [
-    {
-      what = "/dev/disk/by-uuid/4b64d284-ad08-408c-bff7-eff40dde8783";
-      where = "/mnt/storage";
-      options = "defaults,compress=zstd:3,noatime,discard=async,ssd,space_cache=v2,commit=120";
-    }
-  ];
 
   # Optional: Enable Btrfs quota support if you need it
   boot.kernelParams = [ "btrfs.allow_unsupported=1" ];

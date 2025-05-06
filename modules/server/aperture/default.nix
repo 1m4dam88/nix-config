@@ -7,8 +7,12 @@ let
   forgejoDomain = "git.${baseDomain}";
   tunnelid = config.sops.secrets.adam-aperture-tunnel-id.path;
   emailSecret = config.sops.secrets.fagwar-email.path;
+  forgejoDir = "/mnt/storage/forgejo";
 in
 {
+  imports = [
+    ./disks.nix
+  ];
   services = {
     jellyfin.enable = true;
 
@@ -16,11 +20,24 @@ in
       enable = true;
       database.type = "postgres";
       lfs.enable = true;
+      stateDir = "${forgejoDir}/state";
+      repositoryRoot = "${forgejoDir}/repositories";
+      lfs.contentDir = "${forgejoDir}/lfs";
+      dump = {
+        backupDir = "${forgejoDir}/backups";
+      };
+
       settings = {
         server = {
           DOMAIN = "git.fagwar.win";
           ROOT_URL = "https://${forgejoDomain}/";
           HTTP_PORT = 3000;
+        };
+        repository = {
+          ROOT = "${forgejoDir}/repositories";
+        };
+        lfs = {
+          PATH = "${forgejoDir}/lfs";
         };
         actions = {
           ENABLED = true;
@@ -66,6 +83,14 @@ in
       };
     };
   };
+
+    systemd.tmpfiles.rules = [
+    "d ${forgejoDir} 0750 forgejo forgejo - -"
+    "d ${forgejoDir}/state 0750 forgejo forgejo - -"
+    "d ${forgejoDir}/repositories 0750 forgejo forgejo - -"
+    "d ${forgejoDir}/lfs 0750 forgejo forgejo - -"
+    "d ${forgejoDir}/backups 0750 forgejo forgejo - -"
+  ];
 
   # Environment setup
   environment.systemPackages = with pkgs; [
