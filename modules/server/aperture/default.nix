@@ -4,7 +4,8 @@ let
   # Domain settings - replace with your actual domains
   baseDomain = "fagwar.win";
   jellyfinDomain = "media.${baseDomain}";
-  forgejoDomain = "git.${baseDomain}";
+  gitDomain = "git.${baseDomain}";
+  gitsshDomain = "git-ssh.${baseDomain}";
   tunnelid = config.sops.secrets.adam-aperture-tunnel-id.path;
   emailSecret = config.sops.secrets.fagwar-email.path;
   forgejoDir = "/mnt/storage/forgejo";
@@ -29,8 +30,11 @@ in
 
       settings = {
         server = {
-          DOMAIN = "git.fagwar.win";
-          ROOT_URL = "https://${forgejoDomain}/";
+          DOMAIN = "${gitDomain}";
+          ROOT_URL = "https://${gitDomain}/";
+          SSH_DOMAIN = "${gitsshDomain}";
+          SSH_PORT = 3222;
+          SSH_LISTEN_PORT = 3222;
           HTTP_PORT = 3000;
         };
         repository = {
@@ -55,8 +59,11 @@ in
             "${jellyfinDomain}" = {
               service = "http://localhost:8096";
             };
-            "${forgejoDomain}" = {
+            "${gitDomain}" = {
               service = "http://localhost:3000";
+            };
+            "${gitsshDomain}" = {
+              service = "ssh://localhost:3222";
             };
           };
           default = "http_status:404";
@@ -78,8 +85,8 @@ in
       "${jellyfinDomain}" = {
         domain = jellyfinDomain;
       };
-      "${forgejoDomain}" = {
-        domain = forgejoDomain;
+      "${gitDomain}" = {
+        domain = gitDomain;
       };
     };
   };
