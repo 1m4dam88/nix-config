@@ -2,5 +2,6 @@
 {
   imports = [
     ./nixcord.nix
+    ./mpd.nix
   ];
 }
