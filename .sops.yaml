@@ -1,0 +1,15 @@
+keys:
+  - &primary age1x5mapzr2pcswvela9nmdah6uzrv4csthupk2vkslwjpne32m6d3syp9nst
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+        - *primary
+  - path_regex: secrets/cloudflare.yaml$
+    key_groups:
+      - age:
+        - *primary
+  - path_regex: secrets/homelab.yaml$
+    key_groups:
+      - age:
+        - *primary
