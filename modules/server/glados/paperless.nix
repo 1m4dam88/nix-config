@@ -6,7 +6,7 @@
     user = config.homelab.user;
     dataDir = "${config.homelab.appdataDir}/paperless";
     mediaDir = "${config.homelab.mediaDir}/paperless/media";
-    environmentFile = "./paperless-env";
+    environmentFile = "/home/ye/nix-config/modules/server/glados/paperless-env";
   };
 }
 

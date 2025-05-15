@@ -38,18 +38,16 @@
     };
   };
 
-  config = {
-    imports = [
-      ./users.nix
-      ./arr.nix
-      ./caddy.nix
-      ./deluge.nix
-      ./homepage.nix
-      ./immich.nix
-      ./jellyfin.nix
-      ./mergerfs.nix
-      ./paperless.nix
-      ./vaultwarden.nix
-    ];
-  };
+  imports = [
+    ./users.nix
+    ./arr.nix
+    ./caddy.nix
+    ./deluge.nix
+    ./homepage.nix
+    ./immich.nix
+    ./jellyfin.nix
+    ./mergerfs.nix
+    ./paperless.nix
+    ./vaultwarden.nix
+  ];
 }
