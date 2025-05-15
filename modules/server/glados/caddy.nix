@@ -1,22 +1,21 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
-  email = "${config.sops.secrets.imadam-email.path}";
-  api = "${config.sops.secrets.tjd-api-key.path}";
+  reverseProxy = host: port: ''
+    reverse_proxy ${host}:${toString port}
+  '';
 in
 {
   security.acme = {
     acceptTerms = true;
     defaults.email = "adamg5333@proton.me";
-    certs = {
-      "tjd.lol" = {
-        domain = "tjd.lol";
-        reloadServices = [ "caddy.service" ];
-        extraDomainNames = [ "*.tjd.lol" ];
-        dnsProvider = "cloudflare";
-        credentialsFile = "${config.sops.secrets.tjd-api-key.path}";
-        group = "acme";
-        dnsResolver = "1.1.1.1:53";
-      };
+    certs."${config.homelab.domain}" = {
+      domain = config.homelab.domain;
+      reloadServices = [ "caddy.service" ];
+      extraDomainNames = [ "*.${config.homelab.domain}" ];
+      dnsProvider = "cloudflare";
+      credentialsFile = "${config.sops.secrets.tjd-api-key.path}";
+      group = "acme";
+      dnsResolver = "1.1.1.1:53";
     };
   };
 
@@ -24,63 +23,24 @@ in
     enable = true;
     user = "acme";
     group = "acme";
-    email = builtins.readFile email;
-    virtualHosts = {
-      "jellyfin.tjd.lol" = {
-        useACMEHost = "tjd.lol";
-        extraConfig = ''
-          reverse_proxy localhost:8096
-        '';
-      };
-      "sonarr.tjd.lol" = {
-        useACMEHost = "tjd.lol";
-        extraConfig = ''
-          reverse_proxy localhost:8989
-        '';
-      };
-      "radarr.tjd.lol" = {
-        useACMEHost = "tjd.lol";
-        extraConfig = ''
-          reverse_proxy localhost:7878
-        '';
-      };
-      "prowlarr.tjd.lol" = {
-        useACMEHost = "tjd.lol";
-        extraConfig = ''
-          reverse_proxy localhost:9696
-        '';
-      };
-      "deluge.tjd.lol" = {
-        useACMEHost = "tjd.lol";
-        extraConfig = ''
-          reverse_proxy localhost:8112
-        '';
-      };
-      "immich.tjd.lol" = {
-        useACMEHost = "tjd.lol";
-        extraConfig = ''
-          reverse_proxy localhost:2283
-        '';
-      };
-      "paperless.tjd.lol" = {
-        useACMEHost = "tjd.lol";
-        extraConfig = ''
-          reverse_proxy localhost:28981
-        '';
-      };
-      "vaultwarden.tjd.lol" = {
-        useACMEHost = "tjd.lol";
-        extraConfig = ''
-          reverse_proxy localhost:8000
-        '';
-      };
-      "homeassistant.tjd.lol" = {
-        useACMEHost = "tjd.lol";
-        extraConfig = ''
-          reverse_proxy 10.1.10.181:8123
-        '';
-      };
-    };
+    email = builtins.readFile "${config.sops.secrets.imadam-email.path}";
+    virtualHosts = lib.genAttrs [
+      "jellyfin" "sonarr" "radarr" "prowlarr" "deluge" 
+      "immich" "paperless" "vaultwarden" "homeassistant"
+    ] (name: {
+      useACMEHost = config.homelab.domain;
+      extraConfig = reverseProxy "localhost" (
+        if name == "jellyfin" then 8096
+        else if name == "sonarr" then 8989
+        else if name == "radarr" then 7878
+        else if name == "prowlarr" then 9696
+        else if name == "deluge" then 8112
+        else if name == "immich" then 2283
+        else if name == "paperless" then 28981
+        else if name == "vaultwarden" then 8000
+        else if name == "homeassistant" then "10.1.10.181:8123"
+        else 80
+      );
+    });
   };
 }
-

@@ -1,9 +1,7 @@
+
 { config, pkgs, ... }:
 {
-
-  environment.systemPackages = with pkgs; [
-    mergerfs
-  ];
+  environment.systemPackages = with pkgs; [ mergerfs ];
 
   fileSystems = {
     "/mnt/cache1" = {
@@ -42,7 +40,7 @@
         "fsname=mergerfs_slow"
         "umask=002"
         "x-mount.mkdir"
-        ];
+      ];
     };
 
     "/mnt/user" = {
@@ -58,7 +56,8 @@
         "fsname=user"
         "umask=002"
         "x-mount.mkdir"
-        ];
+      ];
     };
   };
 }
+

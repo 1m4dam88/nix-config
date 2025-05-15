@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }:
+
+{ config, pkgs, ... }:
 {
-  services = {
-    paperless = {
-      enable = true;
-      user = "share";
-      dataDir = "/mnt/user/appdata/paperless";
-      mediaDir = "/mnt/user/media/paperless/media";
-      environmentFile = "/home/ye/nix-config/modules/server/glados/paperless-env";
-    };
+  services.paperless = {
+    enable = true;
+    user = config.homelab.user;
+    dataDir = "${config.homelab.appdataDir}/paperless";
+    mediaDir = "${config.homelab.mediaDir}/paperless/media";
+    environmentFile = "./paperless-env";
   };
 }
+

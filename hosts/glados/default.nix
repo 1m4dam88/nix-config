@@ -8,7 +8,7 @@
     ./disko-config.nix
   ];
 
-  services.nasMount.enable = false;
+  services.nfsClient.enable = false;
 
   # Kernel and boot configuration
   boot = {

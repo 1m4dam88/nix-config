@@ -1,13 +1,13 @@
 { config, lib, pkgs, ... }:
-
-with lib;
-
 let
-  cfg = config.services.nasMount;
+  cfg = config.services.nfsClient;
 in 
-
 {
-  config = mkIf cfg.enable {
+  options.services.nfsClient = {
+    enable = lib.mkEnableOption "NFS Client config";
+  };
+
+  config = lib.mkIf cfg.enable {
     # Kernel-level NFS support with modern protocol versions
     boot.supportedFilesystems = [ "nfs" "nfs4" ];
     boot.kernelModules = [ "nfs" "nfsd" ];

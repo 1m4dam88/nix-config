@@ -1,23 +1,22 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   services = {
     sonarr = {
       enable = true;
-      dataDir = "/mnt/user/appdata/sonarr";
-      user = "share";
-      group = "share";
+      dataDir = "${config.homelab.appdataDir}/sonarr";
+      user = config.homelab.user;
+      group = config.homelab.group;
     };
+
     radarr = {
       enable = true;
-      dataDir = "/mnt/user/appdata/radarr";
-      user = "share";
-      group = "share";
+      dataDir = "${config.homelab.appdataDir}/radarr";
+      user = config.homelab.user;
+      group = config.homelab.group;
     };
-    prowlarr = {
-      enable = true;
-    };
-    flaresolverr = {
-      enable = true;
-    };
+
+    prowlarr.enable = true;
+    flaresolverr.enable = true;
   };
 }
+

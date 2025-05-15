@@ -1,23 +1,24 @@
 { config, pkgs, lib, ... }:
 {
-  services = {
-    jellyfin = {
-      enable = true;
-      configDir = "/mnt/user/appdata/jellyfin/config";
-      logDir = "/mnt/user/appdata/jellyfin/config/log";
-      cacheDir = "/mnt/user/appdata/jellyfin/config/cache";
-      dataDir = "/mnt/user/appdata/jellyfin";
-      user = "share";
-      group = "share";
-    };
+  services.jellyfin = {
+    enable = true;
+    configDir = "${config.homelab.appdataDir}/jellyfin/config";
+    logDir = "${config.homelab.appdataDir}/jellyfin/config/log";
+    cacheDir = "${config.homelab.appdataDir}/jellyfin/config/cache";
+    dataDir = "${config.homelab.appdataDir}/jellyfin";
+    user = config.homelab.user;
+    group = config.homelab.group;
   };
 
-  systemd.services.jellyfin.after = [ "mnt-user.mount" ];
-  systemd.services.jellyfin.requires = [ "mnt-user.mount" ];
+  systemd.services.jellyfin = {
+    after = [ "mnt-user.mount" ];
+    requires = [ "mnt-user.mount" ];
+  };
+
   systemd.tmpfiles.rules = [
-    "d /mnt/user/appdata/jellyfin 0775 share share -"
-    "d /mnt/user/media/movies 0775 share share -"
-    "d /mnt/user/media/shows 0775 share share -"
+    "d ${config.homelab.appdataDir}/jellyfin 0775 ${config.homelab.user} ${config.homelab.group} -"
+    "d ${config.homelab.mediaDir}/movies 0775 ${config.homelab.user} ${config.homelab.group} -"
+    "d ${config.homelab.mediaDir}/shows 0775 ${config.homelab.user} ${config.homelab.group} -"
   ];
 
   hardware.graphics = {
