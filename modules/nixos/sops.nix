@@ -11,7 +11,7 @@ let
   };
 
   homelabSecrets = lib.mkIf (hostname == "glados") {
-    db-password = {
+    db_password = {
       format = "yaml";
       sopsFile = ./../../secrets/homelab.yaml;
     };
