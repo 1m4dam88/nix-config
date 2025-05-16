@@ -21,7 +21,7 @@ in
 
     # Optimized NFS mount with performance tuning
     fileSystems."/media/NAS" = {
-      device = "10.1.10.3:/share";
+      device = "10.1.10.3:/";
       fsType = "nfs4";
       options = [
         # Protocol options
