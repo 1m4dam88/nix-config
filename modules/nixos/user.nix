@@ -74,7 +74,7 @@ in {
     shell = pkgs.fish;
     hashedPasswordFile = config.sops.secrets.user_password.path;
     extraGroups = [ 
-      "networkmanager" "wheel"
+      "networkmanager" "wheel" "adbusers" "kvm"
     ];
     openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWKYIrwL21t4Q/hbGUmLuVFOb1b77OHjbL0vqSo13kc ye@atlas"

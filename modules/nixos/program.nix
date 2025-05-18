@@ -1,5 +1,6 @@
 { pkgs, config, ... }:
 {
+  programs.adb.enable = true;
   programs.fish.enable = true;
   programs.gnupg.agent = {
     enable = true;

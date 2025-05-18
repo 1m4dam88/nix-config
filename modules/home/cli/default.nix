@@ -10,6 +10,7 @@
     ./git.nix
     ./hugo.nix
     ./ncmpcpp.nix
+    ./nix.nix
     ./nvim.nix
     ./profanity.nix
     ./ripgrep.nix

@@ -3,13 +3,14 @@
     ./browser.nix
     ./cura.nix
     ./discord
+    ./easyeffects.nix
     ./foot.nix
     ./fuzzel.nix
     ./gaming.nix
     ./hyprland
     ./hyprpanel.nix
-    ./jellyfin.nix
     ./imv.nix
+    ./jellyfin.nix
     ./kdeconnect.nix
     ./kicad.nix
     ./krita.nix
