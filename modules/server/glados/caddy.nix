@@ -24,10 +24,22 @@ in
     group = "acme";
     email = builtins.readFile email;
     virtualHosts = {
+      "homepage.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy localhost:8082
+        '';
+      };
       "jellyfin.tjd.lol" = {
         useACMEHost = "tjd.lol";
         extraConfig = ''
           reverse_proxy localhost:8096
+        '';
+      };
+      "jellyseerr.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy localhost:5055
         '';
       };
       "sonarr.tjd.lol" = {
@@ -72,10 +84,40 @@ in
           reverse_proxy localhost:8000
         '';
       };
+      "searx.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy localhost:8080
+        '';
+      };
+      "slskd.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy localhost:5030
+        '';
+      };
       "homeassistant.tjd.lol" = {
         useACMEHost = "tjd.lol";
         extraConfig = ''
           reverse_proxy 10.1.10.181:8123
+        '';
+      };
+      "routerpm.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy 10.1.10.2:8006
+        '';
+      };
+      "router.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy 10.1.10.1
+        '';
+      };
+      "adguard.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy 10.1.10.1:3000
         '';
       };
     };

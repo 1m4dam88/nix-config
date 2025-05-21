@@ -40,6 +40,10 @@ let
       owner = config.users.users.share.name;
       group = config.users.users.share.group;
     };
+    slskd = {
+      format = "yaml";
+      sopsFile = ./../../secrets/homelab.yaml;
+    };
   };
 
   cloudflareSecrets = {

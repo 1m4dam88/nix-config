@@ -39,15 +39,18 @@
   };
 
   imports = [
-    ./users.nix
     ./arr.nix
     ./caddy.nix
     ./deluge.nix
     ./homepage.nix
     ./immich.nix
     ./jellyfin.nix
+    ./jellyseerr.nix
     ./mergerfs.nix
+    ./nfs.nix
     ./paperless.nix
+    ./searx.nix
+    ./users.nix
     ./vaultwarden.nix
   ];
 }
