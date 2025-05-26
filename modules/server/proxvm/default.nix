@@ -40,6 +40,7 @@
 
   imports = [
     ./caddy.nix
+    ./homepage.nix
     ./users.nix
   ];
 }

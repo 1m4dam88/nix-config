@@ -2,7 +2,7 @@
 {
   services.homepage-dashboard = {
     enable = true;
-    environmentFile = "/home/ye/nix-config/modules/server/glados/homepage.env";
+    environmentFile = "/home/ye/nix-config/modules/server/proxvm/homepage.env";
     services = [
       {
         "Media" = [
