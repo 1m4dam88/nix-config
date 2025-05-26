@@ -1,33 +1,27 @@
 { config, pkgs, lib, ... }:
 let
   email = "${config.sops.secrets.imadam-email.path}";
-  api = "${config.sops.secrets.tjd-api-key.path}";
+  api = "${config.sops.secrets.cloudflare_api_token.path}";
 in
 {
-  sops.templates.caddy-email-content = {
-    content = ''
-      ${config.sops.secrets.imadam-email.path}
-    '';
-  };
   security.acme = {
     acceptTerms = true;
-    defaults.email = config.sops.templates.caddy-email-content.content;
+    defaults.email = builtins.readFile email;
     certs."${config.homelab.domain}" = {
       domain = config.homelab.domain;
-      reloadServices = [ "caddy.service" ];
       extraDomainNames = [ "*.${config.homelab.domain}" ];
       dnsProvider = "cloudflare";
-      credentialsFile = "${config.sops.secrets.tjd-api-key.path}";
       group = "acme";
       dnsResolver = "1.1.1.1:53";
+      dnsPropagationCheck = true;
+      environmentFile = api;
     };
   };
 
   services.caddy = {
     enable = true;
-    user = "acme";
     group = "acme";
-    email = config.sops.templates.caddy-email-content.content;
+    user = "acme";
     virtualHosts = {
       "homepage.tjd.lol" = {
         useACMEHost = "tjd.lol";

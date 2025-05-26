@@ -20,6 +20,10 @@ let
       ./../home/cli
     ];
 
+    "proxvm" = [
+      ./../home/cli
+    ];
+
     default = [
       inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
     ];

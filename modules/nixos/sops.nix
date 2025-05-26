@@ -30,19 +30,13 @@ let
       owner = config.users.users.share.name;
       group = config.users.users.share.group;
     };
-    tjd-api-key = {
+    cloudflare_api_token = {
       format = "yaml";
       sopsFile = ./../../secrets/homelab.yaml;
-      mode = "0775";
-      owner = config.users.users.share.name;
-      group = config.users.users.share.group;
     };
     imadam-email = {
       format = "yaml";
       sopsFile = ./../../secrets/homelab.yaml;
-      mode = "0775";
-      owner = config.users.users.share.name;
-      group = config.users.users.share.group;
     };
     slskd = {
       format = "yaml";
