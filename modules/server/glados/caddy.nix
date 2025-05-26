@@ -6,7 +6,7 @@ in
 {
   security.acme = {
     acceptTerms = true;
-    defaults.email = "adamg5333@proton.me";
+    defaults.email = email;
     certs."${config.homelab.domain}" = {
       domain = config.homelab.domain;
       reloadServices = [ "caddy.service" ];
