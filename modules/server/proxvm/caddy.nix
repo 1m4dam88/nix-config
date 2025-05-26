@@ -26,7 +26,7 @@ in
       "homepage.tjd.lol" = {
         useACMEHost = "tjd.lol";
         extraConfig = ''
-          reverse_proxy 10.1.10.3:8082
+          reverse_proxy localhost:8082
         '';
       };
       "jellyfin.tjd.lol" = {
