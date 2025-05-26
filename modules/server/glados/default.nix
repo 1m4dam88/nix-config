@@ -40,9 +40,9 @@
 
   imports = [
     ./arr.nix
-    ./caddy.nix
+    #./caddy.nix
     ./deluge.nix
-    ./homepage.nix
+    #/homepage.nix
     ./immich.nix
     ./jellyfin.nix
     ./jellyseerr.nix
