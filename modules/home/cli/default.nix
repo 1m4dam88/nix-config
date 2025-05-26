@@ -1,0 +1,21 @@
+{ inputs, username, host, ...}: {
+  imports = [
+    ./bat.nix
+    ./btop.nix
+    ./cava.nix
+    ./eza.nix
+    ./fastfetch.nix
+    ./fish.nix
+    ./fzf.nix
+    ./git.nix
+    ./hugo.nix
+    ./ncmpcpp.nix
+    ./nix.nix
+    ./nvim.nix
+    ./profanity.nix
+    ./ripgrep.nix
+    ./yazi.nix
+    ./yt.nix
+    ./zoxide.nix
+  ];
+}

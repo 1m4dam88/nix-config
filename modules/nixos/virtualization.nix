@@ -1,0 +1,39 @@
+{ pkgs, username, ... }:
+
+{
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [ pkgs.OVMFFull.fd ];
+        };
+      };
+    };
+    spiceUSBRedirection.enable = true;
+  };
+
+  services.spice-vdagentd.enable = true;
+
+  users.users.${username} = {
+    extraGroups = [ "libvirtd" "kvm" ];
+  };
+
+  environment.systemPackages = with pkgs; [
+    # Virtualization tools
+    qemu
+    virt-manager
+    virt-viewer
+    
+    # SPICE components
+    spice
+    spice-gtk
+    spice-protocol
+    
+    # Windows guest support
+    win-virtio
+    win-spice
+  ];
+}
