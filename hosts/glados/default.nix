@@ -4,7 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./../../modules/nixos
-    ./../../modules/server/glados/default.nix
+    ./../../modules/server/glados
     ./disko-config.nix
   ];
 

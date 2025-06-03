@@ -19,6 +19,12 @@
       description = "Directory for media files";
     };
 
+    storageDir = lib.mkOption {
+      type = lib.types.str;
+      default = "${config.homelab.rootDir}/storage";
+      description = "Directory for general storage";
+    };
+
     user = lib.mkOption {
       type = lib.types.str;
       default = "share";
@@ -41,11 +47,13 @@
   imports = [
     ./arr.nix
     ./deluge.nix
+    ./caddy.nix
     ./immich.nix
+    ./homepage.nix
     ./jellyfin.nix
     ./jellyseerr.nix
     ./mergerfs.nix
-    ./nfs.nix
+    ./share.nix
     ./paperless.nix
     ./searx.nix
     ./users.nix
