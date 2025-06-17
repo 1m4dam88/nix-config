@@ -34,7 +34,7 @@
       };
       wallpaper = {
         enable = true;
-        image = "~/nix-config/wallpapers/urban_architecture.jpg";
+        image = "~/nix-config/assets/wallpapers/urban_architecture.jpg";
         pywal = false;
       };
       bar = {

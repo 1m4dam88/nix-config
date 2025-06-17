@@ -1,10 +1,13 @@
 { pkgs, config, ... }:
 {
-  programs.adb.enable = true;
-  programs.fish.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    adb.enable = true;
+    fish.enable = true;
+    dconf.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
   environment.systemPackages = with pkgs; [
     p7zip
@@ -13,5 +16,6 @@
     unetbootin
     sops
     ffmpeg
+    vulkan-tools
   ];
 }

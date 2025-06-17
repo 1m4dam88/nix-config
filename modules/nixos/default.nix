@@ -6,8 +6,6 @@
     ./doas.nix
     ./fonts.nix
     ./gaming.nix
-    ./hardware.nix
-    ./lact
     ./media.nix
     ./mount.nix
     ./networking.nix
