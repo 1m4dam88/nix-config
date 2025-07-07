@@ -32,7 +32,6 @@
 
     hyprpicker.url = "github:hyprwm/hyprpicker";
 
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     hypr-contrib = {
       url = "github:hyprwm/contrib";
@@ -66,7 +65,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, hyprpanel, nvchad4nix, ... }@inputs:
+  outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, nvchad4nix, ... }@inputs:
     let
       username = "ye";
       system = "x86_64-linux";
@@ -76,7 +75,6 @@
         (final: prev: {
           nvchad = inputs.nvchad4nix.packages."${final.system}".nvchad;
         })
-        inputs.hyprpanel.overlay
       ];
 
       mkSystem = { hostname, hostDir, hardwareModules ? [], extraModules ? [] }: 

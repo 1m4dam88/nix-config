@@ -34,6 +34,24 @@
 
   stylix.targets.mako.enable = false;
 
+  services.hyprsunset = {
+    enable = true;
+    transitions = {
+      sunrise = {
+        calendar = "*-*-* 06:00:00";
+        requests = [
+          [ "temperature" "6500" ]
+          [ "gamma 100" ]
+        ];
+      };
+      sunset = {
+        calendar = "*-*-* 22:30:00";
+        requests = [
+          [ "temperature" "3500" ]
+        ];
+      };      
+    };
+  };
 
   xdg = {
     portal = {

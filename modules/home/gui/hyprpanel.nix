@@ -1,14 +1,24 @@
 { inputs, ... }:
 {
-  imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
   programs.hyprpanel = {
     enable = true;
-    hyprland.enable = true;
-    overlay.enable = true;
     settings = {
-    layout = {
-        "bar.layouts" = {
+      scalingPriority = "hyprland";
+      terminal = "foot";
+      menus.clock = {
+        time = {
+          military = true;
+        };
+        weather.unit = "metric";
+      };
+      wallpaper = {
+        enable = true;
+        image = "~/nix-config/assets/wallpapers/urban_architecture.jpg";
+        pywal = false;
+      };
+      bar = {
+        layouts = {
           "0" = {
             left = [ "dashboard" "media" "windowtitle" ];
             middle = [ "workspaces" ];
@@ -25,19 +35,6 @@
             right = [  "volume" "clock" ];
           };
         };
-      };
-      menus.clock = {
-        time = {
-          military = true;
-        };
-        weather.unit = "metric";
-      };
-      wallpaper = {
-        enable = true;
-        image = "~/nix-config/assets/wallpapers/urban_architecture.jpg";
-        pywal = false;
-      };
-      bar = {
         launcher.autoDetectIcon = true;
         workspaces = {
           showWsIcons = true;
@@ -68,7 +65,6 @@
             padding_y = "0.1rem";
           };
           location = "bottom";
-          transparent = true;
         };
       };
     };
