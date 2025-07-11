@@ -1,7 +1,7 @@
 { inputs, username, host, ...}: {
   imports = [
+    ./3dp.nix
     ./browser.nix
-    ./cura.nix
     ./discord
     ./easyeffects.nix
     ./foot.nix
@@ -19,6 +19,7 @@
     ./prism.nix
     ./qbittorrent.nix
     ./signal.nix
+    ./tauon.nix
     ./vial.nix
     ./waybar.nix
     ./zathura.nix
