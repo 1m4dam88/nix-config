@@ -20,7 +20,6 @@
     ./udev.nix
     ./user.nix
     ./virtualization.nix
-#    ./wayland.nix
   ];
 }
 

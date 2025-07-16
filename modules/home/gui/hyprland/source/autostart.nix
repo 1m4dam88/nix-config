@@ -3,7 +3,7 @@
   wayland.windowManager.hyprland = {
      settings = {
        exec-once = [
-          "hyprpanel"
+          "waybar &"
           "udiskie"
           "swww-daemon &"
 

@@ -28,11 +28,6 @@
     direnv
     matugen
   ];
-  systemd.user.targets.hyprland-session.Unit.Wants = [
-    "xdg-desktop-autostart.target"
-  ];
-
-  stylix.targets.mako.enable = false;
 
   services.hyprsunset = {
     enable = true;
@@ -53,6 +48,10 @@
     };
   };
 
+  systemd.user.targets.hyprland-session.Unit.Wants = [
+    "xdg-desktop-autostart.target"
+  ];
+
   xdg = {
     portal = {
       enable = true;
@@ -60,12 +59,20 @@
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
       ];
+      config = {
+        common.default = [ "gtk" ];
+        hyprland.default = [
+          "gtk"
+          "hyprland"
+        ];
+      };
     };
   };
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    systemd.enable = true;
+    systemd.enableXdgAutostart = true;
     plugins = [
       inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
     ];

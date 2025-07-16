@@ -8,7 +8,7 @@
     ./fuzzel.nix
     ./gaming.nix
     ./hyprland
-    ./hyprpanel.nix
+    #./hyprpanel.nix
     ./imv.nix
     ./jellyfin.nix
     ./kdeconnect.nix
