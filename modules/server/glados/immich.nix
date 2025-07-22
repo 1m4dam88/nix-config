@@ -2,7 +2,7 @@
 {
   services.immich = {
     enable = true;
-    mediaLocation = "${config.homelab.mediaDir}/immich-new/photos";
+    mediaLocation = "${config.homelab.mediaDir}/immich/photos";
     accelerationDevices = null;
   };
 }
