@@ -5,7 +5,7 @@
     ./bootloader.nix
     ./doas.nix
     ./fonts.nix
-    ./gaming.nix
+    #./gaming.nix
     ./media.nix
     ./mount.nix
     ./networking.nix

@@ -17,13 +17,7 @@
     };
     
     "/mnt/disk2" = {
-      device = "/dev/disk/by-id/ata-ST2000DM008-2UB102_WFL5SBGX-part1";
-      fsType = "xfs";
-      options = [ "defaults" "noatime" "nofail" ];
-    };
-    
-    "/mnt/disk3" = {
-      device = "/dev/disk/by-id/ata-WDC_WD10EZEX-08WN4A0_WD-WCC6Y5EYSU3H-part1";
+      device = "/dev/disk/by-id/ata-ST16000NM000J-2TW103_ZR5133ZK-part1";
       fsType = "xfs";
       options = [ "defaults" "noatime" "nofail" ];
     };
@@ -35,7 +29,7 @@
         "defaults"
         "allow_other"
         "moveonenospc=1"
-        "minfreespace=0G"
+        "minfreespace=500G"
         "func.getattr=newest"
         "fsname=mergerfs_slow"
         "umask=002"
@@ -47,11 +41,11 @@
       device = "/mnt/cache*:/mnt/storage";
       fsType = "fuse.mergerfs";
       options = [
-        "category.create=mfs"
+        "category.create=epff"
         "defaults"
         "allow_other"
         "moveonenospc=1"
-        "minfreespace=0G"
+        "minfreespace=250G"
         "func.getattr=newest"
         "fsname=user"
         "umask=002"

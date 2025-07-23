@@ -1,5 +1,20 @@
 { config, pkgs, lib, ... }:
 {
+  imports = [
+    ./arr.nix
+    ./caddy.nix
+    ./deluge.nix
+    ./homepage.nix
+    ./immich.nix
+    ./jellyfin.nix
+    ./jellyseerr.nix
+    ./mergerfs.nix
+    ./paperless.nix
+    ./share.nix
+    ./slskd.nix
+    ./users.nix
+    ./vaultwarden.nix
+  ];
   options.homelab = {
     rootDir = lib.mkOption {
       type = lib.types.str;
@@ -44,19 +59,4 @@
     };
   };
 
-  imports = [
-    ./arr.nix
-    ./deluge.nix
-    ./caddy.nix
-    ./immich.nix
-    ./homepage.nix
-    ./jellyfin.nix
-    ./jellyseerr.nix
-    ./mergerfs.nix
-    ./share.nix
-    ./paperless.nix
-    ./searx.nix
-    ./users.nix
-    ./vaultwarden.nix
-  ];
 }
