@@ -10,24 +10,22 @@
 
   services.nfsClient.enable = false;
 
-  # Kernel and boot configuration
   boot = {
     kernelModules = [ "kvm-amd" ];
     kernelParams = [ 
       "amd_iommu=on" 
       "iommu=pt" 
-      "pcie_aspm=off" # Better PCIe performance
-      "mitigations=off" # For maximum performance
+      "pcie_aspm=off"
+      "mitigations=off"
     ];
 
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      timeout = 1; # Faster boot
+      timeout = 1;
     };
   };
 
-  # AMD hardware configuration
   hardware = {
     cpu.amd.updateMicrocode = true;
     graphics = {
@@ -38,7 +36,6 @@
 
   services.openssh.enable = true;
 
-  # Performance tuning
   powerManagement.cpuFreqGovernor = "performance";
   services.thermald.enable = true;
 

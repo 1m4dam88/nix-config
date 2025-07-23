@@ -7,7 +7,6 @@
     ./../../modules/nixos
   ];
 
-  # Kernel and boot configuration
   boot = {
     kernelParams = [ 
       "amd_iommu=on" 
@@ -19,25 +18,21 @@
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      timeout = 1; # Faster boot
+      timeout = 1;
     };
   };
 
-  # AMD hardware configuration
   hardware = {
     cpu.amd.updateMicrocode = true;
     graphics = {
       enable = true;
       enable32Bit = true;
     };
-    # Enable AMD GPU monitoring and control
   };
 
-  # Performance tuning
   powerManagement.cpuFreqGovernor = "performance";
   services.thermald.enable = true;
 
-  # Overclocking/undervolting support
   boot.extraModprobeConfig = ''
     options amdgpu ppfeaturemask=0xffffffff
     options amdgpu overdrive=1

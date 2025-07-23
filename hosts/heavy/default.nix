@@ -7,7 +7,6 @@
     ./../../modules/nixos
   ];
 
-  # Boot Configuration
   boot = {
     kernelModules = [ "acpi_call" "tp_smapi" ];
     extraModulePackages = with config.boot.kernelPackages; [ 
@@ -15,28 +14,25 @@
       tp_smapi 
     ];
     kernelParams = [
-      "pcie_aspm=off"       # Better performance for older PCIe
-      "i915.enable_rc6=1"   # Intel GPU power savings
-      "i915.enable_fbc=1"   # Frame buffer compression
+      "pcie_aspm=off"
+      "i915.enable_rc6=1"
+      "i915.enable_fbc=1"
     ];
   };
 
-#    # For the Nvidia Quadro if present
-#    nvidia = {
-#      modesetting.enable = true;
-#      powerManagement.enable = true;
-#    };
-#  };
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+    };
+  };
 
-  # Power Management
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "ondemand";
+    cpuFreqGovernor = "performance";
     powertop.enable = true;
   };
 
   services = {
-    # Thermal management
     thermald.enable = true;
     fprintd.enable = true;
     tlp = {
@@ -50,32 +46,19 @@
     };
   };
 
-    # For the fingerprint reader if present
+    optimus-manager = {
+      enable = config.hardware.nvidia.enable;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+  };
 
-#    # Enable Optimus manager if using Nvidia/Intel hybrid
-#    optimus-manager = {
-#      enable = config.hardware.nvidia.enable;
-#      intelBusId = "PCI:0:2:0";
-#      nvidiaBusId = "PCI:1:0:0";
-#    };
-#  };
-
-  # Hardware Video Acceleration
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
 
-  # Essential Tools
-  environment.systemPackages = with pkgs; [
-    # ThinkPad utilities
-    thinkfan
-    acpi
-    tpacpi-bat
+  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock.fprintAuth = true;
 
-  ];
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken.
   system.stateVersion = "24.11";
 }

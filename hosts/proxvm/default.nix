@@ -8,24 +8,20 @@
     ./../../modules/server/proxvm
   ];
 
-  # Boot Configuration
   boot = {
     kernelParams = [
-      "mitigations=off"      # Disable for bare-metal performance
-      "nowatchdog"           # Disable hardware watchdog
-      "quiet"                # Clean boot output
+      "mitigations=off"
+      "nowatchdog"
+      "quiet"
     ];
   };
 
-  # Hardware Configuration
   hardware = {
     enableAllFirmware = true;
   };
 
-  # Performance Tuning
   powerManagement.cpuFreqGovernor = "performance";
 
-  # Essential Services
   services = {
     openssh = {
       enable = true;
