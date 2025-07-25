@@ -120,12 +120,6 @@
             inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
             inputs.nixos-hardware.nixosModules.common-gpu-amd
           ];
-          server = [
-            inputs.nixos-hardware.nixosModules.common-cpu-amd
-            inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
-            inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-            inputs.nixos-hardware.nixosModules.common-gpu-amd
-          ];
         };
         intel = {
           m93p = [
@@ -135,6 +129,10 @@
           z270 = [
             inputs.nixos-hardware.nixosModules.common-cpu-intel
             inputs.nixos-hardware.nixosModules.common-gpu-intel-kaby-lake
+          ];
+          server = [
+            inputs.nixos-hardware.nixosModules.common-cpu-intel
+            inputs.nixos-hardware.nixosModules.common-gpu-intel
           ];
         };
       };
@@ -170,7 +168,7 @@
         glados = mkSystem {
           hostname = "glados";
           hostDir = ./hosts/glados;
-          hardwareModules = hardwareProfiles.amd.server;
+          hardwareModules = hardwareProfiles.intel.server;
         };
 
         # Intel systems
@@ -184,8 +182,6 @@
           hostname = "alyx";
           hostDir = ./hosts/alyx;
           hardwareModules = hardwareProfiles.thinkpad.x61;
-          extraModules = [
-                  ];
         };
 
         aperture = mkSystem {
@@ -202,7 +198,6 @@
 
       homeModules.default = ./modules/home;
       homeModules.minimal = [ 
-        ./modules/home/light-gui
         ./modules/home/cli
       ];
     };

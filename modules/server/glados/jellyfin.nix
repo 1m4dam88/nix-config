@@ -31,17 +31,10 @@
     )
   ];
 
-  systemd.services.jellyfin = {
-    environment.LIBVA_DRIVER_NAME = "iHD";
-    after = [ "mnt-user.mount" ];
-    requires = [ "mnt-user.mount" ];
-  };
+  systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "iHD"; # Or "i965" if using older driver
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };      # Same here
 
-  environment = {
-    LIBVA_DRIVER_NAME = "iHD";
-  };
 
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
 
   systemd.tmpfiles.rules = [
     "d ${config.homelab.appdataDir}/jellyfin 0775 ${config.homelab.user} ${config.homelab.group} -"
@@ -57,6 +50,6 @@
       intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
       vpl-gpu-rt # QSV on 11th gen or newer
       intel-ocl # OpenCL support
-    ]
-  }
+    ];
+  };
 }
