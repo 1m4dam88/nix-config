@@ -15,7 +15,7 @@
 
   services = {
     samba = {
-      enable = false;
+      enable = true;
       package = pkgs.samba4Full;
       settings = {
         global = {

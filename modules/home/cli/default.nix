@@ -9,7 +9,7 @@
     ./fzf.nix
     ./git.nix
     ./hugo.nix
-    ./ncmpcpp.nix
+    #./ncmpcpp.nix
     ./nix.nix
     ./nvim.nix
     ./ripgrep.nix
