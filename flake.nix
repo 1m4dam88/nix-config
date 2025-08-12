@@ -199,6 +199,7 @@
       homeModules.default = ./modules/home;
       homeModules.minimal = [ 
         ./modules/home/cli
+        ./modules/home/light        
       ];
     };
   }

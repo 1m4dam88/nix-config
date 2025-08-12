@@ -5,6 +5,7 @@ let
   homeImports = {
     "alyx" = [
       ./../home/cli
+      ./../home/light
     ];
 
     "aperture" = [
