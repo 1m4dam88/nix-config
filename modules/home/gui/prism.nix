@@ -6,12 +6,18 @@
   ...
 }:
 {
-  nix.settings = {
-    trusted-substituters = [ "https://prismlauncher.cachix.org" ];
-
-    trusted-public-keys = [
-      "prismlauncher.cachix.org-1:9/n/FGyABA2jLUVfY+DEp4hKds/rwO+SCOtbOkDzd+c="
-    ];
-  };
-  home.packages = with pkgs; [ prismlauncher ];
+  home.packages = with pkgs; [
+    (prismlauncher.override {
+      # Add binary required by some mod
+      additionalPrograms = [ ffmpeg ];
+  
+      # Change Java runtimes available to Prism Launcher
+      jdks = [
+        graalvm-ce
+        zulu8
+        zulu17
+        zulu
+      ];
+    })
+  ];
 }
