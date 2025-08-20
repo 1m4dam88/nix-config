@@ -2,9 +2,13 @@
 {
   services.immich = {
     enable = true;
-    user = "share";
-    group = "share";
-    mediaLocation = "${config.homelab.mediaDir}/immich/photos";
+    user = config.homelab.user;
+    group = config.homelab.group;
+    mediaLocation = "${config.homelab.mediaDir}/immich2/photos";
     accelerationDevices = null;
   };
+  users.userse.immich.extraGroups = [
+    "video"
+    "render"
+  ];
 }

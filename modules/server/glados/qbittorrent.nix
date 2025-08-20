@@ -4,8 +4,8 @@
     qbittorrent = {
       enable = true;
       port = 8090;
-      user = "share";
-      group = "share";
+      user = config.homelab.user;
+      group = config.homelab.group;
     }
   }
 }
