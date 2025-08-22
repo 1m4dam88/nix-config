@@ -2,12 +2,16 @@
 {
   services.immich = {
     enable = true;
-    user = config.homelab.user;
-    group = config.homelab.group;
-    mediaLocation = "${config.homelab.mediaDir}/immich2/photos";
+    mediaLocation = "${config.homelab.mediaDir}/immich/photos";
     accelerationDevices = null;
   };
-  users.userse.immich.extraGroups = [
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+    ];
+  };
+  users.users.immich.extraGroups = [
     "video"
     "render"
   ];
