@@ -12,7 +12,7 @@
     };
     resolved = {
       enable = true;
-      dnssec = "true";
+      dnssec = "allow-downgrade";
       domains = [ "~." ];
     };
   };
