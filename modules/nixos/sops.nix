@@ -30,6 +30,7 @@ let
     user_password = {};
     root_password = {};
     github_token = {};
+    github_action_token = {};
     ssh_key = {};
   };
 
