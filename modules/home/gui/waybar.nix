@@ -92,7 +92,7 @@
             critical = 10;
           };
           "format-full" = "BAT:FULL";
-          "format-charging" = "CHARGE:{capacity}%";
+          "format-charging" = "{capacity}%";
           "format-icons" = [
             ""
             ""
@@ -118,7 +118,7 @@
         };
 
         backlight = {
-          format = "DIS:{percent}%";
+          format = "{percent}%";
           "format-icons" = [
             ""
             ""
@@ -191,11 +191,9 @@
       }
       #upower,
       #battery {
-        padding: 0 5px;
       }
       #upower.charging,
       #battery.Charging {
-        padding: 0 5px;
       }
       #network {
         padding: 0 5px;
@@ -209,11 +207,10 @@
       #clock {
       	padding: 2px 0px 0px 0px;
       	font-size: 16px;
-        background-color: @base04;
+        background-color: @base09;
         color: @base00;
       }
       #backlight {
-        padding: 0 5px;
       }
       #cpu {
         padding: 0 5px;
