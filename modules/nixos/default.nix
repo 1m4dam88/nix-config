@@ -19,6 +19,7 @@
     ./system.nix
     ./thunar.nix
     ./udev.nix
+    ./update.nix
     ./user.nix
     ./virtualization.nix
   ];
