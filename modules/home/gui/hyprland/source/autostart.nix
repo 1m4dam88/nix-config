@@ -6,6 +6,8 @@
           "waybar &"
           "udiskie"
           "swww-daemon &"
+          "walker --gapplication-service"
+          "mako &"
 
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image--watch cliphist store"
@@ -22,7 +24,6 @@
           "[workspace 2 silent] zen"
           "[workspace 3 silent] steam"
           "[workspace 4 silent] foot -e ncmpcpp"
-          "[workspace 5 silent] thunar"
        ];
      };
   };

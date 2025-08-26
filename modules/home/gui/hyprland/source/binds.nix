@@ -42,7 +42,7 @@
                 "$mainMod, Y, exec, discord"
                 "$mainMod, U, exec, obs"
                 "$mainMod, O, exec, prismlauncher"
-                "$mainMod, D, exec, fuzzel"
+                "$mainMod, D, exec, walker"
                 "$mainMod, backspace, exec, hyprlock"
                 "$mainMod shift, C, exec, hyprpicker -a"
                 "$mainMod, V, exec, cliphist list |  fuzzel --match-mode fzf --dmenu | cliphist decode | wl-copy"

@@ -14,8 +14,8 @@
       enable = true;
       defaultFonts = {
         monospace = [ "Caskaydia Cove Nerd Font"];
-        serif = [ "DejaVu Sans" ];
-        sansSerif = [ "Dejavu Sans " ];
+        serif = [ "Noto Serif" ];
+        sansSerif = [ "Noto Sans" ];
       };
     };
   };

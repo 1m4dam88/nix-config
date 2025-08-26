@@ -13,6 +13,7 @@
     ./kdeconnect.nix
     ./kicad.nix
     ./krita.nix
+    ./mako.nix
     ./mpv.nix
     ./obs.nix
     ./prism.nix
@@ -20,6 +21,7 @@
     ./signal.nix
     ./tauon.nix
     ./vial.nix
+    ./walker.nix
     ./waybar.nix
     ./zathura.nix
   ];
