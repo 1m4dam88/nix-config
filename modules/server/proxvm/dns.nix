@@ -41,18 +41,6 @@
       };
 
       # Forward upstream DNS servers for non-local queries
-      forward-zone = [
-        {
-          name = ".";
-          forward-addr = [
-            "8.8.8.8"        # Google DNS
-            "8.8.4.4"        # Google DNS
-            "1.1.1.1"        # Cloudflare DNS
-            "1.0.0.1"        # Cloudflare DNS
-          ];
-          forward-first = "no";  # Use stub resolver (faster)
-        }
-      ];
     };
   };
   services.adguardhome = {
@@ -75,16 +63,16 @@
         ];
         # Bootstrap DNS for resolving upstream servers (if needed)
         bootstrap_dns = [
-          "8.8.8.8"
-          "8.8.4.4"
-          "1.1.1.1"
-          "1.0.0.1"
+          "9.9.9.9"
+          "149.112.112.10"
+          "2620:fe::10"
+          "2620:fe::fe:10"
         ];
         # Allow local domain resolution for tjd.lol
         local_domain_name = "tjd.lol";
         use_private_ptr_resolvers = true;  # Resolve private domains locally
         local_ptr_upstreams = [
-          "127.0.0.1:5353"  # Use Unbound for reverse DNS (PTR) lookups
+          "127.0.0.1:5335"  # Use Unbound for reverse DNS (PTR) lookups
         ];
         # Enable DNS caching in AdGuard Home
         cache_enabled = true;
@@ -103,16 +91,112 @@
           name = "AdGuard DNS filter";
           id = 1;
         }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt";
+          name = "AdAway Default Blocklist";
+          id = 2;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_64.txt"; 
+          name = "1Hosts (Pro)";
+          id = 3;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_59.txt"; 
+          name = "AdGuard DNS Popup Hosts filter";
+          id = 4;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_53.txt"; 
+          name = "AWAvenue ads rule";
+          id = 5;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt"; 
+          name = "Dan Pollock's List";
+          id = 6;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_51.txt"; 
+          name = "HaGeZi's Pro++ Blocklist";
+          id = 7;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt"; 
+          name = "Dandelion Sprout's Anti Push Notifications";
+          id = 8;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_33.txt"; 
+          name = "Steven Black's list";
+          id = 9;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt"; 
+          name = "OISD Blocklist Big";
+          id = 10;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt"; 
+          name = "Peter Lowe's Blocklist";
+          id = 11;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_6.txt"; 
+          name = "Dandelion Sprout's Game Console Adblock List";
+          id = 12;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_7.txt"; 
+          name = "Perflyst and Dandelion Sprout's Smart-TV Blocklist";
+          id = 13;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_47.txt"; 
+          name = "HaGeZi's Gambling Blocklist";
+          id = 14;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_60.txt"; 
+          name = "HaGeZi's Xiaomi Tracker Blocklist";
+          id = 15;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_61.txt"; 
+          name = "HaGeZi's Samsung Tracker Blocklist";
+          id = 16;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_63.txt"; 
+          name = "HaGeZi's Windows/Office Tracker Blocklist";
+          id = 17;
+        }
       ];
       filtering_enabled = true;
-      safebrowsing_enabled = true;
+      safebrowsing_enabled = false;
       parental_enabled = false;  # Enable if you want parental controls
     };
   };
 
   # Open firewall for the custom port
   networking.firewall = {
-    allowedUDPPorts = [ 5353 ];
-    allowedTCPPorts = [ 5353 ];
+    allowedUDPPorts = [ 5335 ];
+    allowedTCPPorts = [ 5335 ];
   };
 }
