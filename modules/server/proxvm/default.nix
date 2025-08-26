@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   imports = [
+    ./dns.nix
     ./users.nix
   ];
   options.homelab = {
