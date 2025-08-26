@@ -2,5 +2,5 @@
 {
   services = {
     unifi.enable = true;
-  }
+  };
 }
