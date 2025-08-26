@@ -10,11 +10,14 @@
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
     fonts = {
-      serif = config.stylix.fonts.sansSerif;
+      serif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
+      };
       
       sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
+        package = pkgs.noto-fonts;
+        name = "Noto Sans";
       };
 
       monospace = {

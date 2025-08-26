@@ -13,20 +13,21 @@
   };
   home.packages = with pkgs; [
     inputs.hypr-contrib.packages.${pkgs.system}.grimblast
-    swww
-    hyprpicker
     bemoji
-    wtype
-    grim
-    slurp
+    brightnessctl
     cliphist
+    direnv
+    glib
+    grim
+    hyprpicker
+    matugen
+    playerctl
+    slurp
+    swww
+    wayland
     wf-recorder
     wl-clipboard
-    playerctl
-    glib
-    wayland
-    direnv
-    matugen
+    wtype
   ];
 
   services.hyprsunset = {

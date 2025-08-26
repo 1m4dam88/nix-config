@@ -36,27 +36,6 @@
         
         # MPV Floating
         "float, class:(mpv)"
-
-        "opacity 1.00 1.00,class:^(zen-alpha)$"
-        "opacity 0.80 0.80,class:^([Cc]ode)$"
-        "opacity 0.80 0.80,class:^(code-url-handler)$"
-        "opacity 0.80 0.80,class:^(code-insiders-url-handler)$"
-        "opacity 0.95 0.95,class:^(thunar)$"
-        "opacity 0.80 0.80,class:^(nwg-look)$"
-        "opacity 0.80 0.80,class:^(qt5ct)$"
-        "opacity 0.80 0.80,class:^(qt6ct)$"
-        "opacity 0.80 0.80,class:^(kvantummanager)$"
-        "opacity 0.80 0.70,class:^(org.pulseaudio.pavucontrol)$"
-        "opacity 0.80 0.70,class:^(blueman-manager)$"
-        "opacity 0.80 0.70,class:^(nm-applet)$"
-        "opacity 0.80 0.70,class:^(nm-connection-editor)$"
-        "opacity 0.80 0.70,class:^(org.kde.polkit-kde-authentication-agent-1)$"
-        "opacity 0.80 0.70,class:^(polkit-gnome-authentication-agent-1)$"
-        "opacity 0.80 0.70,class:^(org.freedesktop.impl.portal.desktop.gtk)$"
-        "opacity 0.80 0.70,class:^(org.freedesktop.impl.portal.desktop.hyprland)$"
-        "opacity 0.90 0.90,class:^([Ss]potify)$"
-        "opacity 0.70 0.70,initialTitle:^(Spotify Free)$"
-        "opacity 0.70 0.70,initialTitle:^(Spotify Premium)$"
       ];
     };
   };
