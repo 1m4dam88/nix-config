@@ -2,6 +2,7 @@
 {
   imports = [
     ./dns.nix
+    ./unifi.nix
     ./users.nix
   ];
   options.homelab = {
