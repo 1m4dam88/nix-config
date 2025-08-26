@@ -86,12 +86,12 @@
         };
 
         battery = {
-          format = "BAT:{capacity}%";
+          format = "{capacity}%";
           states = {
             warning = 30;
             critical = 10;
           };
-          "format-full" = "BAT:FULL";
+          "format-full" = "100%";
           "format-charging" = "{capacity}%";
           "format-icons" = [
             ""
