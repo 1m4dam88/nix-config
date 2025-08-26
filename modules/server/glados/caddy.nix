@@ -95,6 +95,12 @@ in
           reverse_proxy localhost:5030
         '';
       };
+      "homebox.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy http://10.1.10.3:7745
+        '';
+      };
       "homeassistant.tjd.lol" = {
         useACMEHost = "tjd.lol";
         extraConfig = ''

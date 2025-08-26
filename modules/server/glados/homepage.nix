@@ -2,7 +2,7 @@
 {
   services.homepage-dashboard = {
     enable = true;
-    environmentFile = "/home/ye/nix-config/modules/server/proxvm/homepage.env";
+#    environmentFile = "/home/ye/nix-config/modules/server/proxvm/homepage.env";
     services = [
       {
         "Media" = [
@@ -85,6 +85,13 @@
               description = "Bitwarden alternative";
               href = "https://vaultwarden.${config.homelab.domain}";
               icon = "sh-vaultwarden.svg";
+            };
+          }
+          {
+            "Homebox" = {
+              description = "";
+              href = "https://homebox.${config.homelab.domain}";
+              icon = "sh-homebox.svg";
             };
           }
          # {

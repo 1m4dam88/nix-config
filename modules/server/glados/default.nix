@@ -4,6 +4,7 @@
     ./arr.nix
     ./caddy.nix
     ./deluge.nix
+    ./homebox.nix
     ./homepage.nix
     ./immich.nix
     ./jellyfin.nix
