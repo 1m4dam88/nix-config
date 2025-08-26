@@ -21,18 +21,31 @@
 
   hardware = {
     cpu.intel.updateMicrocode = true;
-    opengl = {
+    graphics = {
       enable = true;
       extraPackages = with pkgs; [
         intel-media-driver
-        intel-vaapi-driver
-        vaapiVdpau
-        libvdpau-va-gl
         intel-compute-runtime
+        intel-ocl
         intel-media-sdk
       ];
     };
   };
+
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };      # Same here
+
+  nixpkgs.overlays = [
+    (_self: super: {
+      intel-media-sdk = super.intel-media-sdk.overrideAttrs (old: {
+        cmakeFlags = old.cmakeFlags ++ ["-DCMAKE_CXX_STANDARD=17"];
+        NIX_CFLAGS_COMPILE = "-std=c++17";
+      });
+    })
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "intel-media-sdk-23.2.2"
+  ];
 
   powerManagement = {
     enable = true;
@@ -57,9 +70,9 @@
 
     undervolt = {
       enable = true;
-      coreOffset = -100;
-      gpuOffset = -80;
-      uncoreOffset = -100;
+      coreOffset = -80;
+      gpuOffset = -60;
+      uncoreOffset = -80;
       analogioOffset = 0;
     };
 
