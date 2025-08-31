@@ -15,7 +15,7 @@
 
   services = {
     samba = {
-      enable = false;
+      enable = true;
       package = pkgs.samba4Full;
       settings = {
         global = {
@@ -29,14 +29,6 @@
           "bind interfaces only" = "yes";
         };
         storage = {
-          path = "${config.homelab.storageDir}";
-          writable = "true";
-          comment = "NAS Storage share";
-          browseable = "yes";
-          "read only" = "no";
-          "guest ok" = "no";
-        };
-        old = {
           path = "${config.homelab.storageDir}";
           writable = "true";
           comment = "NAS Storage share";
