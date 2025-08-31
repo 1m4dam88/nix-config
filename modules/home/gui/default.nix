@@ -9,7 +9,7 @@
     ./gaming.nix
     ./hyprland
     ./imv.nix
-    ./jellyfin.nix
+    #./jellyfin.nix # qtwebengone 5 is marked unsafe so commenting for now
     ./kdeconnect.nix
     ./kicad.nix
     ./krita.nix
