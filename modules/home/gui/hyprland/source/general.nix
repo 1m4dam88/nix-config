@@ -5,8 +5,8 @@
        general = {
          "$mainMod" = "SUPER";
          layout = "dwindle";
-         gaps_in = 0;
-         gaps_out = 0;
+         gaps_in = 5;
+         gaps_out = 10;
        };
      };
   };

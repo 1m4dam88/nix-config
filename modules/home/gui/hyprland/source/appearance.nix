@@ -6,7 +6,7 @@
          enabled = false;
        };
        decoration = {
-         rounding = 0;
+         rounding = 10;
          active_opacity = 1;
          inactive_opacity = 1;
          blur = {

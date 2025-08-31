@@ -30,50 +30,46 @@
     wtype
   ];
 
-  services.hyprsunset = {
-    enable = true;
-    transitions = {
-      sunrise = {
-        calendar = "*-*-* 06:00:00";
-        requests = [
-          [ "temperature" "6500" ]
-          [ "gamma 100" ]
-        ];
-      };
-      sunset = {
-        calendar = "*-*-* 22:30:00";
-        requests = [
-          [ "temperature" "3500" ]
-        ];
-      };      
-    };
-  };
+  #services.hyprsunset = {
+  #  enable = true;
+  #  transitions = {
+  #    sunrise = {
+  #      calendar = "*-*-* 06:00:00";
+  #      requests = [
+  #        [ "temperature" "6500" ]
+  #        [ "gamma 100" ]
+  #      ];
+  #    };
+  #    sunset = {
+  #      calendar = "*-*-* 22:30:00";
+  #      requests = [
+  #        [ "temperature" "3500" ]
+  #      ];
+  #    };      
+  #  };
+  #};
 
-  systemd.user.targets.hyprland-session.Unit.Wants = [
-    "xdg-desktop-autostart.target"
-  ];
-
-  xdg = {
-    portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-      ];
-      config = {
-        common.default = [ "gtk" ];
-        hyprland.default = [
-          "gtk"
-          "hyprland"
-        ];
-      };
-    };
-  };
+  #xdg = {
+  #  portal = {
+  #    enable = true;
+  #    xdgOpenUsePortal = true;
+  #    extraPortals = [
+  #      pkgs.xdg-desktop-portal-gtk
+  #    ];
+  #    config = {
+  #      common.default = [ "gtk" ];
+  #      hyprland.default = [
+  #        "gtk"
+  #        "hyprland"
+  #      ];
+  #    };
+  #  };
+  #};
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    systemd.enable = true;
-    systemd.enableXdgAutostart = true;
+    package = null;
+    portalPackage = null;
+    systemd.enable = false;
     plugins = [
       inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
     ];
