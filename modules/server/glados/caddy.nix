@@ -101,6 +101,12 @@ in
           reverse_proxy http://10.1.10.3:7745
         '';
       };
+      "panel.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy http://10.1.10.42:80
+        '';
+      };
       "homeassistant.tjd.lol" = {
         useACMEHost = "tjd.lol";
         extraConfig = ''
@@ -130,7 +136,13 @@ in
       "adguard.tjd.lol" = {
         useACMEHost = "tjd.lol";
         extraConfig = ''
-          reverse_proxy 10.1.10.1:3000
+          reverse_proxy 10.1.10.112:3000
+        '';
+      };
+      "unifi.tjd.lol" = {
+        useACMEHost = "tjd.lol";
+        extraConfig = ''
+          reverse_proxy 10.1.10.112:8443
         '';
       };
     };

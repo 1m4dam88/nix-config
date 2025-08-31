@@ -2,6 +2,7 @@
 {
   services.homepage-dashboard = {
     enable = true;
+    allowedHosts = "*";
 #    environmentFile = "/home/ye/nix-config/modules/server/proxvm/homepage.env";
     services = [
       {
@@ -77,7 +78,7 @@
             "Paperless" = {
               description = "PDF and Document organizer";
               href = "https://paperless.${config.homelab.domain}";
-              icon = "sh-paperless.svg";
+              icon = "sh-paperless-ngx.svg";
             };
           }
           {
@@ -92,6 +93,13 @@
               description = "";
               href = "https://homebox.${config.homelab.domain}";
               icon = "sh-homebox.svg";
+            };
+          }
+          {
+            "Pterodactyl Panel" = {
+              description = "";
+              href = "https://panel.${config.homelab.domain}";
+              icon = "sh-pterodactyl.svg";
             };
           }
          # {
