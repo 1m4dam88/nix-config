@@ -9,6 +9,7 @@
       dejavu_fonts
       liberation_ttf
       terminus_font_ttf
+      nerd-fonts.departure-mono
     ];
     fontconfig = {
       enable = true;

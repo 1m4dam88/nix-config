@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, ... }:
 {
   wayland.windowManager.hyprland = {
      settings = {
@@ -6,7 +6,6 @@
          enabled = false;
        };
        decoration = {
-         rounding = 10;
          active_opacity = 1;
          inactive_opacity = 1;
          blur = {
@@ -21,9 +20,10 @@
          };
          shadow = {
            enabled = true;
-           range = 30;
-           render_power = 3;
-           offset = "12 12";
+           range = 5;
+           render_power = 5;
+           offset = "5 5";
+           color = lib.mkForce "rgba(${config.lib.stylix.colors.base00}ff)";
          };
        };
      };
