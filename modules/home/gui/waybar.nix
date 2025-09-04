@@ -15,7 +15,7 @@
           "backlight"
           "pulseaudio"
           "battery"
-          "clock"
+          "clock#date"
           "tray"
         ];
 
@@ -37,8 +37,13 @@
           spacing = 8;
         };
 
+        "clock#time" = {
+          format = "󰥔 {:%H%M}";
+          "tooltip-format" = "<tt><small>{calendar}</small></tt>";
+        };
+
         clock = {
-          format = "{:%d\n%m\n\n%H\n%M}";
+          format = " {:%d/%m}";
           interval = 30;
           "tooltip-format" = "<tt><small>{calendar}</small></tt>";
           calendar = {
@@ -86,13 +91,13 @@
         };
 
         battery = {
-          format = "{capacity}%";
+          format = "󰁹 {capacity}%";
           states = {
             warning = 30;
             critical = 10;
           };
-          "format-full" = "100%";
-          "format-charging" = "{capacity}%";
+          "format-full" = "󰁹 100%";
+          "format-charging" = "󰂄 {capacity}%";
           "format-icons" = [
             ""
             ""
@@ -118,7 +123,7 @@
         };
 
         backlight = {
-          format = "{percent}%";
+          format = "󰞏 {percent}%";
           "format-icons" = [
             ""
             ""
@@ -128,7 +133,7 @@
         };
 
         pulseaudio = {
-          format = "{volume}%";
+          format = " {volume}%";
           "format-bluetooth" = "SND:{volume}%";
           "format-muted" = "NO SND";
           "format-icons" = {
@@ -155,7 +160,7 @@
       }
       
       * {
-          font-family: "Caskaydia Cove Nerd Font";
+          font-family: "DepartureMono Nerd Font Mono";
           font-size: 10pt;
       
       }
@@ -180,6 +185,7 @@
       #pulseaudio {
         padding: 1px 0px;
       	margin: 1px 0px;
+        color: @base0A;
       }
       #sndio {
         padding: 0 5px;
@@ -191,9 +197,11 @@
       }
       #upower,
       #battery {
+        color: @base0B;
       }
       #upower.charging,
       #battery.Charging {
+        color: @base0B;
       }
       #network {
         padding: 0 5px;
@@ -207,10 +215,10 @@
       #clock {
       	padding: 2px 0px 0px 0px;
       	font-size: 16px;
-        background-color: @base09;
-        color: @base00;
+        color: @base0E;
       }
       #backlight {
+        color: @base08;
       }
       #cpu {
         padding: 0 5px;
@@ -269,7 +277,7 @@
       
       
        * {
-       	font-family: "Caskaydia Cove Nerd Font";
+       	font-family: "DepartureMono Nerd Font Mono";
        	font-size: 12pt;
        }
       
@@ -334,8 +342,12 @@
        }
       
        /* weird padding rules */
-       #backlight,
-       #battery,
+       #backlight {
+         color: @base08;
+       }
+       #battery {
+         color: @base0B;
+       }
        #idle_inhibitor,
        #language,
        #network,
@@ -354,15 +366,15 @@
        }
       
        #battery.full{
-       	color: #73d836;
+         color: @base0B;
        }
       
        #battery.warning {
-       	color: #ffdd33;
+         color: @base0B;
        }
       
        #battery.critical {
-       	color: #f43841;
+         color: @base0B;
        }
       
        #network.disconnected {
@@ -391,6 +403,7 @@
       #pulseaudio {
         padding: 1px 0px;
       	margin: 1px 0px;
+        color: @base0A;
       }
     '';
   };

@@ -9,85 +9,52 @@
         };
     };
     display = {
-        separator = " ";
+        separator = "  ";
     };
     modules = [
         {
-            key = "╭───────────╮";
-            type = "custom";
-        } 
-        {
-            key = "│ {#31} user    {#keys}│";
-            type = "title";
-            format = "{user-name}";
-        } 
-        {
-            key = "│ {#32}󰇅 hname   {#keys}│";
-            type = "title";
-            format = "{host-name}";
-        } 
-        {
-            key = "│ {#33}󰅐 uptime  {#keys}│";
-            type = "uptime";
-        } 
-        {
-            key = "│ {#34}{icon} distro  {#keys}│";
             type = "os";
-        } 
+            key = "os    ";
+            keyColor = "red";
+        }
+        {   
+            type = "hostname";
+            key = "hname ";
+            keyColor = "green";
+        }
         {
-            key = "│ {#35} kernel  {#keys}│";
             type = "kernel";
-        } 
+            key = "kernel";
+            keyColor = "yellow";
+        }
         {
-            key = "│ {#36}󰇄 desktop {#keys}│";
-            type = "de";
-        } 
+            type = "host";
+            format = "{vendor} {family}";
+            key = "host  ";
+            keyColor = "blue";
+        }
         {
-            key = "│ {#31} term    {#keys}│";
-            type = "terminal";
-        } 
+            type = "packages";
+            key = "pkgs  ";
+            keyColor = "magenta";
+        }
         {
-            key = "│ {#32} shell   {#keys}│";
-            type = "shell";
-        } 
+            type = "uptime";
+            format = "{?days}{days}d {?}{hours}h {minutes}m";
+            key = "uptime";
+            keyColor = "red";
+        }
+        {   type = "localip";
+            key = "ip    ";
+            format = "{ipv4} ";
+            keyColor = "green";
+        }
         {
-            key = "│ {#33}󰍛 cpu     {#keys}│";
-            type = "cpu";
-            showPeCoreCount = true;
-        } 
-        {
-            key = "│ {#34}󰉉 disk    {#keys}│";
-            type = "disk";
-            folders = "/";
-        } 
-        {
-            key = "│ {#35} memory  {#keys}│";
             type = "memory";
-        } 
-        {
-            key = "│ {#36}󰩟 network {#keys}│";
-            type = "localip";
-            format = "{ipv4} ({ifname})";
-        } 
-        {
-            key = "│ {#31}󰝚 music   {#keys}│";
-            type = "media";
-        } 
-        {
-            key = "├───────────┤";
-            type = "custom";
-        } 
-        {
-            key = "│ {#39} colors  {#keys}│";
-            type = "colors";
-            symbol = "circle";
-        } 
-        {
-            key = "╰───────────╯";
-            type = "custom";
-        } 
-    ];
-};
+            key = "memory";
+            keyColor = "yellow";
+        }
+      ];
     };
-  }
-
+  };
+}
