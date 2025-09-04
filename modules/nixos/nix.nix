@@ -15,6 +15,8 @@
     flake = "/etc/nixos";
   };
 
+  programs.nix-ld.enable = true;
+
   # Automatic store optimization
   nix.settings = {
 

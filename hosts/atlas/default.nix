@@ -13,6 +13,7 @@
       "iommu=pt" 
       "pcie_aspm=off" # Better PCIe performance
       "mitigations=off" # For maximum performance
+      "amd_pstate=active"
     ];
 
     loader = {
@@ -22,11 +23,41 @@
     };
   };
 
+
   hardware = {
     cpu.amd.updateMicrocode = true;
     graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+
+      mesa-demos
+      
+      gst_all_1.gstreamer
+      gst_all_1.gst-plugins-base
+      gst_all_1.gst-plugins-good
+      gst_all_1.gst-plugins-bad
+      gst_all_1.gst-plugins-ugly
+      gst_all_1.gst-libav
+      gst_all_1.gst-vaapi
+      
+      # Additional multimedia libraries
+      ffmpeg-full
+      libva
+      libva-utils
+      vaapiVdpau
+      libvdpau-va-gl
+      ]; 
+      extraPackages32 = with pkgs.pkgsi686Linux; [
+        gst_all_1.gstreamer
+        gst_all_1.gst-plugins-base
+        gst_all_1.gst-plugins-good
+        gst_all_1.gst-plugins-bad
+        gst_all_1.gst-plugins-ugly
+        gst_all_1.gst-libav
+        libva
+      ];
     };
   };
 

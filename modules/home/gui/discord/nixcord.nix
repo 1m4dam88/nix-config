@@ -73,12 +73,10 @@
         revealAllSpoilers.enable = true;
         reverseImageSearch.enable = true;
         roleColorEverywhere.enable = true;
-        searchReply.enable = true;
         serverInfo.enable = true;
         serverListIndicators.enable = true;
         shikiCodeblocks.enable = true;
         showAllMessageButtons.enable = true;
-        showAllRoles.enable = true;
         showConnections.enable = true;
         showHiddenChannels.enable = true;
         showHiddenThings.enable = true;
@@ -101,10 +99,10 @@
         viewRaw.enable = true;
         voiceDownload.enable = true;
         voiceMessages.enable = true;
-        watchTogetherAdblock.enable = true;
         webRichPresence.enable = true;
         webScreenShareFixes.enable = true;
         whoReacted.enable = true;
+        youtubeAdblock.enable = true;
       };
     };
   };
