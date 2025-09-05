@@ -51,12 +51,12 @@
                 "$mainMod, M, exec, foot -e ncmpcpp"
                 "$mainMod, Return, exec, foot"
                 "$mainMod shift, Return, exec, foot"
-                ", Print, exec, grimblast --freeze copysave area ~/Pictures/Screenshots/$(date '+%Y-%m-%d %H:%M:%S').png"
-                "Ctrl, Print, exec, grimblast --freeze save area - |  swappy -f -"
-                "SHIFT, Print, exec, grimblast copysave output ~/Pictures/Screenshots/$(date '+%Y-%m-%d %H:%M:%S').png'"
-                "Ctrl SHIFT, Print, exec, grimblast --freeze save output - |  swappy -f -"
-                "$mainMod, Print, exec, grimblast --freeze copysave active ~/Pictures/Screenshots/$(date '+%Y-%m-%d %H:%M:%S').png"
-                "$mainMod Ctrl, Print, exec, grimblast --freeze save active - |  swappy -f -"
+                ", Print, exec, hyprshot -m region -o ~/Pictures/Screenshots"
+                "Ctrl, Print, exec, hyprshot -m region -o - | swappy -f -"
+                "SHIFT, Print, exec, hyprshot -m window"
+                "Ctrl SHIFT, Print, exec, hyprshot -m window - |  swappy -f -"
+                "$mainMod, Print, exec, hyprshot -m output"
+                "$mainMod Ctrl, Print, exec, hyprshot -m output - |  swappy -f -"
                 
                 
                 "$mainMod, 1, split-workspace, 1"

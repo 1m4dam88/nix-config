@@ -12,7 +12,6 @@
     package = pkgs.gruvbox-plus-icons;
   };
   home.packages = with pkgs; [
-    inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     bemoji
     brightnessctl
     cliphist
@@ -20,9 +19,10 @@
     glib
     grim
     hyprpicker
+    hyprshot
     matugen
     playerctl
-    slurp
+    swappy
     swww
     wayland
     wf-recorder
