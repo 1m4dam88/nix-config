@@ -1,13 +1,15 @@
 { config, pkgs, lib, ... }:
 {
-  services.jellyfin = {
-    enable = true;
-    configDir = "${config.homelab.appdataDir}/jellyfin/config";
-    logDir = "${config.homelab.appdataDir}/jellyfin/config/log";
-    cacheDir = "${config.homelab.appdataDir}/jellyfin/config/cache";
-    dataDir = "${config.homelab.appdataDir}/jellyfin";
-    user = config.homelab.user;
-    group = config.homelab.group;
+  services = { 
+    jellyfin = {
+      enable = true;
+      configDir = "${config.homelab.appdataDir}/jellyfin/config";
+      logDir = "${config.homelab.appdataDir}/jellyfin/config/log";
+      cacheDir = "${config.homelab.appdataDir}/jellyfin/config/cache";
+      dataDir = "${config.homelab.appdataDir}/jellyfin";
+      user = config.homelab.user;
+      group = config.homelab.group;
+    };
   };
 
   nixpkgs.overlays = with pkgs; [

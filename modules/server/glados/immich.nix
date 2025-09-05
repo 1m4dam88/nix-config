@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 {
-  services.immich = {
-    enable = true;
-    mediaLocation = "${config.homelab.mediaDir}/immich/photos";
-    accelerationDevices = null;
+  services = {
+    immich = {
+      enable = true;
+      mediaLocation = "${config.homelab.mediaDir}/immich/photos";
+      accelerationDevices = null;
+    };
   };
   hardware.graphics = {
     enable = true;
