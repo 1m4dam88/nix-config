@@ -194,6 +194,10 @@
           hostname = "proxvm";
           hostDir = ./hosts/proxvm;
         };
+        r730nixos = mkSystem {
+          hostname = "r730nixos";
+          hostDir = ./hosts/r730nixos;
+        };
       };
 
       homeModules.default = ./modules/home;
