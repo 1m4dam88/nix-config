@@ -5,7 +5,6 @@
     ./discord
     ./easyeffects.nix
     ./foot.nix
-    ./fuzzel.nix
     ./gaming.nix
     ./hyprland
     ./imv.nix

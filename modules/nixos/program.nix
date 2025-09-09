@@ -10,12 +10,15 @@
     };
   };
   environment.systemPackages = with pkgs; [
-    p7zip
-    unzip
-    unrar
-    unetbootin
-    sops
+    bc
     ffmpeg
+    gdu
+    p7zip
+    killall
+    sops
+    unetbootin
+    unrar
+    unzip
     vulkan-tools
   ];
 }

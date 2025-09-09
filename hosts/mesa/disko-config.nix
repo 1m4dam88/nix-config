@@ -3,50 +3,33 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/sda"; # Change this to your disk device
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
+            boot = {
               size = "512M";
-              type = "EF00";
+              type = "EF00"; # EFI System Partition
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
               };
             };
-            luks = {
-              size = "100%";
+            root = {
+              size = "100%"; # Uses remaining space
               content = {
-                type = "luks";
-                name = "root";
-                content = {
-                  type = "btrfs";
-                  extraArgs = [ "-f" ];
-                  subvolumes = {
-                    "/root" = {
-                      mountpoint = "/";
-                      mountOptions = [
-                        "compress-force=zstd:2"
-                        "noatime"
-                      ];
-                    };
-                    "/home" = {
-                      mountpoint = "/home";
-                      mountOptions = [
-                        "compress-force=zstd:2"
-                        "noatime"
-                      ];
-                    };
-                    "/nix" = {
-                      mountpoint = "/nix";
-                      mountOptions = [
-                        "compress-force=zstd:2"
-                        "noatime"
-                      ];
-                    };
+                type = "btrfs";
+                extraArgs = ["-f"]; # Force creation
+                subvolumes = {
+                  "@" = {
+                    mountpoint = "/";
+                  };
+                  "@home" = {
+                    mountpoint = "/home";
+                  };
+                  "@nix" = {
+                    mountpoint = "/nix";
                   };
                 };
               };

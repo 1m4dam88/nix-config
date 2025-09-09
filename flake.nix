@@ -61,11 +61,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Theming
     stylix.url = "github:danth/stylix";
+
+    walker.url = "github:abenz1267/walker";
   };
 
-  outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, nvchad4nix, ... }@inputs:
+  outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, nvchad4nix, walker, ... }@inputs:
     let
       username = "ye";
       system = "x86_64-linux";
