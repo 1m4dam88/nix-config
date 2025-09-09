@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, libs, pkgs, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -165,15 +165,22 @@
       
       }
       
-      @define-color base00 #1d2021; @define-color base01 #3c3836;
-      @define-color base02 #504945; @define-color base03 #665c54;
-      @define-color base04 #bdae93; @define-color base05 #d5c4a1;
-      @define-color base06 #ebdbb2; @define-color base07 #fbf1c7;
-      
-      @define-color base08 #fb4934; @define-color base09 #fe8019;
-      @define-color base0A #fabd2f; @define-color base0B #b8bb26;
-      @define-color base0C #8ec07c; @define-color base0D #83a598;
-      @define-color base0E #d3869b; @define-color base0F #d65d0e;
+      @define-color base00 #${config.lib.stylix.colors.base00};
+      @define-color base01 #${config.lib.stylix.colors.base01};
+      @define-color base02 #${config.lib.stylix.colors.base02};
+      @define-color base03 #${config.lib.stylix.colors.base03};
+      @define-color base04 #${config.lib.stylix.colors.base04};
+      @define-color base05 #${config.lib.stylix.colors.base05};
+      @define-color base06 #${config.lib.stylix.colors.base06};
+      @define-color base07 #${config.lib.stylix.colors.base07};
+      @define-color base08 #${config.lib.stylix.colors.base08};
+      @define-color base09 #${config.lib.stylix.colors.base09};
+      @define-color base0A #${config.lib.stylix.colors.base0A};
+      @define-color base0B #${config.lib.stylix.colors.base0B};
+      @define-color base0C #${config.lib.stylix.colors.base0C};
+      @define-color base0D #${config.lib.stylix.colors.base0D};
+      @define-color base0E #${config.lib.stylix.colors.base0E};
+      @define-color base0F #${config.lib.stylix.colors.base0F};
       window#waybar, tooltip {
           color: @base05;
       }
@@ -282,12 +289,12 @@
        }
       
        .modules-left {
-       /*	background-color: #1d2021;*/
+       /*	background-color: @base00;*/
        }
       
       
        .modules-right {
-       /*	background-color: #1d2021;*/
+       /*	background-color: @base00;*/
        }
       
        #workspaces {
@@ -296,7 +303,7 @@
        #workspaces button {
        	padding: 0px 6px 0px 6px;
        	color: #f5f5f5;
-       	background-color: #1d2021;
+       	background-color: @base00;
        	border-radius: 0;
        }
       
@@ -307,7 +314,7 @@
        	border-left: 0px ;
        	border-bottom: 0px ;
        	color: #FFFFFF;
-        background-color: #1d2021;
+        background-color: @base00;
        	border-radius: 0;
        }
       
@@ -316,7 +323,7 @@
        	border-right: 0px;
        	border-left: 0px;
        	border-bottom: 0px;
-        color: #1d2021;
+        color: @base00;
         background-color: #ffffff;
        	border-radius: 0;
        }
@@ -328,17 +335,17 @@
        }
       
        window#waybar {
-       	background-color: #1d2021;
+       	background-color: @base00;
        }
       
        #mpris {
        	color: #ffffff;
-       	background-color: #1d2021;
+       	background-color: @base00;
        	padding: 0px 0px 0px 6px;
        }
       
        window#waybar.empty {
-       	background-color: #1d2021;
+       	background-color: @base00;
        }
       
        /* weird padding rules */
@@ -354,11 +361,11 @@
        #power-profiles-daemon{
        	padding: 0px 6px 0px 6px;
        	color: #f5f5f5;
-       	background-color: #1d2021
+       	background-color: @base00
        }
        #tray {
        	padding: 0px 0px 0px 6px;
-       	background-color: #1d2021
+       	background-color: @base00
        }
       
        #pulseaudio.bluetooth {

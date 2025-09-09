@@ -6,7 +6,6 @@
     runAsService = true;
 
     config = {
-      placeholders."default".input = "Searx";
       providers.prefixes = [
         { provider = "websearch"; prefix = "+";}
       ];

@@ -19,6 +19,11 @@
 
     shellAbbrs = {
       "vim" = "nvim";
+      "vi" = "nvim";
+      "v" = "nvim";
+      "neovim" = "nvim";
+      "n" = "nvim";
+      "vfzf" = "nvim $(fzf)";
       "rn" = "nh os switch ~/nix-config";
       "cp" = "cp -iv";
       "mv" = "mv -iv";
@@ -38,14 +43,35 @@
       "yta" = "yt -x -f bestaudio/best";
       "ffmpeg" = "ffmpeg -hide_banner";
       
-      "ls" = "eza --group-directories-first";
-      "ll" = "eza -l";
+      "ls" = "eza --group-directories-first --icons";
+      "ll" = "eza --group-directories-first -lag --icons --header";
       "grep" = "rg";
       "cat" = "bat";
       "cd" = "z";
-      
+      "cc" = "clear; z";
       "ka" = "killall";
+      
+      ".." = "z ..";
+      "..." = "z ../..";
+      "...." = "z ../../..";
+
+      "untar" = "tar -zxvf";
+      "mktar" = "tar -cvzf";
+
+      # Nixos related
       "nr" = "nixos-rebuild";
+      "nuc" = "nh os switch ~/nix-config -u && nh clean all";
+      "nru" = "z ~/nix-config && doas nixos-rebuild switch --flake . --upgrade";
+      "nsp" = "nix-shell -p";
+      "scg" = "doas nix-collect-garbage -d";
+      "ucg" = "nix-collect-garbage -d";
+      "cfg" = "z /home/ye/nix-config/";
+
+      # SSH related
+      "glados" = "ssh glados";
+      "r730" = "ssh r730";
+      "3dp" = "ssh hingeproblems";
+      "router" = "ssh 10.1.10.2";
     };
  };
 }

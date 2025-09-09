@@ -2,8 +2,8 @@
 {
   stylix = {
     enable = true;
-    image = ./../../assets/wallpapers/wallhaven-o5ky29_3440x1440.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    image = ./../../assets/wallpapers/abstract-swirls.jpg;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     polarity = "dark";
     opacity.terminal = 1.0;
     cursor.package = pkgs.bibata-cursors;

@@ -3,6 +3,7 @@
     ./bat.nix
     ./btop.nix
     ./cava.nix
+    ./defaults.nix
     ./eza.nix
     ./fastfetch.nix
     ./fish.nix
