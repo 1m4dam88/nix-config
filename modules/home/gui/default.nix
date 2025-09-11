@@ -1,6 +1,7 @@
 { inputs, username, host, ...}: {
   imports = [
     ./3dp.nix
+    ./avizo.nix
     ./browser.nix
     ./discord
     ./easyeffects.nix

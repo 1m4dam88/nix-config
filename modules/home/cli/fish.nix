@@ -43,8 +43,8 @@
       "yta" = "yt -x -f bestaudio/best";
       "ffmpeg" = "ffmpeg -hide_banner";
       
-      "ls" = "eza --group-directories-first --icons";
-      "ll" = "eza --group-directories-first -lag --icons --header";
+      "ls" = "eza --group-directories-first --icons always";
+      "ll" = "eza --group-directories-first -lag --icons always --header";
       "grep" = "rg";
       "cat" = "bat";
       "cd" = "z";
