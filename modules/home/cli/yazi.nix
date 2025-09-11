@@ -7,7 +7,6 @@
     settings = {
       manager = {
         linemode = "size";
-        show_hidden = true;
         show_symlink = true;
         sort_by = "natural";
         sort_dir_first = true;
