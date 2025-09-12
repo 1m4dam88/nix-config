@@ -32,10 +32,9 @@
       "md" = "mkdir -pv";
       
       "g" = "git";
-      "gca" = "git clone";
+      "gc" = "git clone";
       "ga" = "git add";
       "gaa" = "git add -A";
-      "gc" = "git commit";
       "gcm" = "git commit -m";
       "gp" = "git push";
       
