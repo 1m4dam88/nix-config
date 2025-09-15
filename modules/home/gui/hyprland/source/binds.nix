@@ -50,7 +50,7 @@
                 "$mainMod, V, exec, walker -m clipboard"
                 "$mainMod shift, V, exec, foot -e cava"
                 "$mainMod, N, exec, uwsm app -- steam.desktop"
-                "$mainMod, M, exec, foot -e ncmpcpp"
+                "$mainMod, M, exec, foot -e jellyfin-tui"
                 "$mainMod, Return, exec, foot"
                 "$mainMod shift, Return, exec, foot"
                 ", Print, exec, hyprshot -m region -o ~/Pictures/Screenshots"
