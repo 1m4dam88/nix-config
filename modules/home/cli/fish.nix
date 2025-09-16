@@ -45,7 +45,7 @@
       "gaa" = "git add -A";
       "gcm" = "git commit -m";
       "gp" = "git push";
-      "gpp" = "git push";
+      "gpp" = "git pull";
       
       "yt" = "yt-dlp --embed-metadata -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4'";
       "yta" = "yt -x -f bestaudio/best";
