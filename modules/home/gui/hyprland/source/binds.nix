@@ -3,13 +3,13 @@
   wayland.windowManager.hyprland = {
      settings = {
        bindle = [
-                ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-                ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-                ", XF86MonBrightnessUp, exec, brightnessctl set '+5%'"
-                ", XF86MonBrightnessDown, exec, brightnessctl set '5%-'"
+                ", XF86AudioRaiseVolume, exec, volumectl -u up"
+                ", XF86AudioLowerVolume, exec, volumectl -u down"
+                ", XF86MonBrightnessUp, exec, lightctl up"
+                ", XF86MonBrightnessDown, exec, lightctl down"
        ];
        bindl = [
-                ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+                ", XF86AudioMute, exec, volumectl toggle-mute"
                 ", XF86AudioNext, exec, playerctl next"
                 ", XF86AudioPrev, exec, playerctl previous"
                 ", XF86AudioPlay, exec, playerctl play-pause"
@@ -50,7 +50,7 @@
                 "$mainMod, V, exec, walker -m clipboard"
                 "$mainMod shift, V, exec, foot -e cava"
                 "$mainMod, N, exec, uwsm app -- steam.desktop"
-                "$mainMod, M, exec, foot -e ncmpcpp"
+                "$mainMod, M, exec, foot -e jellyfin-tui"
                 "$mainMod, Return, exec, foot"
                 "$mainMod shift, Return, exec, foot"
                 ", Print, exec, hyprshot -m region -o ~/Pictures/Screenshots"

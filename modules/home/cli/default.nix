@@ -10,6 +10,7 @@
     ./fzf.nix
     ./git.nix
     ./hugo.nix
+    ./jellyfin-tui.nix
     #./ncmpcpp.nix
     ./nix.nix
     ./nvim.nix

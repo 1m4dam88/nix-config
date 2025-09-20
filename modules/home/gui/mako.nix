@@ -17,7 +17,7 @@
       default-timeout = 5000;
       ignore-timeout = false;
       max-visible = 5;
-      sort = "-tim2";
+      sort = "-time";
 
       group-by = "app-name";
       

@@ -9,6 +9,14 @@
       end
       function fish_mode_prompt
       end
+      function y
+      	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+      	yazi $argv --cwd-file="$tmp"
+      	if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+      		builtin cd -- "$cwd"
+      	end
+      	rm -f -- "$tmp"
+      end
     '';
 
     plugins = [
@@ -32,19 +40,19 @@
       "md" = "mkdir -pv";
       
       "g" = "git";
-      "gca" = "git clone";
+      "gc" = "git clone";
       "ga" = "git add";
       "gaa" = "git add -A";
-      "gc" = "git commit";
       "gcm" = "git commit -m";
       "gp" = "git push";
+      "gpp" = "git pull";
       
       "yt" = "yt-dlp --embed-metadata -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4'";
       "yta" = "yt -x -f bestaudio/best";
       "ffmpeg" = "ffmpeg -hide_banner";
       
-      "ls" = "eza --group-directories-first --icons";
-      "ll" = "eza --group-directories-first -lag --icons --header";
+      "ls" = "eza --group-directories-first --icons always";
+      "ll" = "eza --group-directories-first -lag --icons always --header";
       "grep" = "rg";
       "cat" = "bat";
       "cd" = "z";
