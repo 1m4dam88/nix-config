@@ -21,8 +21,8 @@
       };
 
       monospace = {
-        package = pkgs.cozette;
-        name = "Cozette";
+        package = pkgs.nerd-fonts.caskaydia-cove;
+        name = "Caskaydia Cove Nerd Font Mono";
       };
 
       emoji = {

@@ -44,7 +44,7 @@
                 "$mainMod, Y, exec, uwsm app -- discord.desktop"
                 "$mainMod, U, exec, obs"
                 "$mainMod, O, exec, uwsm app -- org.prismlauncherPrismLauncher.desktop"
-                "$mainMod, D, exec, walker -w 650 -h 500"
+                "$mainMod, D, exec, walker --width 650 --height 500"
                 "$mainMod, backspace, exec, hyprlock"
                 "$mainMod shift, C, exec, hyprpicker -a"
                 "$mainMod, V, exec, walker -m clipboard"
