@@ -19,12 +19,16 @@
       package = pkgs.samba4Full;
       settings = {
         global = {
+          workgroup = "WORKGROUP";
           security = "user";
-          interfaces = "lo enp9s0";
+          interfaces = "lo enp3s0";
           "browseable" = "yes";
-          "server min protocol" = "NT1";
+          "client min protocol" = "core";
+          "server min protocol" = "core";
           "passwd program" = "/run/wrappers/bin/passwd %u";
           "lanman auth" = "yes";
+          "client lanman auth" = "yes";
+          "client plaintext auth" = "yes";
           "ntlm auth" = "yes";
           "bind interfaces only" = "yes";
         };
@@ -34,7 +38,8 @@
           comment = "NAS Storage share";
           browseable = "yes";
           "read only" = "no";
-          "guest ok" = "no";
+          "guest ok" = "yes";
+          "guest account" = "ye";
         };
       };
     };
