@@ -2,8 +2,8 @@
 {
   stylix = {
     enable = true;
-    image = ./../../assets/wallpapers/half-life-catppuccin-blue.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    image = ./../../assets/wallpapers/nord-1.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     polarity = "dark";
     opacity.terminal = 1.0;
     cursor.package = pkgs.catppuccin-cursors.mochaBlue;
@@ -21,8 +21,8 @@
       };
 
       monospace = {
-        package = pkgs.nerd-fonts.caskaydia-cove;
-        name = "Caskaydia Cove Nerd Font";
+        package = pkgs.cozette;
+        name = "Cozette";
       };
 
       emoji = {
