@@ -160,7 +160,7 @@
       }
       
       * {
-          font-family: "DepartureMono Nerd Font Mono";
+          font-family: "Cozette";
           font-size: 10pt;
       
       }

@@ -10,6 +10,7 @@
       liberation_ttf
       terminus_font_ttf
       nerd-fonts.departure-mono
+      cozette
     ];
     fontconfig = {
       enable = true;

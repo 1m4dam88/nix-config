@@ -7,7 +7,7 @@
          layout = "dwindle";
          gaps_in = 0;
          gaps_out = 0;
-         border_size = 3;
+         border_size = 2;
          "col.active_border" = lib.mkForce "rgb(${config.lib.stylix.colors.base04})";
          "col.inactive_border" = lib.mkForce "rgba(${config.lib.stylix.colors.base09}00)";
        };

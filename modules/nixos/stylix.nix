@@ -2,10 +2,10 @@
 {
   stylix = {
     enable = true;
-    image = ./../../assets/wallpapers/half-life-catppuccin-blue.png;
+    image = ./../../assets/wallpapers/dark-waves.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     polarity = "dark";
-    opacity.terminal = 1.0;
+    opacity.terminal = 0.9;
     cursor.package = pkgs.catppuccin-cursors.mochaBlue;
     cursor.name = "catppuccin-mocha-blue-cursors";
     cursor.size = 24;
@@ -21,8 +21,8 @@
       };
 
       monospace = {
-        package = pkgs.nerd-fonts.caskaydia-cove;
-        name = "Caskaydia Cove Nerd Font";
+        package = pkgs.nerd-fonts.caskaydia-mono;
+        name = "Caskaydia Mono Nerd Font Mono";
       };
 
       emoji = {

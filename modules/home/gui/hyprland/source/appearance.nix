@@ -9,7 +9,7 @@
          active_opacity = 1;
          inactive_opacity = 1;
          blur = {
-           enabled = false;
+           enabled = true;
            size = 10;
            passes = 3;
            new_optimizations = true;
@@ -20,9 +20,7 @@
          };
          shadow = {
            enabled = true;
-           range = 5;
-           render_power = 5;
-           offset = "5 5";
+           offset = "12 12";
            color = lib.mkForce "rgba(${config.lib.stylix.colors.base00}ff)";
          };
        };
