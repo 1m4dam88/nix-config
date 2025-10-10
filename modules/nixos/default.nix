@@ -7,6 +7,7 @@
     ./fonts.nix
     ./gaming.nix
     ./lact
+    ./libinput.nix
     ./media.nix
     ./mount.nix
     ./networking.nix
