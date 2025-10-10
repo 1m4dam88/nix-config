@@ -11,6 +11,7 @@
         enable = true;
         exports = ''
           /export/share 10.1.10.0/24(rw,sync,nohide,insecure,fsid=0,no_subtree_check)
+          /export/share 10.1.10.0/24(rw,sync,nohide,insecure,fsid=0,no_subtree_check)
         '';
       };
     };
