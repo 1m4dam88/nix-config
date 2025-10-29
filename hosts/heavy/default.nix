@@ -18,12 +18,7 @@
       "i915.enable_rc6=1"
       "i915.enable_fbc=1"
     ];
-  };
 
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = true;
-    };
   };
 
   powerManagement = {
@@ -43,13 +38,6 @@
         START_CHARGE_THRESH_BAT0 = 75;
         STOP_CHARGE_THRESH_BAT0 = 85;
       };
-    };
-  };
-
-    optimus-manager = {
-      enable = config.hardware.nvidia.enable;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
     };
   };
 

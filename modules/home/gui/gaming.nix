@@ -9,7 +9,5 @@
     protontricks
     winetricks
  	  nur.repos.iuricarras.truckersmp-cli
-    rpcs3
-    pcsx2
   ];
 }
