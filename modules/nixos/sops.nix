@@ -56,16 +56,6 @@ let
     };
   };
 
-  # Cloudflare-specific secrets
-  cloudflareSecrets = {
-    fagwar-api-key = yamlSecret secretPaths.cloudflare;
-    fagwar-email = yamlSecret secretPaths.cloudflare;
-    
-    # Tunnel configuration
-    adam-aperture-tunnel-id = yamlSecret secretPaths.cloudflare;
-    adam-aperture-tunnel = yamlSecret secretPaths.cloudflare;
-  };
-
   # Combine all secret configurations
   allSecrets = commonSecrets // homelabSecrets // cloudflareSecrets;
 
