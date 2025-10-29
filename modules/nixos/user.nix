@@ -1,57 +1,46 @@
+
 { config, pkgs, inputs, username, host, ... }:
 
 let
-  # Define Home-Manager imports based on host
+  # Define Home Manager imports per host
   homeImports = {
-    "alyx" = [
-      ./../home/cli
-      ./../home/light
-    ];
+    aperture = [ ./../home/cli ];
+    chell    = [ ./../home/cli ];
+    testvm   = [ ./../home/cli ];
+    glados   = [ ./../home/cli ];
+    proxvm   = [ ./../home/cli ];
 
-    "aperture" = [
-      ./../home/cli
-    ];
-
-    "testvm" = [
-      ./../home/cli
-    ];
-
-    "glados" = [
-      ./../home/cli
-    ];
-
-    "proxvm" = [
-      ./../home/cli
-    ];
-
-    default = [
-      inputs.self.homeModules.default  # Changed from outputs.homeManagerModules
-    ];
+    # Fallback when host is not explicitly defined
+    default  = [ inputs.self.homeModules.default ];
   };
 
   # Select imports for the current host, falling back to default
   selectedHomeImports = homeImports.${host} or homeImports.default;
 
+  # Common SSH key
+  defaultSSHKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWKYIrwL21t4Q/hbGUmLuVFOb1b77OHjbL0vqSo13kc ye@atlas";
+
 in {
   imports = [
+    # Core NixOS modules
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
     inputs.sops-nix.nixosModules.sops
 
+    # Share sops-nix with Home Manager
     {
-      # Share sops-nix with Home-Manager
       home-manager.sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
     }
   ];
 
-  # Home-Manager configuration
+  # --- Home Manager configuration ---
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
 
-    extraSpecialArgs = { 
+    extraSpecialArgs = {
       inherit inputs username host;
-      inherit (inputs) self;  # Pass self (your flake) through
+      inherit (inputs) self;
     };
 
     users.${username} = {
@@ -63,35 +52,30 @@ in {
         stateVersion = "24.11";
       };
 
-      programs.home-manager = {
-        enable = true;
-      };
+      programs.home-manager.enable = true;
     };
   };
-  sops.secrets.user_password.neededForUsers = true;
-  sops.secrets.root_password.neededForUsers = true;
+
+  sops.secrets = {
+    user_password.neededForUsers = true;
+    root_password.neededForUsers = true;
+  };
+
   users.mutableUsers = false;
-  # User configuration
-  users.users.${username} = {
-    isNormalUser = true;
-    description = username;
-    shell = pkgs.fish;
-    hashedPasswordFile = config.sops.secrets.user_password.path;
-    extraGroups = [ 
-      "networkmanager" "wheel" "adbusers" "kvm" "input"
-    ];
-    openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWKYIrwL21t4Q/hbGUmLuVFOb1b77OHjbL0vqSo13kc ye@atlas"
-    ];
-  };
 
-  users.users.root = {
-    hashedPasswordFile = config.sops.secrets.root_password.path;
-    openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWKYIrwL21t4Q/hbGUmLuVFOb1b77OHjbL0vqSo13kc ye@atlas"
-    ];
-  };
-  
+  users.users = {
+    ${username} = {
+      isNormalUser = true;
+      description = username;
+      shell = pkgs.fish;
+      hashedPasswordFile = config.sops.secrets.user_password.path;
+      extraGroups = [ "networkmanager" "wheel" "adbusers" "kvm" "input" ];
+      openssh.authorizedKeys.keys = [ defaultSSHKey ];
+    };
 
-  # Nix settings
+    root = {
+      hashedPasswordFile = config.sops.secrets.root_password.path;
+      openssh.authorizedKeys.keys = [ defaultSSHKey ];
+    };
+  };
 }

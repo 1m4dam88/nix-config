@@ -5,7 +5,6 @@
     ./hardware-configuration.nix
     ./../../modules/nixos
     ./disko-config.nix
-    ./../../modules/server/proxvm
   ];
 
   boot = {

@@ -1,56 +1,46 @@
 {
-  description = "Nixos config flake";
+  description = "nix-config (flake-parts)";
 
   inputs = {
-
     # Core system inputs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    sops-nix.url = "github:Mic92/sops-nix";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
-      url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    sops-nix.url = "github:Mic92/sops-nix";
-
-
-    # Hyprland stuff
+    # Hyprland ecosystem
     hyprland.url = "github:hyprwm/Hyprland";
-
     hyprpicker.url = "github:hyprwm/hyprpicker";
-
-
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
 
-    # Applications
-
+    # Applications / packages
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
     nixcord.url = "github:kaylorben/nixcord";
-
     nix-gaming.url = "github:fufexan/nix-gaming";
+    stylix.url = "github:danth/stylix";
+    walker.url = "github:abenz1267/walker";
 
+    # Extra integrations
     yazi-plugins = {
       url = "github:yazi-rs/plugins";
       flake = false;
@@ -60,152 +50,103 @@
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    stylix.url = "github:danth/stylix";
-
-    walker.url = "github:abenz1267/walker";
   };
 
-  outputs = { self, nixpkgs, sops-nix, disko, nur, home-manager, nixos-hardware, nvchad4nix, walker, ... }@inputs:
-    let
-      username = "ye";
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
+  outputs = inputs@{ flake-parts, nixpkgs, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      # Systems we build for
+      systems = [ "x86_64-linux" ];
 
-      commonOverlays = [
-        (final: prev: {
-          nvchad = inputs.nvchad4nix.packages."${final.system}".nvchad;
-        })
-      ];
 
-      mkSystem = { hostname, hostDir, hardwareModules ? [], extraModules ? [] }: 
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs username;
-            host = hostname;
+      perSystem = { system, pkgs, ... }: {
+        packages.default = pkgs.hello; # just to satisfy flake check
+      };
+      flake = let
+        # --- Common hardware module definitions ---
+        hardwareProfiles = {
+          thinkpad = {
+            w520 = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-w520 ];
+            t480 = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480 ];
+            x230 = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230 ];
+            x61  = [ ];
           };
-          modules = [
-            # Common configuration
-            {
-              nixpkgs = {
-                config.allowUnfree = true;
-                overlays = commonOverlays;
-              };
-            }
-            # Host-specific configuration
-            hostDir
-            # Home-Manager integration
-            home-manager.nixosModules.home-manager
-            # NUR
-            nur.modules.nixos.default
-            # disko
-            disko.nixosModules.disko
-            # sops
-            sops-nix.nixosModules.sops
-            # Hardware-specific modules
-          ] ++ hardwareModules ++ extraModules;
+
+          amd = {
+            desktop = [
+              inputs.nixos-hardware.nixosModules.common-cpu-amd
+              inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
+              inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+              inputs.nixos-hardware.nixosModules.common-gpu-amd
+            ];
+          };
+
+          intel = {
+            m93p = [
+              inputs.nixos-hardware.nixosModules.cpu-intel-haswell
+              inputs.nixos-hardware.nixosModules.gpu-intel-haswell
+            ];
+            z270 = [
+              inputs.nixos-hardware.nixosModules.common-cpu-intel
+              inputs.nixos-hardware.nixosModules.common-gpu-intel-kaby-lake
+            ];
+            server = [
+              inputs.nixos-hardware.nixosModules.common-cpu-intel
+              inputs.nixos-hardware.nixosModules.common-gpu-intel
+            ];
+          };
         };
 
-    hardwareProfiles = {
-        thinkpad = {
-          w520 = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-w520 ];
-          t480 = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480 ];
-          x230 = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230 ];
-          x61 = [];
-        };
-        amd = {
-          desktop = [
-            inputs.nixos-hardware.nixosModules.common-cpu-amd
-            inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
-            inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-            inputs.nixos-hardware.nixosModules.common-gpu-amd
+        # --- Helper to define each host ---
+        mkSystem = { hostname, hostDir, hardwareModules ? [ ], extraModules ? [ ] }:
+          nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = {
+              inherit inputs;
+              username = "ye";
+              host = hostname;
+            };
+            modules =
+              [
+                { nixpkgs.config.allowUnfree = true; }
+
+                { nixpkgs.overlays = [
+                    (final: prev: {
+                      nvchad = inputs.nvchad4nix.packages.x86_64-linux.nvchad;
+                    })
+                  ];
+                }
+
+                hostDir
+                inputs.home-manager.nixosModules.home-manager
+                inputs.nur.modules.nixos.default
+                inputs.disko.nixosModules.disko
+                inputs.sops-nix.nixosModules.sops
+              ]
+              ++ hardwareModules
+              ++ extraModules;
+          };
+      in {
+        # --- Home Manager Modules ---
+        homeModules = {
+          default = ./modules/home;
+          minimal = [
+            ./modules/home/cli
+            ./modules/home/light
           ];
         };
-        intel = {
-          m93p = [
-            inputs.nixos-hardware.nixosModules.cpu-intel-haswell
-            inputs.nixos-hardware.nixosModules.gpu-intel-haswell
-          ];
-          z270 = [
-            inputs.nixos-hardware.nixosModules.common-cpu-intel
-            inputs.nixos-hardware.nixosModules.common-gpu-intel-kaby-lake
-          ];
-          server = [
-            inputs.nixos-hardware.nixosModules.common-cpu-intel
-            inputs.nixos-hardware.nixosModules.common-gpu-intel
-          ];
+
+        # --- Host Configurations ---
+        nixosConfigurations = {
+          heavy     = mkSystem { hostname = "heavy";     hostDir = ./hosts/heavy;     hardwareModules = hardwareProfiles.thinkpad.w520; };
+          wheatley  = mkSystem { hostname = "wheatley";  hostDir = ./hosts/wheatley;  hardwareModules = hardwareProfiles.thinkpad.t480; };
+          mesa      = mkSystem { hostname = "mesa";      hostDir = ./hosts/mesa;      hardwareModules = hardwareProfiles.thinkpad.x230; };
+          atlas     = mkSystem { hostname = "atlas";     hostDir = ./hosts/atlas;     hardwareModules = hardwareProfiles.amd.desktop;   };
+          glados    = mkSystem { hostname = "glados";    hostDir = ./hosts/glados;    hardwareModules = hardwareProfiles.intel.server;  };
+          chell     = mkSystem { hostname = "chell";     hostDir = ./hosts/chell;     hardwareModules = hardwareProfiles.intel.m93p;   };
+          aperture  = mkSystem { hostname = "aperture";  hostDir = ./hosts/aperture;  hardwareModules = hardwareProfiles.intel.z270;   };
+          proxvm    = mkSystem { hostname = "proxvm";    hostDir = ./hosts/proxvm;    };
+          r730nixos = mkSystem { hostname = "r730nixos"; hostDir = ./hosts/r730nixos; };
         };
       };
-
-    in {
-      nixosConfigurations = {
-        # ThinkPads
-        heavy = mkSystem {
-          hostname = "heavy";
-          hostDir = ./hosts/heavy;
-          hardwareModules = hardwareProfiles.thinkpad.w520;
-        };
-
-        wheatley = mkSystem {
-          hostname = "wheatley";
-          hostDir = ./hosts/wheatley;
-          hardwareModules = hardwareProfiles.thinkpad.t480;
-        };
-
-        mesa = mkSystem {
-          hostname = "mesa";
-          hostDir = ./hosts/mesa;
-          hardwareModules = hardwareProfiles.thinkpad.x230;
-        };
-
-        # Desktop systems
-        atlas = mkSystem {
-          hostname = "atlas";
-          hostDir = ./hosts/atlas;
-          hardwareModules = hardwareProfiles.amd.desktop;
-        };
-
-        glados = mkSystem {
-          hostname = "glados";
-          hostDir = ./hosts/glados;
-          hardwareModules = hardwareProfiles.intel.server;
-        };
-
-        # Intel systems
-        chell = mkSystem {
-          hostname = "chell";
-          hostDir = ./hosts/chell;
-          hardwareModules = hardwareProfiles.intel.m93p;
-        };
-
-        alyx = mkSystem {
-          hostname = "alyx";
-          hostDir = ./hosts/alyx;
-          hardwareModules = hardwareProfiles.thinkpad.x61;
-        };
-
-        aperture = mkSystem {
-          hostname = "aperture";
-          hostDir = ./hosts/aperture;
-          hardwareModules = hardwareProfiles.intel.z270;
-        };
-
-        proxvm = mkSystem {
-          hostname = "proxvm";
-          hostDir = ./hosts/proxvm;
-        };
-        r730nixos = mkSystem {
-          hostname = "r730nixos";
-          hostDir = ./hosts/r730nixos;
-        };
-      };
-
-      homeModules.default = ./modules/home;
-      homeModules.minimal = [ 
-        ./modules/home/cli
-        ./modules/home/light        
-      ];
     };
-  }
-
+}
