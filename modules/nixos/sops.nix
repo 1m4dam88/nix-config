@@ -3,7 +3,7 @@
 let
   inherit (lib) mkIf;
   inherit (config.networking) hostName;
-  inherit (config.users.users) share;
+  inherit (config.users.users) ye;
   
   # Define secret file paths for better maintainability
   secretPaths = {
@@ -40,6 +40,7 @@ let
     paperless_password = yamlSecret secretPaths.homelab;
     
     # Service-specific secrets
+    deluge = yamlSecret secretPaths.homelab;
     searx-secret = yamlSecret secretPaths.homelab;
     imadam-email = yamlSecret secretPaths.homelab;
     slskd = yamlSecret secretPaths.homelab;
@@ -51,12 +52,6 @@ let
     slskd-homepage-api = yamlSecret secretPaths.homelab;
     immich-homepage-api = yamlSecret secretPaths.homelab;
     cloudflare_api_token = yamlSecret secretPaths.homelab;
-    
-    deluge = homelabSecret {
-      mode = "0775";
-      owner = share.name;
-      group = share.group;
-    };
   };
 
   allSecrets = commonSecrets // homelabSecrets;
@@ -75,14 +70,6 @@ in
     # All secret definitions
     secrets = allSecrets;
   };
-  
-  # Optional: Add assertions for better error handling
-  assertions = [
-    {
-      assertion = !isHomelabHost || (share ? name && share ? group);
-      message = "Homelab hosts require 'share' user to be defined with name and group attributes";
-    }
-  ];
 }
 #{ config, pkgs, lib, ... }:
 #

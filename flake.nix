@@ -82,8 +82,8 @@
 
           intel = {
             m93p = [
-              inputs.nixos-hardware.nixosModules.cpu-intel-haswell
-              inputs.nixos-hardware.nixosModules.gpu-intel-haswell
+              inputs.nixos-hardware.nixosModules.common-cpu-intel
+              inputs.nixos-hardware.nixosModules.common-gpu-intel
             ];
             z270 = [
               inputs.nixos-hardware.nixosModules.common-cpu-intel

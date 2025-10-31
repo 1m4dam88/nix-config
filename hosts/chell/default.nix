@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disko-config.nix
     ./../../modules/nixos
     ./../../modules/server/chell
   ];
@@ -20,11 +21,10 @@
     graphics = {
       enable = true;
       extraPackages = with pkgs; [
-        vaapiIntel
+        intel-vaapi-driver
         libvdpau-va-gl
         intel-media-driver
       ];
-      driSupport = true;
       enable32Bit = true;
     };
     enableAllFirmware = true;
@@ -37,7 +37,6 @@
 
   services = {
     thermald.enable = true;
-    lm_sensors.enable = true;
   };
 
   system.stateVersion = "24.11";
