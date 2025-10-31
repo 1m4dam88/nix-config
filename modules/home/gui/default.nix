@@ -3,7 +3,6 @@
     ./3dp.nix
     ./avizo.nix
     ./browser.nix
-    ./discord
     ./easyeffects.nix
     ./foot.nix
     ./gaming.nix

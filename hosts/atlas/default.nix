@@ -46,7 +46,7 @@
       ffmpeg-full
       libva
       libva-utils
-      vaapiVdpau
+      libva-vdpau-driver
       libvdpau-va-gl
       ]; 
       extraPackages32 = with pkgs.pkgsi686Linux; [
