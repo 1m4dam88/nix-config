@@ -57,7 +57,7 @@ let
   };
 
   # Combine all secret configurations
-  allSecrets = commonSecrets // homelabSecrets // cloudflareSecrets;
+  allSecrets = commonSecrets // homelabSecrets;
 
 in
 {
