@@ -9,7 +9,6 @@ let
   secretPaths = {
     common = ./../../secrets/secrets.yaml;
     homelab = ./../../secrets/homelab.yaml;
-    cloudflare = ./../../secrets/cloudflare.yaml;
   };
 
   # Common configuration for YAML secrets
@@ -22,7 +21,7 @@ let
   homelabSecret = attrs: yamlSecret secretPaths.homelab // attrs;
 
   # Predicate for homelab hosts
-  isHomelabHost = hostName == "glados" || hostName == "proxvm";
+  isHomelabHost = hostName == "glados" || hostName == "chell";
 
   # Common secrets used across all hosts
   commonSecrets = {
@@ -44,11 +43,15 @@ let
     searx-secret = yamlSecret secretPaths.homelab;
     imadam-email = yamlSecret secretPaths.homelab;
     slskd = yamlSecret secretPaths.homelab;
-    
-    # API tokens and external service credentials
+    jellyfin-homepage-api = yamlSecret secretPaths.homelab;
+    jellyseerr-homepage-api = yamlSecret secretPaths.homelab;
+    radarr-homepage-api = yamlSecret secretPaths.homelab;
+    sonarr-homepage-api = yamlSecret secretPaths.homelab;
+    prowlarr-homepage-api = yamlSecret secretPaths.homelab;
+    slskd-homepage-api = yamlSecret secretPaths.homelab;
+    immich-homepage-api = yamlSecret secretPaths.homelab;
     cloudflare_api_token = yamlSecret secretPaths.homelab;
     
-    # File sharing service with custom ownership
     deluge = homelabSecret {
       mode = "0775";
       owner = share.name;
@@ -56,7 +59,6 @@ let
     };
   };
 
-  # Combine all secret configurations
   allSecrets = commonSecrets // homelabSecrets;
 
 in

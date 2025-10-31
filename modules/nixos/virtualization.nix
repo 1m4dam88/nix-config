@@ -29,7 +29,7 @@
     spice-protocol
     
     # Windows guest support
-    win-virtio
+    virtio-win
     win-spice
   ];
 }

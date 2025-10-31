@@ -8,6 +8,15 @@
       settings = {
         shares.directories = [ "${config.homelab.mediaDir}/Music/share" ];
         directories.downloads = "${config.homelab.mediaDir}/Music/downloads";
+        web = {
+          api_keys = {
+            homepage = {
+              key = "${config.sops.secrets.slskd-homepage-api.path}";
+              role = "readonly";
+              cidr = "0.0.0.0/0";
+            };
+          };
+        };
       };
       nginx.listen = [
         {

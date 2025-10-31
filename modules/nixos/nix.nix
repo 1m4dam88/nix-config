@@ -75,6 +75,6 @@
   environment.systemPackages = with pkgs; [
     nh
     nix-output-monitor  # Better output during operations
-    du-dust  # For analyzing store usage
+    dust  # For analyzing store usage
   ];
 }

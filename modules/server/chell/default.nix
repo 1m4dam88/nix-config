@@ -3,7 +3,7 @@
   imports = [
     ./dns.nix
     ./unifi.nix
-    ./users.nix
+    ./homeassistant.nix
   ];
   options.homelab = {
     user = lib.mkOption {
