@@ -2,7 +2,7 @@
 {
   imports = [
     ./hyprlock.nix
-    ./hypridle.nix
+    #./hypridle.nix
     ./source
   ];
 
