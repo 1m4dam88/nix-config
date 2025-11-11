@@ -69,7 +69,7 @@ in {
       description = username;
       shell = pkgs.fish;
       hashedPasswordFile = config.sops.secrets.user_password.path;
-      extraGroups = [ "networkmanager" "wheel" "adbusers" "kvm" "input" ];
+      extraGroups = [ "networkmanager" "wheel" "adbusers" "kvm" "input" "dialout" "uucp" ];
       openssh.authorizedKeys.keys = [ defaultSSHKey ];
     };
 
